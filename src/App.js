@@ -1,12 +1,12 @@
 import Header from "./layout/Header";
-import Home from "./pages/Home";
+import Hero from "./layout/Hero";
 import Footer from "./layout/Footer";
 
 function App() {
   return (
     <div className="min-vh-100 wrapper">
         <Header />
-        <Home />
+        <Hero />
         <Footer />
     </div>
   );

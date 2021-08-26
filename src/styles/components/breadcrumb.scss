@@ -1,0 +1,27 @@
+@import "../abstracts/variables";
+
+.breadcrumb{
+  &-item{
+    font-size: 1.3rem;
+    line-height: 3;
+    text-transform: capitalize;
+    padding-#{$start}: 1rem!important;
+    a{
+      color: $fourth-color;
+    }
+
+    &-icon{
+      fill: $fourth-color!important;
+      line-height: 2.8;
+    }
+
+    &:before{
+      color: $fourth-color!important;
+      padding-#{$end}: 1rem!important;
+    }
+
+    &.active{
+      color: $third-color!important;
+    }
+  }
+}

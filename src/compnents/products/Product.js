@@ -1,24 +1,26 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Icon from "../Icons";
-import Modal from "./Modal";
+import ProductModal from "./ProductModal";
 
 import '../../styles/components/product.scss';
 
 const Product = ({product, modalHandle, modalView}) => {
+    // console.log(product)
     return (
         <div className={'col-xl-3 col-lg-4 col-sm-6 mt-3 product'}>
             <div className={'px-3 product__inner'}>
             <div className={'product__head'}>
-                <a href={product.url}>
+                <Link to={`/product/${product.id}`}>
                     <img className={'w-100 product__head__img'} src={product.image_url} alt={product.name}/>
-                </a>
+                </Link>
                 <span className={product.discount !== 0 ? 'product__head__discount' : 'd-none'}>{product.discount}%</span>
                 <span className={product.is_new ? 'product__head__new' : 'd-none'}>NEW</span>
                 <div className={'w-100 d-flex justify-content-center'}>
                     <button type={"button"} className={'btn px-5 d-none product__btn'} onClick={() => modalHandle(product)} data-bs-toggle="modal" data-bs-target="#exampleModal">QUICK SHOP</button>
                 </div>
                 {/*modal>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> here*/}
-                    <Modal modalView={modalView}/>
+                    <ProductModal modalView={modalView}/>
 
             </div>
             <div className={'product__body py-3'}>
