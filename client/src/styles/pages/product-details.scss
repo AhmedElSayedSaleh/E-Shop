@@ -1,0 +1,11 @@
+//@import "../abstracts/variables";
+
+.Product-details{
+  &__notice{
+    position: relative;
+    height: 5rem;
+    & > *{
+      #{$start}: 0;
+    }
+  }
+}

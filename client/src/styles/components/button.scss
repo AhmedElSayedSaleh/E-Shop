@@ -1,0 +1,11 @@
+//@import "../abstracts/variables";
+
+.main-btn {
+  background-color: $first-color;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: $third-color;
+  border: none;
+  border-radius: 5rem;
+  padding: 1.5rem 5rem;
+}

@@ -1,0 +1,48 @@
+//@import "../abstracts/variables";
+
+header{
+    background-color: transparent;
+    border-bottom: 1px solid #e5e5e5;
+
+    .menu{
+        &__logo{
+            a{
+                color: $third-color;
+                &:hover{
+                    color: $third-color;
+                }
+
+                span{
+                    color: $first-color;
+                }
+            }
+        }
+
+        &__link{
+            color: $third-color;
+            transition: $main-transition;
+            &:hover{
+                color: $first-color;
+            }
+        }
+
+        &__icon{
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: $main-transition;
+
+            & > *{
+                fill: $third-color;
+            }
+
+            &:hover{
+                //filter: drop-shadow(4px 4px 1px rgba($third-color, 0.4));
+                //box-shadow: $inner-shadow;
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+
