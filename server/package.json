@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon --watch server --exec node --experimental-modules server/server.js"
+    "serve": "nodemon --watch  --exec node --experimental-modules server.js"
   },
   "repository": {
     "type": "git",
