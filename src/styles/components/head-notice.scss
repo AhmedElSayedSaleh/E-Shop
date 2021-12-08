@@ -1,0 +1,21 @@
+//@import "../abstracts/variables";
+
+.head-notice{
+  position: absolute;
+  top: 1rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 4rem;
+  font-size: 1.2rem;
+
+  &--discount{
+    #{$start}: 1rem;
+    background-color: $second-color;
+    color: $fifth-color;
+  }
+
+  &--new{
+    #{$end}: 1rem;
+    background-color: $first-color;
+    color: $fifth-color;
+  }
+}

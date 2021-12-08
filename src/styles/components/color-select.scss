@@ -1,0 +1,26 @@
+.color-select {
+  &__radio {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    & + .color-select__img {
+      cursor: pointer;
+    }
+
+    &:checked {
+      & + .color-select__img {
+        outline: 0.1rem solid $third-color;
+        & + .color-select__name {
+          color: $first-color;
+        }
+      }
+    }
+  }
+
+  &__name {
+    font-size: 1.3rem;
+    padding-top: 1rem;
+  }
+}
