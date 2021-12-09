@@ -8,7 +8,7 @@ const ForYou = () => {
           <h4 className="card-title">ForYou</h4>
           <h6 className="card-subtitle text-muted">Subtitle</h6>
         </div>
-        <img src="holder.js/100x180/" alt="" />
+        <img src="" alt="" />
         <div className="card-body">
           <p className="card-text">Text</p>
           <p className="card-link">Link 1</p>
