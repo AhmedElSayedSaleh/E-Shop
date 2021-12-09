@@ -1,0 +1,81 @@
+//@import "../abstracts/variables";
+
+.footer {
+  background-color: $fifth-color;
+
+  &__logo {
+    a {
+      color: $third-color;
+
+      span {
+        color: $first-color;
+        padding-#{$start}: 1.5rem;
+      }
+    }
+  }
+
+  &__desc {
+    color: #808080;
+    font-size: 1.3rem;
+    line-height: 2;
+    padding: 3rem 0 2rem;
+  }
+
+  &__icon {
+    transition: $main-transition;
+    color: #aeaeae;
+    cursor: pointer;
+
+    &:hover {
+      color: $third-color;
+    }
+  }
+
+  &__list {
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 2;
+    }
+
+    ul {
+      font-size: 1.3rem;
+      padding: 3rem 0 0;
+
+      li {
+        line-height: 2;
+
+        a {
+          color: $third-color;
+          position: relative;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 0.1rem;
+            background-color: $first-color;
+            transition: $main-transition;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &__copyright {
+    color: #aeaeae;
+    font-size: 1.2rem;
+    line-height: 2;
+    border-top: 0.1rem solid #ebebeb;
+
+    span {
+      color: $first-color;
+    }
+  }
+}

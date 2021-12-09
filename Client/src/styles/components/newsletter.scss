@@ -1,0 +1,56 @@
+.newsletter {
+  background: center no-repeat;
+  background-size: cover;
+  position: relative;
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($third-color, 0.1);
+  }
+
+  &__discount {
+    background-color: $first-color;
+    border-top-#{$end}-radius: 4rem;
+    border-bottom-#{$end}-radius: 4rem;
+
+    span {
+      color: $fifth-color;
+      font-size: 4rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+  }
+
+  &__desc {
+    color: $fifth-color;
+    font-size: 2rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 1rem 0rem 1rem 3rem;
+    border-radius: 3rem;
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      font-size: 1.3rem;
+      line-height: 1.85;
+      color: #ababab;
+      margin-#{$start}: 2rem;
+    }
+  }
+
+  &__btn {
+    button {
+      padding: 1rem 2rem;
+    }
+  }
+}
