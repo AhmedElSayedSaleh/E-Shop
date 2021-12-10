@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CarouselProvider,
   Slider,
@@ -17,8 +17,6 @@ import {
 } from "../components";
 import { ColorSelect, Quantity } from "../components/products";
 
-import data from "../data/data.json";
-
 import "pure-react-carousel/dist/react-carousel.es.css";
 import {
   MaterialsImg,
@@ -26,10 +24,31 @@ import {
   ReviewImg2,
   ReviewImg3,
 } from "../assets/images";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-const ProductView = (props) => {
-  const product = data.shoes.find((el) => +el.id === +props.id);
-  // console.log(product);
+const ProductView = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+
+  const fetchProduct = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
+      );
+      // setLoading(false);
+      setProduct(data.shoes.find((el) => +el.id === +id));
+      console.log(product);
+      // console.log(data.shoes);
+    } catch (err) {
+      console.log(err);
+      // setError(err.message);
+      // setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchProduct();
+  }, []);
   if (!product) {
     return (
       <div

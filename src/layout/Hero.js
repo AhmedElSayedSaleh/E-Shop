@@ -24,10 +24,7 @@ const Hero = () => {
           <Route path={"/jewelry"} render={() => <Jewelry />} />
 
           <Route path={"/products"} render={() => <ProductsList />} />
-          <Route
-            path={"/product/:id"}
-            render={(props) => <ProductView id={props.match.params.id} />}
-          />
+          <Route path={"/product/:id"} render={() => <ProductView />} />
           <Route path={"/cart"} render={() => <Cart />} />
 
           <Route path={"/register"} render={() => <Register />} />

@@ -4,8 +4,6 @@ import { Icon, HeadNotice } from "../";
 import { ProductModal } from "./";
 
 const SingleProduct = ({ product, modalHandle, modalView }) => {
-  // console.log(product);
-
   return (
     <div className={"single-product"}>
       <div className={"px-3 single-product__inner"}>
@@ -52,7 +50,7 @@ const SingleProduct = ({ product, modalHandle, modalView }) => {
               </span>
               <span
                 className={
-                  product.discount !== 0
+                  product.discount !== null
                     ? "text-decoration-line-through single-product__body__price__raw"
                     : "d-none"
                 }

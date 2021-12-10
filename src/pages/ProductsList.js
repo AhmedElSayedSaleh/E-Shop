@@ -11,9 +11,12 @@ const ProductsList = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("/api/products");
+      const { data } = await axios.get(
+        "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
+      );
       setLoading(false);
       setProducts(data.shoes);
+      console.log(data.shoes);
     } catch (err) {
       setError(err.message);
       setLoading(false);
@@ -57,7 +60,7 @@ const ProductsList = () => {
       category: item.category,
       codCountry: item.codCountry,
       currency: item.currency,
-      currentPrice: item.current_price,
+      rawPrice: item.raw_price,
       discount: item.discount,
       productId: item.id,
       primaryImage: item.image_url,
@@ -65,7 +68,8 @@ const ProductsList = () => {
       likesCount: item.likes_count,
       model: item.model,
       name: item.name,
-      rawPrice: item.raw_price,
+      currentPrice:
+        item.current_price !== null ? item.current_price : item.raw_price,
       subcategory: item.subcategory,
       url: item.url,
       variationColor1: item.variation_0_color,

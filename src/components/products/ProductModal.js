@@ -58,9 +58,7 @@ const ProductModal = ({ modalView }) => {
                     <p className={"ps-3 product-modal__price"}>
                       {modalView.currentPrice}
                     </p>
-                    <span className={"ps-2 product-modal__currency"}>
-                      {modalView.currency}
-                    </span>
+                    <span className={"ps-2 product-modal__currency"}>$</span>
                   </div>
                   <ColorSelect colorData={modalView} />
                 </div>
