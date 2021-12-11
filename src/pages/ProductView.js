@@ -40,7 +40,7 @@ const ProductView = () => {
 
   let currentProduct = products.find((item) => +item.id === +id);
 
-  const fetchProduct = async () => {
+  const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
         "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
@@ -56,7 +56,7 @@ const ProductView = () => {
   };
   useEffect(() => {
     setLoading(true);
-    fetchProduct();
+    fetchProducts();
   }, []);
   // console.log(product);
 
