@@ -38,16 +38,14 @@ const ProductView = () => {
 
   // console.log(products);
 
-  let currentProduct = products.find((item) => +item.id === +id);
-
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
         "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
       );
       setLoading(false);
-      console.log(data);
-      setProducts(data.shoes);
+      setProducts(data.bags);
+      console.log(products);
     } catch (err) {
       console.log(err);
       setError(err.message);
@@ -59,6 +57,7 @@ const ProductView = () => {
     fetchProducts();
   }, []);
   // console.log(product);
+  let currentProduct = products.find((item) => +item.id === +id);
 
   if (!currentProduct) {
     return (

@@ -125,7 +125,7 @@ const ProductsList = () => {
                   );
                 })}
 
-                <div className="col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
+                <div className="col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center border">
                   <Link to="/bags">
                     <p className="h2">See More</p>
                   </Link>
@@ -180,7 +180,7 @@ const ProductsList = () => {
                   );
                 })}
 
-                <div className="col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
+                <div className="col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center border">
                   <Link to="/shoes">
                     <p className="h2">See More</p>
                   </Link>
@@ -235,7 +235,7 @@ const ProductsList = () => {
                   );
                 })}
 
-                <div className="col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
+                <div className="col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center border">
                   <Link to="/jewelry">
                     <p className="h2">See More</p>
                   </Link>
