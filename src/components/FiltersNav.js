@@ -1,6 +1,6 @@
 import React from "react";
 
-const FiltersNav = () => {
+const FiltersNav = ({ subcategories }) => {
   return (
     <div className="accordion" id="accordionPanelsStayOpenExample">
       <div className="accordion-item">
@@ -22,7 +22,25 @@ const FiltersNav = () => {
           aria-labelledby="panelsStayOpen-headingOne"
         >
           <div className="accordion-body">
-            <div className="form-check">
+            {subcategories.map((subcategory, index) => {
+              return (
+                <div className="form-check" key={index}>
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id={`subcategory${index}`}
+                  />
+                  <label
+                    className="form-check-label h5"
+                    htmlFor={`subcategory${index}`}
+                  >
+                    {subcategory}
+                  </label>
+                </div>
+              );
+            })}
+            {/* <div className="form-check">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -71,7 +89,7 @@ const FiltersNav = () => {
               >
                 Dress shirts (8)
               </label>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

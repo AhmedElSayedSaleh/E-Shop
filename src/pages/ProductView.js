@@ -31,23 +31,20 @@ import {
 
 const ProductView = () => {
   const { id } = useParams();
-  // console.log(id);
-  const [products, setProducts] = useState([]);
+
+  const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
-  // console.log(products);
+  const [currentProduct, setCurrentProduct] = useState({});
 
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
         "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
       );
+      setProducts(data);
       setLoading(false);
-      setProducts(data.bags);
-      console.log(products);
     } catch (err) {
-      console.log(err);
       setError(err.message);
       setLoading(false);
     }
@@ -56,8 +53,13 @@ const ProductView = () => {
     setLoading(true);
     fetchProducts();
   }, []);
-  // console.log(product);
-  let currentProduct = products.find((item) => +item.id === +id);
+  useEffect(() => {
+    for (const category in products) {
+      products[category].map((product) =>
+        product.id === +id ? setCurrentProduct(product) : null
+      );
+    }
+  }, [products, id]);
 
   if (!currentProduct) {
     return (
