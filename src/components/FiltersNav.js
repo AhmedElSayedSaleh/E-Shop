@@ -1,6 +1,38 @@
 import React from "react";
+// import { setFiltered } from "../store/actions/productActions";
 
-const FiltersNav = ({ subcategories }) => {
+const FiltersNav = ({ subcategories, dataType }) => {
+  // const bags = useSelector((state) => state.bags.products);
+  // const shoes = useSelector((state) => state.shoes.products);
+  // const jewelry = useSelector((state) => state.jewelry.products);
+  // const productsFiltered = useSelector((state) => state.productsFiltered);
+
+  // const dispatch = useDispatch();
+
+  // let productsContainer = [];
+  // if (dataType === "bags") {
+  //   productsContainer = bags;
+  // } else if (dataType === "shoes") {
+  //   productsContainer = shoes;
+  // } else if (dataType === "jewelry") {
+  //   productsContainer = jewelry;
+  // }
+
+  // const subcategoriesCheckbox = document.querySelectorAll(".form-check-input");
+
+  // const handleOnChange = () => {
+  //   subcategoriesCheckbox.forEach((ele) => {
+  //     if (ele.checked) {
+  //       const productsUpdated = productsContainer.filter(
+  //         (elem) => elem.subcategory === ele.value
+  //       );
+  //       console.log(productsUpdated);
+  //       dispatch(setFiltered(bags));
+  //     }
+  //     // ele.checked ? console.log(ele.value) : console.log("sss");
+  //   });
+  // };
+
   return (
     <div className="accordion" id="accordionPanelsStayOpenExample">
       <div className="accordion-item">
@@ -40,56 +72,6 @@ const FiltersNav = ({ subcategories }) => {
                 </div>
               );
             })}
-            {/* <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckTShirts"
-              />
-              <label className="form-check-label" htmlFor="flexCheckTShirts">
-                T-Shirts (411)
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckSweatshirts"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="flexCheckSweatshirts"
-              >
-                Sweatshirts (131)
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckTankTops"
-              />
-              <label className="form-check-label" htmlFor="flexCheckTankTops">
-                Tank Tops (56)
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDressShirts"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="flexCheckDressShirts"
-              >
-                Dress shirts (8)
-              </label>
-            </div> */}
           </div>
         </div>
       </div>

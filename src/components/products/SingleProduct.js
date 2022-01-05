@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+// components
 import { Icon, HeadNotice } from "../";
 import { ProductModal } from "./";
 
@@ -31,7 +33,10 @@ const SingleProduct = ({ product, modalHandle, modalView }) => {
             </button>
           </div>
           {/*modal>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> here*/}
+
           <ProductModal modalView={modalView} />
+
+          {/*modal>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> here*/}
         </div>
         <div className={"single-product__body py-3"}>
           <p className={"single-product__body__title"}>{product.name}</p>
@@ -50,7 +55,7 @@ const SingleProduct = ({ product, modalHandle, modalView }) => {
               </span>
               <span
                 className={
-                  product.discount !== null
+                  product.discount > 0
                     ? "text-decoration-line-through single-product__body__price__raw"
                     : "d-none"
                 }

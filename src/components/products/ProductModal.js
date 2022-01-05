@@ -4,7 +4,6 @@ import { Button } from "../";
 import { ColorSelect, Quantity } from "./";
 
 const ProductModal = ({ modalView }) => {
-  // console.log(modalView);
   return (
     <div
       className="modal fade"

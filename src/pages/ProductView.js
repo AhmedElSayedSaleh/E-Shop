@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   CarouselProvider,
   Slider,
@@ -29,34 +30,25 @@ import {
   ReviewImg3,
 } from "../assets/images";
 
+// Actions
+import { getProducts as productsList } from "../store/actions/productActions";
+
 const ProductView = () => {
   const { id } = useParams();
-
-  const [products, setProducts] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  const fetchProducts = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
-      );
-      setProducts(data);
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    }
-  };
+  const dispatch = useDispatch();
+  const getProducts = useSelector((state) => state.getProducts);
+
+  const { loading, error, products } = getProducts;
   useEffect(() => {
-    setLoading(true);
-    fetchProducts();
-  }, []);
+    dispatch(productsList());
+  }, [dispatch]);
+
   useEffect(() => {
     for (const category in products) {
-      products[category].map((product) =>
-        product.id === +id ? setCurrentProduct(product) : null
+      products[category].map((item) =>
+        item.id === +id ? setCurrentProduct(item) : null
       );
     }
   }, [products, id]);
@@ -125,7 +117,6 @@ const ProductView = () => {
                     <div className="col-lg-9">
                       <Slider>
                         <Slide index={0}>
-                          {/*<img className={'w-75'} src={currentProduct.variation_0_image} alt={currentProduct.name}/>*/}
                           <ImageWithZoom src={currentProduct.image_url} />
                         </Slide>
                         <Slide

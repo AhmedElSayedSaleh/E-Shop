@@ -1,85 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import axios from "axios";
+// components
 import { SingleProduct } from "../components/products";
 import { LoadingBox, MessageBox, FiltersNav, Newsletter } from "../components";
-import JewelryProduct from "../components/products/JewelryProduct";
+
+// Actions
+import { getJewelry as jewelryList } from "../store/actions/productActions";
 
 const Jewelry = () => {
-  const jewelry = useSelector((state) => state.jewelry.products);
+  const dispatch = useDispatch();
+  const getJewelry = useSelector((state) => state.getJewelry);
+  const [modalView, setModalView] = useState({});
 
-  // const [products, setProducts] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(false);
-  // const [modalView, setModalView] = useState({});
+  const { loading, error, products } = getJewelry;
   const subcategories = [];
 
-  // const fetchProducts = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
-  //     );
-  //     setLoading(false);
-  //     setProducts(data.jewelry);
-  //     // console.log(data.jewelry);
-  //   } catch (err) {
-  //     setError(err.message);
-  //     setLoading(false);
-  //   }
-  // };
+  useEffect(() => {
+    dispatch(jewelryList());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   fetchProducts();
-  // }, []);
+  const modalHandle = (product) => {
+    setModalView(product);
+  };
 
-  const productsContainer = jewelry.map((product) => {
-    // let product = {
-    //   brand: item.brand,
-    //   brandUrl: item.brand_url,
-    //   category: item.category,
-    //   codCountry: item.codCountry,
-    //   currency: item.currency,
-    //   rawPrice: item.raw_price,
-    //   discount: item.discount,
-    //   productId: item.id,
-    //   primaryImage: item.image_url,
-    //   isNew: item.is_new,
-    //   likesCount: item.likes_count,
-    //   model: item.model,
-    //   name: item.name,
-    //   currentPrice:
-    //     item.current_price !== null ? item.current_price : item.raw_price,
-    //   subcategory: item.subcategory,
-    //   url: item.url,
-    //   variationColor1: item.variation_0_color,
-    //   variationImage1: item.variation_0_image,
-    //   variationThumbnail1: item.variation_0_thumbnail,
-    //   variationColor2: item.variation_1_color,
-    //   variationImage2: item.variation_1_image,
-    //   variationThumbnail2: item.variation_1_thumbnail,
-    // };
-    // console.log(product.subcategory);
-
-    // const modalHandle = (product) => {
-    //   setModalView((modalView) => product);
-    // };
-
-    if (subcategories.indexOf(product.subcategory) === -1) {
-      subcategories.push(product.subcategory);
-    }
-
-    // return (
-    // <div key={product.productId} className="col-lg-4 col-sm-6 my-4">
-    //   <SingleProduct
-    //     product={product}
-    //     modalHandle={modalHandle}
-    //     modalView={modalView}
-    //   />
-    // </div>
-    // );
-  });
+  products.map((product) =>
+    subcategories.indexOf(product.subcategory) === -1
+      ? subcategories.push(product.subcategory)
+      : null
+  );
 
   return (
     <div className={"container"}>
@@ -89,17 +38,54 @@ const Jewelry = () => {
         </div>
         <div className="col-lg-9">
           <div className="row">
-            <JewelryProduct />
+            {loading ? (
+              <LoadingBox />
+            ) : error ? (
+              <MessageBox>{error}</MessageBox>
+            ) : (
+              products.map((item) => {
+                let product = {
+                  brand: item.brand,
+                  brandUrl: item.brand_url,
+                  category: item.category,
+                  codCountry: item.codCountry,
+                  currency: item.currency,
+                  rawPrice: item.raw_price,
+                  discount: item.discount,
+                  productId: item.id,
+                  primaryImage: item.image_url,
+                  isNew: item.is_new,
+                  likesCount: item.likes_count,
+                  model: item.model,
+                  name: item.name,
+                  currentPrice:
+                    item.current_price !== null
+                      ? item.current_price
+                      : item.raw_price,
+                  subcategory: item.subcategory,
+                  url: item.url,
+                  variationColor1: item.variation_0_color,
+                  variationImage1: item.variation_0_image,
+                  variationThumbnail1: item.variation_0_thumbnail,
+                  variationColor2: item.variation_1_color,
+                  variationImage2: item.variation_1_image,
+                  variationThumbnail2: item.variation_1_thumbnail,
+                };
 
-            {/* {
-              loading ? (
-                <LoadingBox />
-              ) : error ? (
-                <MessageBox>{error}</MessageBox>
-              ) : (
-              productsContainer
-              )
-            } */}
+                return (
+                  <div
+                    key={product.productId}
+                    className="col-lg-4 col-sm-6 my-4"
+                  >
+                    <SingleProduct
+                      product={product}
+                      modalHandle={modalHandle}
+                      modalView={modalView}
+                    />
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </div>

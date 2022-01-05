@@ -1,50 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import axios from "axios";
+// components
 import { SingleProduct } from "../components/products";
 import { LoadingBox, MessageBox, FiltersNav, Newsletter } from "../components";
-import BagProduct from "../components/products/BagProduct";
+
+// Actions
+import { getBags as BagsList } from "../store/actions/productActions";
 
 const Bags = () => {
-  const bags = useSelector((state) => state.bags.products);
+  const dispatch = useDispatch();
+  const getBags = useSelector((state) => state.getBags);
+  const [modalView, setModalView] = useState({});
 
-  // const [products, setProducts] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(false);
+  const { loading, error, products } = getBags;
+  const subcategories = [];
+
+  useEffect(() => {
+    dispatch(BagsList());
+  }, [dispatch]);
+
   // const [modalView, setModalView] = useState({});
-
-  // const fetchProducts = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
-  //     );
-  //     setLoading(false);
-  //     setProducts(data.bags);
-  //     // console.log(data.bags);
-  //   } catch (err) {
-  //     setError(err.message);
-  //     setLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   fetchProducts();
-  // }, []);
 
   // bags.map((product) => {
   //   if (subcategories.indexOf(product.subcategory) === -1) {
   //     subcategories.push(product.subcategory);
   //   }
   // });
-  const subcategories = [];
 
-  bags.map((product) =>
+  products.map((product) =>
     subcategories.indexOf(product.subcategory) === -1
       ? subcategories.push(product.subcategory)
       : null
   );
+  // console.log(subcategories);
+  // subcategories.map((item) => {
+  //   item.checked ? console.log(item) : console.log("checked");
+  // });
+
+  const modalHandle = (product) => {
+    setModalView(product);
+  };
 
   return (
     <div className={"container"}>
@@ -54,17 +50,55 @@ const Bags = () => {
         </div>
         <div className="col-lg-9">
           <div className="row">
-            <BagProduct />
+            {/* <SingleProduct dataType={"bags"} /> */}
 
-            {/* {
-              loading ? (
-                <LoadingBox />
-              ) : error ? (
-                <MessageBox>{error}</MessageBox>
-              ) : (
-              productsContainer
-              )
-            } */}
+            {loading ? (
+              <LoadingBox />
+            ) : error ? (
+              <MessageBox>{error}</MessageBox>
+            ) : (
+              products.map((item) => {
+                let product = {
+                  brand: item.brand,
+                  brandUrl: item.brand_url,
+                  category: item.category,
+                  codCountry: item.codCountry,
+                  currency: item.currency,
+                  rawPrice: item.raw_price,
+                  discount: item.discount,
+                  productId: item.id,
+                  primaryImage: item.image_url,
+                  isNew: item.is_new,
+                  likesCount: item.likes_count,
+                  model: item.model,
+                  name: item.name,
+                  currentPrice:
+                    item.current_price !== null
+                      ? item.current_price
+                      : item.raw_price,
+                  subcategory: item.subcategory,
+                  url: item.url,
+                  variationColor1: item.variation_0_color,
+                  variationImage1: item.variation_0_image,
+                  variationThumbnail1: item.variation_0_thumbnail,
+                  variationColor2: item.variation_1_color,
+                  variationImage2: item.variation_1_image,
+                  variationThumbnail2: item.variation_1_thumbnail,
+                };
+                return (
+                  <div
+                    key={product.productId}
+                    className="col-lg-4 col-sm-6 my-4"
+                  >
+                    <SingleProduct
+                      product={product}
+                      modalHandle={modalHandle}
+                      modalView={modalView}
+                    />
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </div>
