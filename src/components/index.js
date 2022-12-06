@@ -3,6 +3,7 @@ import Breadcrumb from "./Breadcrumb";
 import Button from "./Button";
 import FiltersNav from "./FiltersNav";
 import HeadNotice from "./HeadNotice";
+import ChooseUs from "./ChooseUs";
 import Icon from "./Icons";
 import LoadingBox from "./LoadingBox";
 import MessageBox from "./MessageBox";
@@ -19,6 +20,7 @@ export {
   Button,
   FiltersNav,
   HeadNotice,
+  ChooseUs,
   Icon,
   LoadingBox,
   MessageBox,

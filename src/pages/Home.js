@@ -1,6 +1,5 @@
 import React from "react";
-import { MainSlider, Newsletter } from "../components";
-import ForYou from "../components/ForYou";
+import { ChooseUs, MainSlider, Newsletter } from "../components";
 
 const Home = () => {
   return (
@@ -10,7 +9,7 @@ const Home = () => {
       </div>
       <div className={"container"}>
         <div className="row">
-          <ForYou />
+          <ChooseUs />
         </div>
         <div className="row">
           <Newsletter />

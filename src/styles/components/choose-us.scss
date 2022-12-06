@@ -1,0 +1,32 @@
+.choose-us{
+    &__title{
+        font-size: 2.9rem;
+        font-weight: 300;
+    }
+
+    &__icon{
+        color: $third-color;
+        background-color: #f6f6f6;
+        width: 7rem;
+        height: 7rem;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        &:hover{
+            color: $first-color;
+            background-color: #fff3df;
+        }
+    }
+
+    h4{
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+
+    p{
+        font-size: 1.3rem;
+        color: #808080;
+    }
+}
