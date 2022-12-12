@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router";
+import { Routes, Route, Navigate } from "react-router-dom";
 import {
   Home,
   Bags,
@@ -15,24 +15,24 @@ import { ScrollToTop, Register, Login } from "../components";
 const Hero = () => {
   return (
     <>
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <main>
-        <Switch>
-          <Route path={"/"} render={() => <Home />} exact />
-          <Route path={"/bags"} render={() => <Bags />} />
-          <Route path={"/shoes"} render={() => <Shoes />} />
-          <Route path={"/jewelry"} render={() => <Jewelry />} />
+        <Routes>
+          <Route path={"*"} element={<NotFound />} />
 
-          <Route path={"/products"} render={() => <ProductsList />} />
-          <Route path={"/product/:id"} render={() => <ProductView />} />
-          <Route path={"/cart"} render={() => <Cart />} />
+          <Route path={"/"} element={<Home />} exact />
+          <Route path={"/bags"} element={<Bags />} />
+          <Route path={"/shoes"} element={<Shoes />} />
+          <Route path={"/jewelry"} element={<Jewelry />} />
 
-          <Route path={"/register"} render={() => <Register />} />
-          <Route path={"/login"} render={() => <Login />} />
-          <Route path={"/logout"} render={() => <Redirect to="/" />} />
+          <Route path={"/products"} element={<ProductsList />} />
+          <Route path={"/product/:id"} element={<ProductView />} />
+          <Route path={"/cart"} element={<Cart />} />
 
-          <Route component={NotFound} />
-        </Switch>
+          <Route path={"/register"} element={<Register />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/logout"} element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
     </>
   );

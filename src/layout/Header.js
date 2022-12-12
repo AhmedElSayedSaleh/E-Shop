@@ -25,7 +25,10 @@ const Header = () => {
                     <NavLink
                       to={url}
                       className="px-5 menu__links__link"
-                      activeStyle={{ color: "#fbb03b" }}
+                      style={({ isActive }) =>
+                        isActive ? { color: "#fbb03b" } : null
+                      }
+                      // activeStyle={{ color: "#fbb03b" }}
                     >
                       {text}
                     </NavLink>

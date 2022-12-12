@@ -12,7 +12,6 @@ import {
 } from "pure-react-carousel";
 import {
   Breadcrumb,
-  HeadNotice,
   Button,
   Icon,
   ReviewCard,
@@ -20,7 +19,7 @@ import {
   LoadingBox,
   MessageBox,
 } from "../components";
-import { ColorSelect, Quantity } from "../components/products";
+import { ColorSelect, Quantity, HeadNotice } from "../components/products";
 
 import "pure-react-carousel/dist/react-carousel.es.css";
 import {
