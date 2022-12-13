@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { Logo } from "../assets/images";
@@ -6,8 +6,30 @@ import { links } from "../utils/constants";
 import { Icon } from "../components";
 
 const Header = () => {
+  const headerRef = useRef(null);
+
+  const stickyHeaderFunc = () => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.body.scrollTop > 70 ||
+        document.documentElement.scrollTop > 70
+      ) {
+        headerRef.current.classList.add("sticky__header");
+      } else {
+        headerRef.current.classList.remove("sticky__header");
+      }
+    });
+  };
+
+  useEffect(() => {
+    stickyHeaderFunc();
+    return () => {
+      window.removeEventListener("scroll", stickyHeaderFunc);
+    };
+  });
+
   return (
-    <header className="py-4">
+    <header className="py-4" ref={headerRef}>
       <nav className="menu">
         <div className="container">
           <div className="row align-items-center justify-content-between">

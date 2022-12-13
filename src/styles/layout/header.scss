@@ -4,6 +4,8 @@ header {
   background-color: rgba($fifth-color, 0.5);
   border-bottom: 1px solid #e5e5e5;
   z-index: 100;
+  transition: all 0.5s ease-in;
+
 
   .menu {
     &__logo {
@@ -70,4 +72,14 @@ header {
       }
     }
   }
+}
+
+.sticky__header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $fifth-color;
+  height: 60px;
+  box-shadow: 0.3rem 0.3rem 0.2rem -0.3rem #ddd;
 }
