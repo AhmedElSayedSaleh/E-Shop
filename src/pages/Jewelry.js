@@ -6,29 +6,33 @@ import { SingleProduct } from "../components/products";
 import { LoadingBox, MessageBox, FiltersNav, Newsletter } from "../components";
 
 // Actions
-import { getJewelry as jewelryList } from "../store/actions/productActions";
+// import { getJewelry as jewelryList } from "../store/actions/productActions";
+import { fetchJewelry } from "../store/slices/JewelrySlice";
 
 const Jewelry = () => {
   const dispatch = useDispatch();
-  const getJewelry = useSelector((state) => state.getJewelry);
+  const jewelryList = useSelector((state) => state.jewelryProducts);
+
   const [modalView, setModalView] = useState({});
 
-  const { loading, error, products } = getJewelry;
+  const { loading, error, data } = jewelryList;
   const subcategories = [];
 
   useEffect(() => {
-    dispatch(jewelryList());
+    dispatch(fetchJewelry());
   }, [dispatch]);
+
+  if (Array.isArray(data)) {
+    data.map((product) =>
+      subcategories.indexOf(product.subcategory) === -1
+        ? subcategories.push(product.subcategory)
+        : null
+    );
+  }
 
   const modalHandle = (product) => {
     setModalView(product);
   };
-
-  products.map((product) =>
-    subcategories.indexOf(product.subcategory) === -1
-      ? subcategories.push(product.subcategory)
-      : null
-  );
 
   return (
     <div className={"container"}>
@@ -40,10 +44,10 @@ const Jewelry = () => {
           <div className="row">
             {loading ? (
               <LoadingBox />
-            ) : error ? (
-              <MessageBox>{error}</MessageBox>
-            ) : (
-              products.map((item) => {
+            ) : !Array.isArray(data) ? (
+              <MessageBox>{data}</MessageBox>
+            ) : Array.isArray(data) && data.length > 0 ? (
+              data.map((item) => {
                 let product = {
                   brand: item.brand,
                   brandUrl: item.brand_url,
@@ -71,7 +75,6 @@ const Jewelry = () => {
                   variationImage2: item.variation_1_image,
                   variationThumbnail2: item.variation_1_thumbnail,
                 };
-
                 return (
                   <div
                     key={product.productId}
@@ -85,7 +88,7 @@ const Jewelry = () => {
                   </div>
                 );
               })
-            )}
+            ) : null}
           </div>
         </div>
       </div>

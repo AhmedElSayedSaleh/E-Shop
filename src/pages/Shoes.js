@@ -6,29 +6,34 @@ import { SingleProduct } from "../components/products";
 import { LoadingBox, MessageBox, FiltersNav, Newsletter } from "../components";
 
 // Actions
-import { getShoes as shoesList } from "../store/actions/productActions";
+// import { getShoes as shoesList } from "../store/actions/productActions";
+import { fetchShoes } from "../store/slices/ShoesSlice";
 
 const Shoes = () => {
   const dispatch = useDispatch();
-  const getShoes = useSelector((state) => state.getShoes);
+  const shoesList = useSelector((state) => state.shoesProducts);
+
   const [modalView, setModalView] = useState({});
 
-  const { loading, error, products } = getShoes;
+  const { loading, error, data } = shoesList;
+
   const subcategories = [];
 
   useEffect(() => {
-    dispatch(shoesList());
+    dispatch(fetchShoes());
   }, [dispatch]);
+
+  if (Array.isArray(data)) {
+    data.map((product) =>
+      subcategories.indexOf(product.subcategory) === -1
+        ? subcategories.push(product.subcategory)
+        : null
+    );
+  }
 
   const modalHandle = (product) => {
     setModalView(product);
   };
-
-  products.map((product) =>
-    subcategories.indexOf(product.subcategory) === -1
-      ? subcategories.push(product.subcategory)
-      : null
-  );
 
   return (
     <div className={"container"}>
@@ -40,10 +45,10 @@ const Shoes = () => {
           <div className="row">
             {loading ? (
               <LoadingBox />
-            ) : error ? (
-              <MessageBox>{error}</MessageBox>
-            ) : (
-              products.map((item) => {
+            ) : !Array.isArray(data) ? (
+              <MessageBox>{data}</MessageBox>
+            ) : Array.isArray(data) && data.length > 0 ? (
+              data.map((item) => {
                 let product = {
                   brand: item.brand,
                   brandUrl: item.brand_url,
@@ -84,7 +89,7 @@ const Shoes = () => {
                   </div>
                 );
               })
-            )}
+            ) : null}
           </div>
         </div>
       </div>

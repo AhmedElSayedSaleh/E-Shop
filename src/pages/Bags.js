@@ -6,33 +6,37 @@ import { SingleProduct } from "../components/products";
 import { LoadingBox, MessageBox, FiltersNav, Newsletter } from "../components";
 
 // Actions
-import { getBags as BagsList } from "../store/actions/productActions";
+// import { getBags as BagsList } from "../store/actions/productActions";
+import { fetchBags } from "../store/slices/BagsSlice";
 
 const Bags = () => {
   const dispatch = useDispatch();
-  const getBags = useSelector((state) => state.getBags);
+  const bagsList = useSelector((state) => state.bagsProducts);
+
   const [modalView, setModalView] = useState({});
 
-  const { loading, error, products } = getBags;
+  const { loading, error, data } = bagsList;
+
   const subcategories = [];
 
   useEffect(() => {
-    dispatch(BagsList());
+    dispatch(fetchBags());
   }, [dispatch]);
 
-  // const [modalView, setModalView] = useState({});
-
-  // bags.map((product) => {
+  // data.map((product) => {
   //   if (subcategories.indexOf(product.subcategory) === -1) {
   //     subcategories.push(product.subcategory);
   //   }
   // });
 
-  products.map((product) =>
-    subcategories.indexOf(product.subcategory) === -1
-      ? subcategories.push(product.subcategory)
-      : null
-  );
+  if (Array.isArray(data)) {
+    data.map((product) =>
+      subcategories.indexOf(product.subcategory) === -1
+        ? subcategories.push(product.subcategory)
+        : null
+    );
+  }
+
   // console.log(subcategories);
   // subcategories.map((item) => {
   //   item.checked ? console.log(item) : console.log("checked");
@@ -54,10 +58,10 @@ const Bags = () => {
 
             {loading ? (
               <LoadingBox />
-            ) : error ? (
-              <MessageBox>{error}</MessageBox>
-            ) : (
-              products.map((item) => {
+            ) : !Array.isArray(data) ? (
+              <MessageBox>{data}</MessageBox>
+            ) : Array.isArray(data) && data.length > 0 ? (
+              data.map((item) => {
                 let product = {
                   brand: item.brand,
                   brandUrl: item.brand_url,
@@ -98,7 +102,7 @@ const Bags = () => {
                   </div>
                 );
               })
-            )}
+            ) : null}
           </div>
         </div>
       </div>
