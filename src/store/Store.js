@@ -37,7 +37,7 @@ import JewelrySlice from "./slices/JewelrySlice";
 
 const store = configureStore({
   reducer: {
-    products: ProductsSlice,
+    allProducts: ProductsSlice,
     bagsProducts: BagsSlice,
     shoesProducts: ShoesSlice,
     jewelryProducts: JewelrySlice,
