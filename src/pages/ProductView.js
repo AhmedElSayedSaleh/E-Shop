@@ -29,28 +29,30 @@ import {
   ReviewImg3,
 } from "../assets/images";
 
+import { fetchProducts } from "../store/slices/ProductsSlice";
+
 // Actions
-import { getProducts as productsList } from "../store/actions/productActions";
+// import { getProducts as productsList } from "../store/actions/productActions";
 
 const ProductView = () => {
   const { id } = useParams();
   const [currentProduct, setCurrentProduct] = useState({});
 
   const dispatch = useDispatch();
-  const getProducts = useSelector((state) => state.getProducts);
+  const allProductsList = useSelector((state) => state.allProducts);
 
-  const { loading, error, products } = getProducts;
+  const { loading, error, data } = allProductsList;
   useEffect(() => {
-    dispatch(productsList());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   useEffect(() => {
-    for (const category in products) {
-      products[category].map((item) =>
+    for (const category in data) {
+      data[category].map((item) =>
         item.id === +id ? setCurrentProduct(item) : null
       );
     }
-  }, [products, id]);
+  }, [data, id]);
 
   if (!currentProduct) {
     return (
