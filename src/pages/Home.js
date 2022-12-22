@@ -7,12 +7,14 @@ const Home = () => {
       <div className="home__slider">
         <MainSlider />
       </div>
-      <div className={"container"}>
-        <div className="row">
-          <ChooseUs />
-        </div>
-        <div className="row">
-          <Newsletter />
+      <div className=" pt-5 home__content">
+        <div className={"container"}>
+          <div className="row">
+            <ChooseUs />
+          </div>
+          <div className="row">
+            <Newsletter />
+          </div>
         </div>
       </div>
     </div>

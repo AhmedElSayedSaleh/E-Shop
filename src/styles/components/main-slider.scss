@@ -1,20 +1,28 @@
 .main-carousel {
-  &__slider {
-    position: relative;
-    max-height: 100vh;
+  position: relative;
 
-    &__overlay {
+  // max-height: 100vh;
+  &__inner {
+    position: absolute;
+    top: 0;
+    #{$start}: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+
+    &__overlay::after {
+      content: "";
       background-color: rgba($third-color, 0.5);
       position: absolute;
       top: 0;
       // bottom: 0;
       #{$start}: 0;
-      // #{$end}: 0;
+      #{$end}: 0;
       height: 100vh;
-      width: 100%;
+      // width: 100%;
     }
 
-    &__inner {
+    &__content {
       position: absolute;
       top: 25%;
       color: $fifth-color;
@@ -110,12 +118,19 @@
 }
 
 .carousel {
-  &__dot {
-    height: 25%;
-    border: 0.5px solid #aaaaaa;
+  &__dots {
+    .swiper-pagination-bullet {
+      height: 25%;
+      background-color: #aaaaaa;
+      // border: 0.5px solid #aaaaaa;
+      width: 0.2rem;
+      border-radius: 0;
+      opacity: 1;
+      margin: auto !important;
 
-    &--selected {
-      border: 1px solid $fifth-color;
+      &-active {
+        background-color: $fifth-color;
+      }
     }
   }
 }
