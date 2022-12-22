@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import { Logo } from "../assets/images";
+import { BlackLogo, WhiteLogo } from "../assets/images";
 import { links } from "../utils/constants";
 import { Icon } from "../components";
 
@@ -9,14 +9,18 @@ const Header = () => {
   const headerRef = useRef(null);
 
   const stickyHeaderFunc = () => {
+    let Logo = document.querySelector("#logo");
+
     window.addEventListener("scroll", () => {
       if (
         document.body.scrollTop > 30 ||
         document.documentElement.scrollTop > 30
       ) {
         headerRef.current.classList.add("sticky__header");
+        Logo.src = BlackLogo;
       } else {
         headerRef.current.classList.remove("sticky__header");
+        Logo.src = WhiteLogo;
       }
     });
   };
@@ -35,7 +39,7 @@ const Header = () => {
           <div className="row align-items-center justify-content-between">
             <div className="col-6 col-lg-3 text-start menu__logo">
               <Link to="/">
-                <img src={Logo} alt="" />
+                <img src={WhiteLogo} alt="" id="logo" />
                 <span>E-</span>Shop
               </Link>
             </div>

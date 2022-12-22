@@ -1,4 +1,5 @@
-import Logo from "./Logo/logo.webp";
+import BlackLogo from "./Logo/black-logo.webp";
+import WhiteLogo from "./Logo/white-logo.webp";
 
 import MaterialsImg from "./Materials/materials.webp";
 import ReviewImg1 from "./Review-Pics/1.jpg";
@@ -13,7 +14,8 @@ import ImgSlider4 from "./Slider/slider4.jpg";
 import newsletterBg from "./Newsletter/newsletter.jpg";
 
 export {
-  Logo,
+  BlackLogo,
+  WhiteLogo,
   MaterialsImg,
   ReviewImg1,
   ReviewImg2,

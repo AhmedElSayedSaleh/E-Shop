@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo } from "../assets/images";
+import { BlackLogo } from "../assets/images";
 import { Icon } from "../components";
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="col-lg-6">
             <div className={"footer__logo"}>
               <a href={"/"}>
-                <img src={Logo} alt="" />
+                <img src={BlackLogo} alt="" />
                 <span>E-</span>Shop
               </a>
             </div>

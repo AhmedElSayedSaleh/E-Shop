@@ -1,16 +1,26 @@
 //@import "../abstracts/variables";
 
 header {
-  background-color: rgba($fifth-color, 0.5);
-  border-bottom: 1px solid #e5e5e5;
+  background-color: rgba($third-color, 0.1);
+  // border-bottom: 1px solid #e5e5e5;
   z-index: 100;
-  transition: all 0.5s ease-in;
-
+  transition: $main-transition;
+  color: $fifth-color;
+  a {
+    color: $fifth-color;
+    transition: $main-transition;
+    &:hover {
+      color: $fifth-color;
+    }
+  }
 
   .menu {
     &__logo {
       a {
-        color: $third-color;
+        #logo {
+          transition: $main-transition;
+        }
+        // color: $fifth-color;
 
         span {
           color: $first-color;
@@ -27,7 +37,7 @@ header {
       }
 
       &__link {
-        color: $third-color;
+        // color: $fifth-color;
         transition: $main-transition;
         text-transform: capitalize;
 
@@ -42,7 +52,7 @@ header {
       padding: 0.5rem;
       border-radius: 0.5rem;
       transition: $main-transition;
-      color: $third-color;
+      // color: $fifth-color;
 
       &--avatar {
         // on login =================>>>>>>>>>>>>>>
@@ -66,7 +76,7 @@ header {
       }
 
       &:hover {
-        //filter: drop-shadow(4px 4px 1px rgba($third-color, 0.4));
+        //filter: drop-shadow(4px 4px 1px rgba($fifth-color, 0.4));
         //box-shadow: $inner-shadow;
         transform: scale(1.2);
       }
@@ -74,12 +84,25 @@ header {
   }
 }
 
-.sticky__header{
+.sticky__header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   background-color: $fifth-color;
+  color: $third-color;
   height: 60px;
-  box-shadow: 0.3rem 0.3rem 0.2rem -0.3rem #ddd;
+  box-shadow: $main-shadow;
+
+  a {
+    color: $third-color;
+
+    &:hover {
+      color: $third-color;
+    }
+  }
+
+  .menu__links__link:hover {
+    color: $first-color;
+  }
 }
