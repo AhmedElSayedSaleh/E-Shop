@@ -20,12 +20,18 @@ import {
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+import SwiperCore, {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectFade,
+} from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
 // import "pure-react-carousel/dist/react-carousel.es.css";
 SwiperCore.use([Pagination, Navigation]);
@@ -61,6 +67,7 @@ const MainSlider = () => {
       <Swiper
         // runCallbacksOnInit={true}
         // init={false}
+        effect="fade"
         onActiveIndexChange={(swiperCore) => {
           setSwiperActiveIndex(swiperCore.activeIndex);
         }}
@@ -80,7 +87,7 @@ const MainSlider = () => {
           type: "bullets",
           clickable: true,
         }}
-        modules={[Autoplay, Navigation, Pagination]}
+        modules={[Autoplay, Navigation, Pagination, EffectFade]}
         className="mySwiper"
       >
         <SwiperSlide>
