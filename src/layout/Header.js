@@ -45,7 +45,7 @@ const Header = () => {
   return (
     <header
       className={`py-3 border-bottom ${
-        pathname === "/" ? "home-nav fixed-top" : ""
+        pathname === "/" ? "home-nav fixed-top border-bottom-0" : ""
       }`}
       ref={headerRef}
     >
