@@ -7,7 +7,7 @@ export const fetchProducts = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       const { data } = await axios.get(
-        "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c6"
+        "https://mocki.io/v1/c2b9a068-ebec-4b92-b5b7-39a1247ae1c"
       );
       return data;
     } catch (error) {
@@ -43,7 +43,7 @@ const ProductsSlice = createSlice({
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload;
       // state.data = [];
     });
   },
