@@ -35,169 +35,171 @@ const ProductsList = () => {
   };
 
   return (
-    <div className={"container"}>
+    <div className={"container pt-5 mt-5"}>
       <div className={"row"}>
         <div className="col-lg-12">
           {loading ? (
             <LoadingBox />
-          ) : typeof data !== "object" ? (
-            <MessageBox>{data}</MessageBox>
-          ) : data !== null ? (
-            <>
-              <div className="row">
-                {data.bags.slice(0, 7).map((item) => {
-                  let product = {
-                    brand: item.brand,
-                    brandUrl: item.brand_url,
-                    category: item.category,
-                    codCountry: item.codCountry,
-                    currency: item.currency,
-                    rawPrice: item.raw_price,
-                    discount: item.discount,
-                    productId: item.id,
-                    primaryImage: item.image_url,
-                    isNew: item.is_new,
-                    likesCount: item.likes_count,
-                    model: item.model,
-                    name: item.name,
-                    currentPrice:
-                      item.current_price !== null
-                        ? item.current_price
-                        : item.raw_price,
-                    subcategory: item.subcategory,
-                    url: item.url,
-                    variationColor1: item.variation_0_color,
-                    variationImage1: item.variation_0_image,
-                    variationThumbnail1: item.variation_0_thumbnail,
-                    variationColor2: item.variation_1_color,
-                    variationImage2: item.variation_1_image,
-                    variationThumbnail2: item.variation_1_thumbnail,
-                  };
+          ) : error ? ( //typeof data !== "object"
+            <MessageBox>{error}</MessageBox>
+          ) : (
+            data && (
+              <>
+                <div className="row">
+                  {data.bags.slice(0, 7).map((item) => {
+                    let product = {
+                      brand: item.brand,
+                      brandUrl: item.brand_url,
+                      category: item.category,
+                      codCountry: item.codCountry,
+                      currency: item.currency,
+                      rawPrice: item.raw_price,
+                      discount: item.discount,
+                      productId: item.id,
+                      primaryImage: item.image_url,
+                      isNew: item.is_new,
+                      likesCount: item.likes_count,
+                      model: item.model,
+                      name: item.name,
+                      currentPrice:
+                        item.current_price !== null
+                          ? item.current_price
+                          : item.raw_price,
+                      subcategory: item.subcategory,
+                      url: item.url,
+                      variationColor1: item.variation_0_color,
+                      variationImage1: item.variation_0_image,
+                      variationThumbnail1: item.variation_0_thumbnail,
+                      variationColor2: item.variation_1_color,
+                      variationImage2: item.variation_1_image,
+                      variationThumbnail2: item.variation_1_thumbnail,
+                    };
 
-                  return (
-                    <div
-                      key={product.productId}
-                      className="col-xl-3 col-lg-4 col-sm-6 my-4"
-                    >
-                      <SingleProduct
-                        product={product}
-                        modalHandle={modalHandle}
-                        modalView={modalView}
-                      />
-                    </div>
-                  );
-                })}
+                    return (
+                      <div
+                        key={product.productId}
+                        className="col-xl-3 col-lg-4 col-sm-6 my-4"
+                      >
+                        <SingleProduct
+                          product={product}
+                          modalHandle={modalHandle}
+                          modalView={modalView}
+                        />
+                      </div>
+                    );
+                  })}
 
-                <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
-                  <Link to="/bags">
-                    <p className="h2 border-bottom">See More</p>
-                  </Link>
+                  <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
+                    <Link to="/bags">
+                      <p className="h2 border-bottom">See More</p>
+                    </Link>
+                  </div>
                 </div>
-              </div>
 
-              <div className="row">
-                {data.shoes.slice(0, 7).map((item) => {
-                  let product = {
-                    brand: item.brand,
-                    brandUrl: item.brand_url,
-                    category: item.category,
-                    codCountry: item.codCountry,
-                    currency: item.currency,
-                    rawPrice: item.raw_price,
-                    discount: item.discount,
-                    productId: item.id,
-                    primaryImage: item.image_url,
-                    isNew: item.is_new,
-                    likesCount: item.likes_count,
-                    model: item.model,
-                    name: item.name,
-                    currentPrice:
-                      item.current_price !== null
-                        ? item.current_price
-                        : item.raw_price,
-                    subcategory: item.subcategory,
-                    url: item.url,
-                    variationColor1: item.variation_0_color,
-                    variationImage1: item.variation_0_image,
-                    variationThumbnail1: item.variation_0_thumbnail,
-                    variationColor2: item.variation_1_color,
-                    variationImage2: item.variation_1_image,
-                    variationThumbnail2: item.variation_1_thumbnail,
-                  };
+                <div className="row">
+                  {data.shoes.slice(0, 7).map((item) => {
+                    let product = {
+                      brand: item.brand,
+                      brandUrl: item.brand_url,
+                      category: item.category,
+                      codCountry: item.codCountry,
+                      currency: item.currency,
+                      rawPrice: item.raw_price,
+                      discount: item.discount,
+                      productId: item.id,
+                      primaryImage: item.image_url,
+                      isNew: item.is_new,
+                      likesCount: item.likes_count,
+                      model: item.model,
+                      name: item.name,
+                      currentPrice:
+                        item.current_price !== null
+                          ? item.current_price
+                          : item.raw_price,
+                      subcategory: item.subcategory,
+                      url: item.url,
+                      variationColor1: item.variation_0_color,
+                      variationImage1: item.variation_0_image,
+                      variationThumbnail1: item.variation_0_thumbnail,
+                      variationColor2: item.variation_1_color,
+                      variationImage2: item.variation_1_image,
+                      variationThumbnail2: item.variation_1_thumbnail,
+                    };
 
-                  return (
-                    <div
-                      key={product.productId}
-                      className="col-xl-3 col-lg-4 col-sm-6 my-4"
-                    >
-                      <SingleProduct
-                        product={product}
-                        modalHandle={modalHandle}
-                        modalView={modalView}
-                      />
-                    </div>
-                  );
-                })}
+                    return (
+                      <div
+                        key={product.productId}
+                        className="col-xl-3 col-lg-4 col-sm-6 my-4"
+                      >
+                        <SingleProduct
+                          product={product}
+                          modalHandle={modalHandle}
+                          modalView={modalView}
+                        />
+                      </div>
+                    );
+                  })}
 
-                <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
-                  <Link to="/shoes">
-                    <p className="h2 border-bottom">See More</p>
-                  </Link>
+                  <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
+                    <Link to="/shoes">
+                      <p className="h2 border-bottom">See More</p>
+                    </Link>
+                  </div>
                 </div>
-              </div>
 
-              <div className="row">
-                {data.jewelry.slice(0, 7).map((item) => {
-                  let product = {
-                    brand: item.brand,
-                    brandUrl: item.brand_url,
-                    category: item.category,
-                    codCountry: item.codCountry,
-                    currency: item.currency,
-                    rawPrice: item.raw_price,
-                    discount: item.discount,
-                    productId: item.id,
-                    primaryImage: item.image_url,
-                    isNew: item.is_new,
-                    likesCount: item.likes_count,
-                    model: item.model,
-                    name: item.name,
-                    currentPrice:
-                      item.current_price !== null
-                        ? item.current_price
-                        : item.raw_price,
-                    subcategory: item.subcategory,
-                    url: item.url,
-                    variationColor1: item.variation_0_color,
-                    variationImage1: item.variation_0_image,
-                    variationThumbnail1: item.variation_0_thumbnail,
-                    variationColor2: item.variation_1_color,
-                    variationImage2: item.variation_1_image,
-                    variationThumbnail2: item.variation_1_thumbnail,
-                  };
+                <div className="row">
+                  {data.jewelry.slice(0, 7).map((item) => {
+                    let product = {
+                      brand: item.brand,
+                      brandUrl: item.brand_url,
+                      category: item.category,
+                      codCountry: item.codCountry,
+                      currency: item.currency,
+                      rawPrice: item.raw_price,
+                      discount: item.discount,
+                      productId: item.id,
+                      primaryImage: item.image_url,
+                      isNew: item.is_new,
+                      likesCount: item.likes_count,
+                      model: item.model,
+                      name: item.name,
+                      currentPrice:
+                        item.current_price !== null
+                          ? item.current_price
+                          : item.raw_price,
+                      subcategory: item.subcategory,
+                      url: item.url,
+                      variationColor1: item.variation_0_color,
+                      variationImage1: item.variation_0_image,
+                      variationThumbnail1: item.variation_0_thumbnail,
+                      variationColor2: item.variation_1_color,
+                      variationImage2: item.variation_1_image,
+                      variationThumbnail2: item.variation_1_thumbnail,
+                    };
 
-                  return (
-                    <div
-                      key={product.productId}
-                      className="col-xl-3 col-lg-4 col-sm-6 my-4"
-                    >
-                      <SingleProduct
-                        product={product}
-                        modalHandle={modalHandle}
-                        modalView={modalView}
-                      />
-                    </div>
-                  );
-                })}
+                    return (
+                      <div
+                        key={product.productId}
+                        className="col-xl-3 col-lg-4 col-sm-6 my-4"
+                      >
+                        <SingleProduct
+                          product={product}
+                          modalHandle={modalHandle}
+                          modalView={modalView}
+                        />
+                      </div>
+                    );
+                  })}
 
-                <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
-                  <Link to="/jewelry">
-                    <p className="h2 border-bottom">See More</p>
-                  </Link>
+                  <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
+                    <Link to="/jewelry">
+                      <p className="h2 border-bottom">See More</p>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </>
-          ) : null}
+              </>
+            )
+          )}
         </div>
       </div>
       <div className="row">

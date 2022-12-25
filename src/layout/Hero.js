@@ -10,7 +10,7 @@ import {
   NotFound,
   Cart,
 } from "../pages";
-import { ScrollToTop, Register, Login } from "../components";
+import { Register, Login } from "../components";
 
 const Hero = () => {
   return (

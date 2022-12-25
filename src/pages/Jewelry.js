@@ -35,7 +35,7 @@ const Jewelry = () => {
   };
 
   return (
-    <div className={"container"}>
+    <div className={"container pt-5 mt-5"}>
       <div className={"row"}>
         <div className="col-lg-3 mt-4">
           <FiltersNav subcategories={subcategories} />
@@ -44,9 +44,10 @@ const Jewelry = () => {
           <div className="row">
             {loading ? (
               <LoadingBox />
-            ) : !Array.isArray(data) ? (
-              <MessageBox>{data}</MessageBox>
-            ) : Array.isArray(data) && data.length > 0 ? (
+            ) : error ? (
+              <MessageBox>{error}</MessageBox>
+            ) : (
+              data &&
               data.map((item) => {
                 let product = {
                   brand: item.brand,
@@ -88,7 +89,7 @@ const Jewelry = () => {
                   </div>
                 );
               })
-            ) : null}
+            )}
           </div>
         </div>
       </div>

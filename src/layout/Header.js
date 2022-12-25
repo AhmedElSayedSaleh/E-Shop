@@ -33,7 +33,7 @@ const Header = () => {
   });
 
   return (
-    <header className="py-4 fixed-top" ref={headerRef}>
+    <header className="py-3 fixed-top" ref={headerRef}>
       <nav className="menu">
         <div className="container">
           <div className="row align-items-center justify-content-between">

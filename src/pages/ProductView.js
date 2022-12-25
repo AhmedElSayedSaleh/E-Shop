@@ -73,7 +73,7 @@ const ProductView = () => {
       ) : error ? (
         <MessageBox>{error}</MessageBox>
       ) : (
-        <div className="product-view">
+        <div className="product-view pt-5 mt-5">
           <div className="container">
             <div className="row">
               <Breadcrumb product={currentProduct} />
