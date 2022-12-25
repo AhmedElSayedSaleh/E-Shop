@@ -25,9 +25,12 @@ const Header = () => {
       } else {
         if (pathname === "/") {
           headerRef.current.classList.add("home-nav");
+          Logo.src = WhiteLogo;
+        } else {
+          headerRef.current.classList.remove("home-nav");
+          Logo.src = BlackLogo;
         }
         headerRef.current.classList.remove("sticky__header");
-        pathname === "/" ? (Logo.src = WhiteLogo) : (Logo.src = BlackLogo);
       }
     });
   };
