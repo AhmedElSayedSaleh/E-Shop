@@ -20,11 +20,15 @@ const Header = () => {
         document.body.scrollTop > 30 ||
         document.documentElement.scrollTop > 30
       ) {
+        headerRef.current.classList.remove("home-nav");
         headerRef.current.classList.add("sticky__header");
         Logo.src = BlackLogo;
       } else {
+        if (pathname === "/") {
+          headerRef.current.classList.add("home-nav");
+        }
         headerRef.current.classList.remove("sticky__header");
-        Logo.src = WhiteLogo;
+        pathname === "/" ? (Logo.src = WhiteLogo) : (Logo.src = BlackLogo);
       }
     });
   };
@@ -38,7 +42,9 @@ const Header = () => {
 
   return (
     <header
-      className={`py-3 fixed-top`} //${pathname !== "/" ? "" : "fixed-top"}
+      className={`py-3 border-bottom ${
+        pathname === "/" ? "home-nav fixed-top" : ""
+      }`}
       ref={headerRef}
     >
       <nav className="menu">
@@ -46,7 +52,11 @@ const Header = () => {
           <div className="row align-items-center justify-content-between">
             <div className="col-6 col-lg-3 text-start menu__logo">
               <Link to="/">
-                <img src={WhiteLogo} alt="" id="logo" />
+                <img
+                  src={pathname === "/" ? WhiteLogo : BlackLogo}
+                  alt=""
+                  id="logo"
+                />
                 <span>E-</span>Shop
               </Link>
             </div>

@@ -1,16 +1,30 @@
 //@import "../abstracts/variables";
+.home-nav {
+  // position: fixed;
+  background-color: transparent;
+  a {
+    color: $fifth-color;
+    &:hover {
+      color: $fifth-color;
+    }
+  }
+
+  .menu__icon {
+    color: $fifth-color;
+  }
+}
 
 header {
-  background-color: rgba($third-color, 0.5);
+  // background-color: rgba($third-color, 0.5);
   // border-bottom: 1px solid #e5e5e5;
   z-index: 100;
   transition: $main-transition;
-  color: $fifth-color;
+  color: $third-color;
   a {
-    color: $fifth-color;
-    transition: $main-transition;
+    color: $third-color;
+    // transition: $main-transition;
     &:hover {
-      color: $fifth-color;
+      color: inherit;
     }
   }
 
