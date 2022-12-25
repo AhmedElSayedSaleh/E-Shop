@@ -1,11 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { BlackLogo, WhiteLogo } from "../assets/images";
 import { links } from "../utils/constants";
 import { Icon } from "../components";
 
 const Header = () => {
+  const location = useLocation();
+
+  const pathname = location.pathname;
+
   const headerRef = useRef(null);
 
   const stickyHeaderFunc = () => {
@@ -33,7 +37,10 @@ const Header = () => {
   });
 
   return (
-    <header className="py-3 fixed-top" ref={headerRef}>
+    <header
+      className={`py-3 fixed-top`} //${pathname !== "/" ? "" : "fixed-top"}
+      ref={headerRef}
+    >
       <nav className="menu">
         <div className="container">
           <div className="row align-items-center justify-content-between">
