@@ -36,7 +36,7 @@ const Shoes = () => {
   };
 
   return (
-    <div className={"container pt-5 mt-5"}>
+    <div className={"container pt-5"}>
       <div className={"row"}>
         <div className="col-lg-3 mt-4">
           <FiltersNav subcategories={subcategories} />

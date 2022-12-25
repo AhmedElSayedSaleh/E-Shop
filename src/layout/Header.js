@@ -7,7 +7,6 @@ import { Icon } from "../components";
 
 const Header = () => {
   const location = useLocation();
-
   const pathname = location.pathname;
 
   const headerRef = useRef(null);
