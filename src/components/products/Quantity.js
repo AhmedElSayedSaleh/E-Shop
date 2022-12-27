@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-const Quantity = () => {
-  const [counter, setCounter] = useState(1);
+const Quantity = ({ cartItemQuantity }) => {
+  const [counter, setCounter] = useState(
+    cartItemQuantity ? cartItemQuantity : 1
+  );
 
   const increase = () => {
     setCounter((prevCounter) => prevCounter + 1);

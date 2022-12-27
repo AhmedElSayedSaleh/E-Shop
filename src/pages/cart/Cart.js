@@ -69,7 +69,7 @@ const Cart = () => {
                       <td>white</td>
                       <td>
                         <div className=" d-flex justify-content-center">
-                          <Quantity />
+                          <Quantity cartItemQuantity={item.quantity} />
                         </div>
                       </td>
                       <td>${item.totalPrice}</td>
@@ -99,14 +99,15 @@ const Cart = () => {
         </div>
 
         <div className="row justify-content-center align-items-center mt-5 cart__check">
-          <div
-            className="col-4 d-flex align-items-center cart__check__continue"
-            role="button"
-          >
-            <div className="cart__check__continue__icon">
-              <Icon icon="arrow-left" size={"1.3rem"} disableFill />
-            </div>
-            <Link onClick={() => navigate(-1)} className="ps-4 mb-0 text-black">
+          <div className="col-4 cart__check__continue">
+            <Link
+              onClick={() => navigate(-1)}
+              className="mb-0 text-black d-flex align-items-center w-50"
+              role="button"
+            >
+              <div className="pe-3 cart__check__continue__icon">
+                <Icon icon="arrow-left" size={"1.3rem"} disableFill />
+              </div>
               Continue Shopping
             </Link>
           </div>

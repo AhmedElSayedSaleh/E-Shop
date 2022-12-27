@@ -69,8 +69,8 @@ const CartSlice = createSlice({
           existingItem.quantity * existingItem.currentPrice;
         state.totalCost += existingItem.currentPrice;
         state.totalQuantity++;
-        console.log("totalCost:", state.totalCost);
-        console.log("totalQuantity:", state.totalQuantity);
+        // console.log("totalCost:", state.totalCost);
+        // console.log("totalQuantity:", state.totalQuantity);
       } else {
         state.cartItems.push({
           ...product,
@@ -79,8 +79,8 @@ const CartSlice = createSlice({
         });
         state.totalCost += product.currentPrice;
         state.totalQuantity++;
-        console.log("totalCost:", state.totalCost);
-        console.log("totalQuantity:", state.totalQuantity);
+        // console.log("totalCost:", state.totalCost);
+        // console.log("totalQuantity:", state.totalQuantity);
       }
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
