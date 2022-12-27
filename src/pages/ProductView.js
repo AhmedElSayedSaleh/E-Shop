@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   CarouselProvider,
@@ -30,6 +33,7 @@ import {
 } from "../assets/images";
 
 import { fetchProducts } from "../store/slices/ProductsSlice";
+import { addToCart } from "../store/slices/CartSlice";
 
 // Actions
 // import { getProducts as productsList } from "../store/actions/productActions";
@@ -37,6 +41,7 @@ import { fetchProducts } from "../store/slices/ProductsSlice";
 const ProductView = () => {
   const { id } = useParams();
   const [currentProduct, setCurrentProduct] = useState({});
+  // console.log(currentProduct);
 
   const dispatch = useDispatch();
   const allProductsList = useSelector((state) => state.allProducts);
@@ -49,7 +54,35 @@ const ProductView = () => {
   useEffect(() => {
     for (const category in data) {
       data[category].map((item) =>
-        item.id === +id ? setCurrentProduct(item) : null
+        item.id === +id
+          ? setCurrentProduct({
+              brand: item.brand,
+              brandUrl: item.brand_url,
+              category: item.category,
+              codCountry: item.codCountry,
+              currency: item.currency,
+              rawPrice: item.raw_price,
+              discount: item.discount,
+              productId: item.id,
+              primaryImage: item.image_url,
+              isNew: item.is_new,
+              likesCount: item.likes_count,
+              model: item.model,
+              name: item.name,
+              currentPrice:
+                item.current_price !== null
+                  ? item.current_price
+                  : item.raw_price,
+              subcategory: item.subcategory,
+              url: item.url,
+              variationColor1: item.variation_0_color,
+              variationImage1: item.variation_0_image,
+              variationThumbnail1: item.variation_0_thumbnail,
+              variationColor2: item.variation_1_color,
+              variationImage2: item.variation_1_image,
+              variationThumbnail2: item.variation_1_thumbnail,
+            })
+          : null
       );
     }
   }, [data, id]);
@@ -65,6 +98,20 @@ const ProductView = () => {
       </div>
     );
   }
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    toast.success("Product Added To Cart!", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   return (
     <>
@@ -84,65 +131,65 @@ const ProductView = () => {
                   naturalSlideWidth={100}
                   naturalSlideHeight={100}
                   totalSlides={
-                    (currentProduct.image_url !== "" ? 1 : 0) +
-                    (currentProduct.variation_0_image !== "" ? 1 : 0) +
-                    (currentProduct.variation_1_image !== "" ? 1 : 0)
+                    (currentProduct.primaryImage !== "" ? 1 : 0) +
+                    (currentProduct.variationImage1 !== "" ? 1 : 0) +
+                    (currentProduct.variationImage2 !== "" ? 1 : 0)
                   }
                 >
                   <div className="row">
                     <div className="col-lg-3">
                       <Dot slide={0}>
-                        <Image src={currentProduct.image_url} />
+                        <Image src={currentProduct.primaryImage} />
                       </Dot>
                       <Dot
                         slide={1}
                         className={
-                          currentProduct.variation_0_thumbnail === ""
+                          currentProduct.variationThumbnail1 === ""
                             ? "d-none"
                             : ""
                         }
                       >
-                        <Image src={currentProduct.variation_0_thumbnail} />
+                        <Image src={currentProduct.variationThumbnail1} />
                       </Dot>
                       <Dot
                         slide={2}
                         className={
-                          currentProduct.variation_1_thumbnail === ""
+                          currentProduct.variationThumbnail2 === ""
                             ? "d-none"
                             : ""
                         }
                       >
-                        <Image src={currentProduct.variation_1_thumbnail} />
+                        <Image src={currentProduct.variationThumbnail2} />
                       </Dot>
                     </div>
                     <div className="col-lg-9">
                       <Slider>
                         <Slide index={0}>
-                          <ImageWithZoom src={currentProduct.image_url} />
+                          <ImageWithZoom src={currentProduct.primaryImage} />
                         </Slide>
                         <Slide
                           index={1}
                           className={
-                            currentProduct.variation_0_thumbnail === ""
+                            currentProduct.variationThumbnail1 === ""
                               ? "d-none"
                               : ""
                           }
                         >
                           <ImageWithZoom
-                            src={currentProduct.variation_0_image}
+                            src={currentProduct.variationImage1}
                             alt={currentProduct.name}
                           />
                         </Slide>
                         <Slide
                           index={2}
                           className={
-                            currentProduct.variation_1_thumbnail === ""
+                            currentProduct.variationThumbnail2 === ""
                               ? "d-none"
                               : ""
                           }
                         >
                           <ImageWithZoom
-                            src={currentProduct.variation_1_image}
+                            src={currentProduct.variationImage2}
                             alt={currentProduct.name}
                           />
                         </Slide>
@@ -172,7 +219,7 @@ const ProductView = () => {
                 </h2>
                 <div className={"d-flex pb-4 product-view__price"}>
                   <span className={"product-view__price--current"}>
-                    ${currentProduct.current_price}
+                    ${currentProduct.currentPrice}
                   </span>
                   <span
                     className={
@@ -181,7 +228,7 @@ const ProductView = () => {
                         : "d-none"
                     }
                   >
-                    ${currentProduct.raw_price}
+                    ${currentProduct.rawPrice}
                   </span>
                   {/* <span className={""}>({currentProduct.likes_count}) likes</span> */}
                 </div>
@@ -193,7 +240,11 @@ const ProductView = () => {
                   <p className={"product-view__subtitle"}>Quantity:</p>
                   <div className={"d-flex align-items-center "}>
                     <Quantity />
-                    <Button children={"Add to cart"} />
+                    <Button
+                      children={"Add to cart"}
+                      onClick={() => handleAddToCart(currentProduct)}
+                    />
+                    <ToastContainer />
                     <div
                       className={
                         "d-flex align-items-center justify-content-center product-view__quantity__icon"

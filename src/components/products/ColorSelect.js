@@ -11,21 +11,17 @@ const ColorSelect = ({ colorData }) => {
               name="color-img"
               id="radio1"
               defaultChecked
-              value={colorData.variation_0_color}
+              value={colorData.variationColor1}
               className={"color-select__radio"}
             />
             <img
               className={
-                colorData.variation_0_thumbnail === ""
-                  ? ""
-                  : "color-select__img"
+                colorData.variationThumbnail1 === "" ? "" : "color-select__img"
               }
-              src={colorData.variation_0_thumbnail}
+              src={colorData.variationThumbnail1}
               alt=""
             />
-            <p className={"color-select__name"}>
-              {colorData.variation_0_color}
-            </p>
+            <p className={"color-select__name"}>{colorData.variationColor1}</p>
           </label>
         </li>
         <li className={"ps-5"}>
@@ -34,21 +30,17 @@ const ColorSelect = ({ colorData }) => {
               type="radio"
               name="color-img"
               id="radio2"
-              value={colorData.variation_1_color}
+              value={colorData.variationColor2}
               className={"color-select__radio"}
             />
             <img
               className={
-                colorData.variation_1_thumbnail === ""
-                  ? ""
-                  : "color-select__img"
+                colorData.variationThumbnail2 === "" ? "" : "color-select__img"
               }
-              src={colorData.variation_1_thumbnail}
+              src={colorData.variationThumbnail2}
               alt=""
             />
-            <p className={"color-select__name"}>
-              {colorData.variation_1_color}
-            </p>
+            <p className={"color-select__name"}>{colorData.variationColor2}</p>
           </label>
         </li>
       </ul>

@@ -4,12 +4,13 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { BlackLogo, WhiteLogo } from "../assets/images";
 import { links } from "../utils/constants";
 import { Icon } from "../components";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const location = useLocation();
   const pathname = location.pathname;
-
   const headerRef = useRef(null);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const stickyHeaderFunc = () => {
     let Logo = document.querySelector("#logo");
@@ -88,13 +89,14 @@ const Header = () => {
                 className={"mx-3 mx-lg-4 menu__icon"}
                 disableFill
               />
-              <Link to="/cart">
+              <Link to="/cart" className=" position-relative">
                 <Icon
                   icon="cart"
                   size={"3rem"}
                   className={"mx-3 mx-lg-4 menu__icon"}
                   disableFill
                 />
+                <span className="menu__badge">{totalQuantity}</span>
               </Link>
               <div className="dropdown">
                 <div

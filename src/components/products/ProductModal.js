@@ -1,9 +1,30 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "../";
+import { addToCart } from "../../store/slices/CartSlice";
 import { ColorSelect, Quantity } from "./";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductModal = ({ modalView }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    toast.success("Product Added To Cart!", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   return (
     <div
       className="modal fade"
@@ -63,7 +84,11 @@ const ProductModal = ({ modalView }) => {
                 </div>
                 <div className={"d-flex justify-content-center"}>
                   <Quantity />
-                  <Button children={"ADD TO CART"} />
+                  <Button
+                    children={"ADD TO CART"}
+                    onClick={() => handleAddToCart(modalView)}
+                  />
+                  <ToastContainer />
                 </div>
               </div>
             </div>

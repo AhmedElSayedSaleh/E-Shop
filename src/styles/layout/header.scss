@@ -95,6 +95,20 @@ header {
         transform: scale(1.2);
       }
     }
+
+    &__badge {
+      position: absolute;
+      top: 0;
+      #{$end}: 10%;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      background-color: $first-color;
+      color: $third-color;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+    }
   }
 }
 
