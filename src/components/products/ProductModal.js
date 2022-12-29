@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "../";
@@ -11,19 +11,23 @@ import "react-toastify/dist/ReactToastify.css";
 const ProductModal = ({ modalView }) => {
   const dispatch = useDispatch();
 
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-    toast.success("Product Added To Cart!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  };
+  const handleAddToCart = useCallback(
+    (product) => {
+      dispatch(addToCart(product));
+      toast.success("Product added to cart", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        closeButton: false,
+        theme: "dark",
+      });
+    },
+    [dispatch]
+  );
 
   return (
     <div

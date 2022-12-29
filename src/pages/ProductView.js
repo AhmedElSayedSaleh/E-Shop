@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
@@ -35,13 +35,9 @@ import {
 import { fetchProducts } from "../store/slices/ProductsSlice";
 import { addToCart } from "../store/slices/CartSlice";
 
-// Actions
-// import { getProducts as productsList } from "../store/actions/productActions";
-
 const ProductView = () => {
   const { id } = useParams();
   const [currentProduct, setCurrentProduct] = useState({});
-  // console.log(currentProduct);
 
   const dispatch = useDispatch();
   const allProductsList = useSelector((state) => state.allProducts);
@@ -87,31 +83,23 @@ const ProductView = () => {
     }
   }, [data, id]);
 
-  if (!currentProduct) {
-    return (
-      <div
-        className={
-          "w-100 h-100 bg-dark d-flex align-items-center justify-content-center"
-        }
-      >
-        <h2 className={"text-warning"}>Product Not Found</h2>
-      </div>
-    );
-  }
-
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-    toast.success("Product Added To Cart!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  };
+  const handleAddToCart = useCallback(
+    (product) => {
+      dispatch(addToCart(product));
+      toast.success("Product Added To Cart", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        closeButton: false,
+        theme: "dark",
+      });
+    },
+    [dispatch]
+  );
 
   return (
     <>
@@ -119,6 +107,15 @@ const ProductView = () => {
         <LoadingBox />
       ) : error ? (
         <MessageBox>{error}</MessageBox>
+      ) : Object.keys(currentProduct).length === 0 ? (
+        <div
+          className={
+            "w-100 bg-dark d-flex align-items-center justify-content-center"
+          }
+          style={{ height: "200px" }}
+        >
+          <h2 className={"text-warning"}>Product Not Found</h2>
+        </div>
       ) : (
         <div className="product-view pt-5">
           <div className="container">

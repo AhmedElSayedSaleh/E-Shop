@@ -1,16 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Icon } from "../../components";
 import { Quantity } from "../../components/products";
+import { removeFromCart } from "../../store/slices/CartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalCost = useSelector((state) => state.cart.totalCost);
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  console.log(cartItems);
+  const handleRemoveFromCart = useCallback(
+    (item) => dispatch(removeFromCart(item)),
+    [dispatch]
+  );
+
+  const navigate = useNavigate();
 
   return (
     <div className="pb-5 cart">
@@ -69,10 +75,13 @@ const Cart = () => {
                       <td>white</td>
                       <td>
                         <div className=" d-flex justify-content-center">
-                          <Quantity cartItemQuantity={item.quantity} />
+                          <Quantity
+                            cartItemQuantity={item.quantity}
+                            item={item}
+                          />
                         </div>
                       </td>
-                      <td>${item.totalPrice}</td>
+                      <td>${item.totalPrice.toFixed(2)}</td>
                       <td>
                         <div className="">
                           <Icon
@@ -80,6 +89,7 @@ const Cart = () => {
                             size={"1.2rem"}
                             disableFill
                             role="button"
+                            onClick={() => handleRemoveFromCart(item)}
                           />
                         </div>
                       </td>
@@ -89,13 +99,6 @@ const Cart = () => {
               </table>
             </div>
           )}
-
-          {/* <div className="col">Column</div>
-          <div className="col">Column</div>
-          <div className="col">Column</div>
-          <div className="col">Column</div>
-          <div className="col">Column</div>
-          <div className="col">Column</div> */}
         </div>
 
         <div className="row justify-content-center align-items-center mt-5 cart__check">
@@ -116,7 +119,9 @@ const Cart = () => {
           </div>
           <div className="col-2 d-flex justify-content-between cart__check__total">
             <p className=" mb-0 cart__check__total__title">Total cost</p>
-            <p className=" mb-0 cart__check__total__value">${totalCost}</p>
+            <p className=" mb-0 cart__check__total__value">
+              ${totalCost.toFixed(2)}
+            </p>
           </div>
           <div className="col-2">
             <Button children={"CHECKOUT"} />
