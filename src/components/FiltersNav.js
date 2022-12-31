@@ -1,7 +1,7 @@
 import React from "react";
 // import { setFiltered } from "../store/actions/productActions";
 
-const FiltersNav = ({ subcategories, dataType }) => {
+const FiltersNav = ({ subcategories, handleCheck }) => {
   // const bags = useSelector((state) => state.bags.products);
   // const shoes = useSelector((state) => state.shoes.products);
   // const jewelry = useSelector((state) => state.jewelry.products);
@@ -34,11 +34,14 @@ const FiltersNav = ({ subcategories, dataType }) => {
   // };
 
   return (
-    <div className="accordion" id="accordionPanelsStayOpenExample">
-      <div className="accordion-item">
-        <h2 className="accordion-header" id="panelsStayOpen-headingOne">
+    <div className="accordion filter-nav" id="accordionPanelsStayOpenExample">
+      <div className="accordion-item filter-nav__item filter-nav__item">
+        <h2
+          className="accordion-header filter-nav__item__header"
+          id="panelsStayOpen-headingOne"
+        >
           <button
-            className="accordion-button text-uppercase"
+            className="accordion-button text-uppercase filter-nav__item__header__btn"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#panelsStayOpen-collapseOne"
@@ -53,18 +56,22 @@ const FiltersNav = ({ subcategories, dataType }) => {
           className="accordion-collapse collapse show"
           aria-labelledby="panelsStayOpen-headingOne"
         >
-          <div className="accordion-body">
+          <div className="accordion-body filter-nav__item__body">
             {subcategories.map((subcategory, index) => {
               return (
-                <div className="form-check" key={index}>
+                <div
+                  className="form-check filter-nav__item__body__check"
+                  key={index}
+                >
                   <input
-                    className="form-check-input"
+                    className="form-check-input filter-nav__item__body__check__input"
                     type="checkbox"
-                    value=""
+                    value={subcategory}
                     id={`subcategory${index}`}
+                    onChange={(event) => handleCheck(event)}
                   />
                   <label
-                    className="form-check-label h5"
+                    className="form-check-label h5 filter-nav__item__body__check__label"
                     htmlFor={`subcategory${index}`}
                   >
                     {subcategory}
@@ -75,10 +82,13 @@ const FiltersNav = ({ subcategories, dataType }) => {
           </div>
         </div>
       </div>
-      <div className="accordion-item">
-        <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
+      <div className="accordion-item filter-nav__item">
+        <h2
+          className="accordion-header filter-nav__item__header"
+          id="panelsStayOpen-headingTwo"
+        >
           <button
-            className="accordion-button text-uppercase"
+            className="accordion-button text-uppercase filter-nav__item__header__btn"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#panelsStayOpen-collapseTwo"
@@ -93,7 +103,7 @@ const FiltersNav = ({ subcategories, dataType }) => {
           className="accordion-collapse collapse show"
           aria-labelledby="panelsStayOpen-headingTwo"
         >
-          <div className="accordion-body">
+          <div className="accordion-body filter-nav__item__body">
             <label htmlFor="customRange1" className="form-label">
               range 1
             </label>

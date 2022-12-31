@@ -14,6 +14,7 @@ const Bags = () => {
   const bagsList = useSelector((state) => state.bagsProducts);
 
   const [modalView, setModalView] = useState({});
+  let [checked, setChecked] = useState([]);
 
   const { loading, error, data } = bagsList;
 
@@ -23,12 +24,7 @@ const Bags = () => {
     dispatch(fetchBags());
   }, [dispatch]);
 
-  // data.map((product) => {
-  //   if (subcategories.indexOf(product.subcategory) === -1) {
-  //     subcategories.push(product.subcategory);
-  //   }
-  // });
-
+  // subcategories List generate
   if (Array.isArray(data)) {
     data.map((product) =>
       subcategories.indexOf(product.subcategory) === -1
@@ -37,20 +33,28 @@ const Bags = () => {
     );
   }
 
-  // console.log(subcategories);
-  // subcategories.map((item) => {
-  //   item.checked ? console.log(item) : console.log("checked");
-  // });
-
+  // Modal
   const modalHandle = (product) => {
     setModalView(product);
   };
+
+  // Filter Nav subcategories check
+  const handleCheck = (event) => {
+    // let checkedList = [...checked];
+    if (event.target.checked) {
+      checked = [...checked, event.target.value];
+    } else {
+      checked.splice(checked.indexOf(event.target.value), 1);
+    }
+    setChecked(checked);
+  };
+  console.log(checked);
 
   return (
     <div className={"container pt-5"}>
       <div className={"row"}>
         <div className="col-lg-3 mt-4">
-          <FiltersNav subcategories={subcategories} />
+          <FiltersNav subcategories={subcategories} handleCheck={handleCheck} />
         </div>
         <div className="col-lg-9">
           <div className="row">

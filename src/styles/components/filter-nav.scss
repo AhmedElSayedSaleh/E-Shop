@@ -1,0 +1,51 @@
+.filter-nav {
+  &__item {
+    border-radius: 0 !important;
+
+    &__header {
+      &__btn {
+        font-size: 1.2rem;
+        font-weight: 600;
+        border: none;
+        &:not(.collapsed) {
+          background-color: transparent;
+          border-color: transparent;
+          color: $third-color;
+          box-shadow: none;
+
+          &::after {
+            background-image: var(--bs-accordion-btn-icon);
+          }
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    &__body {
+      &__check {
+        &__input {
+          &[type="checkbox"] {
+            border-radius: 0;
+          }
+          &:checked {
+            background-color: $third-color;
+            border-color: $third-color;
+          }
+          &:focus {
+            outline: none;
+            box-shadow: none;
+          }
+        }
+
+        &__label {
+          color: $third-color;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
