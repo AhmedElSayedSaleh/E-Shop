@@ -5,23 +5,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { SingleProduct } from "../components/products";
 import { LoadingBox, MessageBox, FiltersNav, Newsletter } from "../components";
 
-// Actions
-// import { getShoes as shoesList } from "../store/actions/productActions";
 import { fetchShoes } from "../store/slices/ShoesSlice";
 
 const Shoes = () => {
   const dispatch = useDispatch();
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
   const shoesList = useSelector((state) => state.shoesProducts);
+  const { loading, error, data } = shoesList;
 
   const [modalView, setModalView] = useState({});
 
-  const { loading, error, data } = shoesList;
-
+  let [checked, setChecked] = useState([]);
   const subcategories = [];
 
   useEffect(() => {
     dispatch(fetchShoes());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setFilteredProducts(data);
+    }
+  }, [data]);
 
   if (Array.isArray(data)) {
     data.map((product) =>
@@ -35,11 +41,44 @@ const Shoes = () => {
     setModalView(product);
   };
 
+  // Filter Nav subcategories check
+  const handleChecked = (event) => {
+    if (event.target.checked) {
+      if (checked.length === 0) {
+        setFilteredProducts(
+          data.filter((product) => product.subcategory === event.target.value)
+        );
+      } else {
+        setFilteredProducts(
+          filteredProducts.concat(
+            data.filter((product) => product.subcategory === event.target.value)
+          )
+        );
+      }
+      checked = [...checked, event.target.value];
+    } else {
+      checked.splice(checked.indexOf(event.target.value), 1);
+      if (checked.length === 0) {
+        setFilteredProducts(data);
+      } else {
+        setFilteredProducts(
+          filteredProducts.filter(
+            (product) => product.subcategory !== event.target.value
+          )
+        );
+      }
+    }
+    setChecked(checked);
+  };
+
   return (
     <div className={"container pt-5"}>
       <div className={"row"}>
         <div className="col-lg-3 mt-4">
-          <FiltersNav subcategories={subcategories} />
+          <FiltersNav
+            subcategories={subcategories}
+            handleChecked={handleChecked}
+          />
         </div>
         <div className="col-lg-9">
           <div className="row">
@@ -48,8 +87,8 @@ const Shoes = () => {
             ) : error ? (
               <MessageBox>{error}</MessageBox>
             ) : (
-              data &&
-              data.map((item) => {
+              filteredProducts &&
+              filteredProducts.map((item) => {
                 let product = {
                   brand: item.brand,
                   brandUrl: item.brand_url,

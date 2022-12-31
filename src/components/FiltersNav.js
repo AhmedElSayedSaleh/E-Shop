@@ -1,38 +1,7 @@
 import React from "react";
 // import { setFiltered } from "../store/actions/productActions";
 
-const FiltersNav = ({ subcategories, handleCheck }) => {
-  // const bags = useSelector((state) => state.bags.products);
-  // const shoes = useSelector((state) => state.shoes.products);
-  // const jewelry = useSelector((state) => state.jewelry.products);
-  // const productsFiltered = useSelector((state) => state.productsFiltered);
-
-  // const dispatch = useDispatch();
-
-  // let productsContainer = [];
-  // if (dataType === "bags") {
-  //   productsContainer = bags;
-  // } else if (dataType === "shoes") {
-  //   productsContainer = shoes;
-  // } else if (dataType === "jewelry") {
-  //   productsContainer = jewelry;
-  // }
-
-  // const subcategoriesCheckbox = document.querySelectorAll(".form-check-input");
-
-  // const handleOnChange = () => {
-  //   subcategoriesCheckbox.forEach((ele) => {
-  //     if (ele.checked) {
-  //       const productsUpdated = productsContainer.filter(
-  //         (elem) => elem.subcategory === ele.value
-  //       );
-  //       console.log(productsUpdated);
-  //       dispatch(setFiltered(bags));
-  //     }
-  //     // ele.checked ? console.log(ele.value) : console.log("sss");
-  //   });
-  // };
-
+const FiltersNav = ({ subcategories, handleChecked }) => {
   return (
     <div className="accordion filter-nav" id="accordionPanelsStayOpenExample">
       <div className="accordion-item filter-nav__item filter-nav__item">
@@ -68,7 +37,7 @@ const FiltersNav = ({ subcategories, handleCheck }) => {
                     type="checkbox"
                     value={subcategory}
                     id={`subcategory${index}`}
-                    onChange={(event) => handleCheck(event)}
+                    onChange={(event) => handleChecked(event)}
                   />
                   <label
                     className="form-check-label h5 filter-nav__item__body__check__label"
