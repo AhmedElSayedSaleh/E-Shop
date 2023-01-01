@@ -234,9 +234,14 @@ const ProductView = () => {
                   <ColorSelect colorData={currentProduct} />
                 </div>
                 <div className={"product-view__quantity"}>
-                  <p className={"product-view__subtitle"}>Quantity:</p>
-                  <div className={"d-flex align-items-center "}>
-                    <Quantity />
+                  {/* <p className={"product-view__subtitle"}>Quantity:</p> */}
+                  <div
+                    className={
+                      "d-flex align-items-center justify-content-around"
+                    }
+                  >
+                    {/* <Quantity /> */}
+                    <hr />
                     <Button
                       children={"Add to cart"}
                       onClick={() => handleAddToCart(currentProduct)}

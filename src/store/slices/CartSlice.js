@@ -106,9 +106,61 @@ const CartSlice = createSlice({
         JSON.stringify(state.totalQuantity)
       );
     },
+
+    increaseCartQuantity: (state, action) => {
+      const product = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => item.productId === product.productId
+      );
+      if (existingItem) {
+        existingItem.quantity++;
+        existingItem.totalPrice =
+          existingItem.quantity * existingItem.currentPrice;
+        state.totalCost += existingItem.currentPrice;
+        state.totalQuantity++;
+      }
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      localStorage.setItem("totalCost", JSON.stringify(state.totalCost));
+      localStorage.setItem(
+        "totalQuantity",
+        JSON.stringify(state.totalQuantity)
+      );
+    },
+
+    decreaseCartQuantity: (state, action) => {
+      const product = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => item.productId === product.productId
+      );
+      if (existingItem && existingItem.quantity > 1) {
+        existingItem.quantity--;
+        existingItem.totalPrice =
+          existingItem.quantity * existingItem.currentPrice;
+        state.totalCost -= existingItem.currentPrice;
+        state.totalQuantity--;
+      }
+      // else if (existingItem.quantity === 1) {
+      //   state.cartItems = state.cartItems.filter(
+      //     (item) => item.productId !== product.productId
+      //   );
+      //   state.totalCost -= product.totalPrice;
+      //   state.totalQuantity -= product.quantity;
+      // }
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      localStorage.setItem("totalCost", JSON.stringify(state.totalCost));
+      localStorage.setItem(
+        "totalQuantity",
+        JSON.stringify(state.totalQuantity)
+      );
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = CartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  increaseCartQuantity,
+  decreaseCartQuantity,
+} = CartSlice.actions;
 
 export default CartSlice.reducer;

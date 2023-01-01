@@ -87,7 +87,7 @@ const ProductModal = ({ modalView }) => {
                   <ColorSelect colorData={modalView} />
                 </div>
                 <div className={"d-flex justify-content-center"}>
-                  <Quantity />
+                  {/* <Quantity /> */}
                   <Button
                     children={"ADD TO CART"}
                     onClick={() => handleAddToCart(modalView)}
