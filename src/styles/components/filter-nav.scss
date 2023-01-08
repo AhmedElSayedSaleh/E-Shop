@@ -26,7 +26,7 @@
     }
 
     &__body {
-      &__check {
+      &__subcategory-check {
         &__input {
           &[type="checkbox"] {
             border-radius: 0;
@@ -45,6 +45,9 @@
           color: $third-color;
           font-size: 1.4rem;
         }
+      }
+
+      &__price-range {
       }
     }
   }

@@ -14,14 +14,10 @@ function Breadcrumb({ product }) {
           </NavLink>
         </li>
         <li className="breadcrumb-item">
-          <NavLink to={`/category/${product.category}`}>
-            {product.category}
-          </NavLink>
+          <NavLink to={`/${product.category}`}>{product.category}</NavLink>
         </li>
         <li className="breadcrumb-item">
-          <NavLink to={`/subcategory/${product.subcategory}`}>
-            {product.subcategory}
-          </NavLink>
+          <NavLink to={`/${product.category}`}>{product.subcategory}</NavLink>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
           {product.name}

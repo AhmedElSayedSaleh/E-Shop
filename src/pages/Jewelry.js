@@ -10,13 +10,14 @@ import { fetchJewelry } from "../store/slices/JewelrySlice";
 const Jewelry = () => {
   const dispatch = useDispatch();
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [modalView, setModalView] = useState({});
+  let [checked, setChecked] = useState([]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100);
 
   const jewelryList = useSelector((state) => state.jewelryProducts);
   const { loading, error, data } = jewelryList;
 
-  const [modalView, setModalView] = useState({});
-
-  let [checked, setChecked] = useState([]);
   const subcategories = [];
 
   useEffect(() => {
@@ -71,7 +72,19 @@ const Jewelry = () => {
     setChecked(checked);
   };
 
-  console.log(filteredProducts);
+  const handlePriceChange = (e) => {
+    // console.log(e);
+    setMinPrice(e[0]);
+    setMaxPrice(e[1]);
+    setFilteredProducts(
+      data.filter(
+        (product) =>
+          product.current_price >= e[0] && product.current_price <= e[1]
+      )
+    );
+    console.log(checked);
+  };
+
   return (
     <div className={"container pt-5"}>
       <div className={"row"}>
@@ -79,6 +92,9 @@ const Jewelry = () => {
           <FiltersNav
             subcategories={subcategories}
             handleChecked={handleChecked}
+            handleChange={handlePriceChange}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
           />
         </div>
         <div className="col-lg-9">

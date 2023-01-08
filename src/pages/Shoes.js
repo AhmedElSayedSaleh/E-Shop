@@ -10,13 +10,14 @@ import { fetchShoes } from "../store/slices/ShoesSlice";
 const Shoes = () => {
   const dispatch = useDispatch();
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [modalView, setModalView] = useState({});
+  let [checked, setChecked] = useState([]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100);
 
   const shoesList = useSelector((state) => state.shoesProducts);
   const { loading, error, data } = shoesList;
 
-  const [modalView, setModalView] = useState({});
-
-  let [checked, setChecked] = useState([]);
   const subcategories = [];
 
   useEffect(() => {
@@ -71,6 +72,19 @@ const Shoes = () => {
     setChecked(checked);
   };
 
+  const handlePriceChange = (e) => {
+    // console.log(e);
+    setMinPrice(e[0]);
+    setMaxPrice(e[1]);
+    setFilteredProducts(
+      data.filter(
+        (product) =>
+          product.current_price >= e[0] && product.current_price <= e[1]
+      )
+    );
+    console.log(checked);
+  };
+
   return (
     <div className={"container pt-5"}>
       <div className={"row"}>
@@ -78,6 +92,9 @@ const Shoes = () => {
           <FiltersNav
             subcategories={subcategories}
             handleChecked={handleChecked}
+            handleChange={handlePriceChange}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
           />
         </div>
         <div className="col-lg-9">

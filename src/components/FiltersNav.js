@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 // import { setFiltered } from "../store/actions/productActions";
 
-const FiltersNav = ({ subcategories, handleChecked }) => {
+const FiltersNav = ({
+  subcategories,
+  handleChecked,
+  handleChange,
+  minPrice,
+  maxPrice,
+}) => {
+  // const [prices, setPrices] = useState([]);
+  // const [minPrice, setMinPrice] = useState(0);
+  // const [maxPrice, setMaxPrice] = useState(100);
+
+  // useEffect(() => {
+  // let pricesList = [];
+  // filteredProducts.map((item) => pricesList.push(item.current_price));
+  // setPrices(pricesList);
+  // setMinPrice(Math.ceil(Math.min(...pricesList)));
+  // setMaxPrice(Math.ceil(Math.max(...pricesList)));
+  // }, [filteredProducts, minPrice, maxPrice]);
+
+  // console.log(minPrice, maxPrice);
+
+  // const handleChange = (e) => {
+  //   console.log(e);
+  // };
+
   return (
     <div className="accordion filter-nav" id="accordionPanelsStayOpenExample">
       <div className="accordion-item filter-nav__item filter-nav__item">
@@ -29,18 +55,18 @@ const FiltersNav = ({ subcategories, handleChecked }) => {
             {subcategories.map((subcategory, index) => {
               return (
                 <div
-                  className="form-check filter-nav__item__body__check"
+                  className="form-check filter-nav__item__body__subcategory-check"
                   key={index}
                 >
                   <input
-                    className="form-check-input filter-nav__item__body__check__input"
+                    className="form-check-input filter-nav__item__body__subcategory-check__input"
                     type="checkbox"
                     value={subcategory}
                     id={`subcategory${index}`}
                     onChange={(event) => handleChecked(event)}
                   />
                   <label
-                    className="form-check-label h5 filter-nav__item__body__check__label"
+                    className="form-check-label h5 filter-nav__item__body__subcategory-check__label"
                     htmlFor={`subcategory${index}`}
                   >
                     {subcategory}
@@ -73,14 +99,42 @@ const FiltersNav = ({ subcategories, handleChecked }) => {
           aria-labelledby="panelsStayOpen-headingTwo"
         >
           <div className="accordion-body filter-nav__item__body">
-            <label htmlFor="customRange1" className="form-label">
-              range 1
-            </label>
-            <label htmlFor="customRange2" className="form-label">
-              range 2
-            </label>
-            <input type="range" className="form-range" id="customRange1" />
-            <input type="range" className="form-range" id="customRange2" />
+            <div className="filter-nav__item__body__price-range">
+              <div className="d-flex justify-content-between">
+                <span>{minPrice}</span>
+                <span>{maxPrice}</span>
+              </div>
+              <Slider
+                range
+                min={0}
+                max={100}
+                allowCross={false}
+                defaultValue={[minPrice, maxPrice]}
+                onChange={(e) => handleChange(e)}
+              />
+              {/* <label htmlFor="minRange" className="form-label">
+                min range
+              </label>
+              <label htmlFor="maxRange" className="form-label">
+                max range
+              </label>
+              <input
+                type="range"
+                className="form-range thumb thumb--zindex-3"
+                id="minRange"
+                min={0}
+                max={100}
+                // value={minVal}
+              />
+              <input
+                type="range"
+                className="form-range thumb thumb--zindex-4"
+                id="maxRange"
+                min={0}
+                max={100}
+                // value={maxVal}
+              /> */}
+            </div>
           </div>
         </div>
       </div>
