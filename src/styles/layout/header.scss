@@ -110,6 +110,12 @@ header {
       text-align: center;
       line-height: 2rem;
     }
+
+    &__dropdown {
+      .dropdown-item {
+        font-size: 1.4rem;
+      }
+    }
   }
 }
 

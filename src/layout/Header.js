@@ -98,7 +98,7 @@ const Header = () => {
                 />
                 <span className="menu__badge">{totalQuantity}</span>
               </Link>
-              <div className="dropdown">
+              <div className="dropdown menu__dropdown">
                 <div
                   id="dropdownMenuLink"
                   data-bs-toggle="dropdown"
@@ -117,17 +117,17 @@ const Header = () => {
                 >
                   <div>
                     <li>
-                      <Link className="dropdown-item" to="/register">
+                      <Link className="dropdown-item text-black" to="/register">
                         Register
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/login">
+                      <Link className="dropdown-item text-black" to="/login">
                         Login
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/logout">
+                      <Link className="dropdown-item text-black" to="/logout">
                         Logout
                       </Link>
                     </li>
