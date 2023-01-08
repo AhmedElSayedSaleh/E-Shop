@@ -100,18 +100,30 @@ const FiltersNav = ({
         >
           <div className="accordion-body filter-nav__item__body">
             <div className="filter-nav__item__body__price-range">
-              <div className="d-flex justify-content-between">
-                <span>{minPrice}</span>
-                <span>{maxPrice}</span>
+              <div className="d-flex justify-content-between filter-nav__item__body__price-range__labels">
+                <span className="filter-nav__item__body__price-range__labels__label">
+                  {minPrice} USD
+                </span>
+                <span className="filter-nav__item__body__price-range__labels__label">
+                  {maxPrice} USD
+                </span>
               </div>
-              <Slider
-                range
-                min={0}
-                max={100}
-                allowCross={false}
-                defaultValue={[minPrice, maxPrice]}
-                onChange={(e) => handleChange(e)}
-              />
+              <div className="w-75 m-auto">
+                <Slider
+                  range
+                  min={0}
+                  max={100}
+                  allowCross={false}
+                  defaultValue={[minPrice, maxPrice]}
+                  onChange={(e) => handleChange(e)}
+                  railStyle={{ height: "3px" }}
+                  trackStyle={[{ backgroundColor: "#000", height: "3px" }]}
+                  handleStyle={[
+                    { borderColor: "#000", transform: "translateX(-90%)" },
+                    { borderColor: "#000", transform: "translateX(-10%)" },
+                  ]}
+                />
+              </div>
               {/* <label htmlFor="minRange" className="form-label">
                 min range
               </label>

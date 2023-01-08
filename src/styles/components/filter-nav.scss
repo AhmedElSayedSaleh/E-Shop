@@ -48,6 +48,21 @@
       }
 
       &__price-range {
+        &__labels {
+          font-size: 1.1rem;
+          color: $third-color;
+          padding: 1rem 0;
+
+          &__label {
+            background-color: #f4f4f4;
+            padding: 0.5rem 1.2rem;
+          }
+        }
+
+        .rc-slider-handle-dragging {
+          box-shadow: none !important;
+          background-color: $third-color;
+        }
       }
     }
   }
