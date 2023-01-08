@@ -1,17 +1,16 @@
 import { useEffect } from "react";
-import { withRouter } from "react-router-dom";
-
-function ScrollToTop({ history }) {
+import { useLocation, useNavigationType } from "react-router-dom";
+function SmoothScroll({ children }) {
+  const location = useLocation();
+  const navType = useNavigationType();
   useEffect(() => {
-    const onListen = history.listen(() => {
-      window.scrollTo(0, 0);
-    });
-    return () => {
-      onListen();
-    };
-  }, [history]);
-
-  return null;
+    if (navType !== "POP") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [location, navType]);
+  return <>{children}</>;
 }
-
-export default withRouter(ScrollToTop);
+export default SmoothScroll;

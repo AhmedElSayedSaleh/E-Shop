@@ -11,28 +11,30 @@ import {
   Cart,
 } from "../pages";
 import { Register, Login } from "../components";
+import ScrollToTop from "../components/ScrollToTop";
 
 const Hero = () => {
   return (
     <>
-      {/* <ScrollToTop /> */}
       <main>
-        <Routes>
-          <Route path={"*"} element={<NotFound />} />
+        <ScrollToTop>
+          <Routes>
+            <Route path={"*"} element={<NotFound />} />
 
-          <Route path={"/"} element={<Home />} exact />
-          <Route path={"/bags"} element={<Bags />} />
-          <Route path={"/shoes"} element={<Shoes />} />
-          <Route path={"/jewelry"} element={<Jewelry />} />
+            <Route path={"/"} element={<Home />} exact />
+            <Route path={"/bags"} element={<Bags />} />
+            <Route path={"/shoes"} element={<Shoes />} />
+            <Route path={"/jewelry"} element={<Jewelry />} />
 
-          <Route path={"/products"} element={<ProductsList />} />
-          <Route path={"/product/:id"} element={<ProductView />} />
-          <Route path={"/cart"} element={<Cart />} />
+            <Route path={"/products"} element={<ProductsList />} />
+            <Route path={"/product/:id"} element={<ProductView />} />
+            <Route path={"/cart"} element={<Cart />} />
 
-          <Route path={"/register"} element={<Register />} />
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/logout"} element={<Navigate to="/" replace />} />
-        </Routes>
+            <Route path={"/register"} element={<Register />} />
+            <Route path={"/login"} element={<Login />} />
+            <Route path={"/logout"} element={<Navigate to="/" replace />} />
+          </Routes>
+        </ScrollToTop>
       </main>
     </>
   );
