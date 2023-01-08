@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 // import { setFiltered } from "../store/actions/productActions";

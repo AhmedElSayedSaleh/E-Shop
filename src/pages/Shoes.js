@@ -10,6 +10,7 @@ import { fetchShoes } from "../store/slices/ShoesSlice";
 const Shoes = () => {
   const dispatch = useDispatch();
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [subcategoriesData, setSubcategoriesData] = useState([]);
   const [modalView, setModalView] = useState({});
   let [checked, setChecked] = useState([]);
   const [minPrice, setMinPrice] = useState(0);
@@ -27,6 +28,7 @@ const Shoes = () => {
   useEffect(() => {
     if (data && data.length > 0) {
       setFilteredProducts(data);
+      setSubcategoriesData(data);
     }
   }, [data]);
 
@@ -49,8 +51,16 @@ const Shoes = () => {
         setFilteredProducts(
           data.filter((product) => product.subcategory === event.target.value)
         );
+        setSubcategoriesData(
+          data.filter((product) => product.subcategory === event.target.value)
+        );
       } else {
         setFilteredProducts(
+          filteredProducts.concat(
+            data.filter((product) => product.subcategory === event.target.value)
+          )
+        );
+        setSubcategoriesData(
           filteredProducts.concat(
             data.filter((product) => product.subcategory === event.target.value)
           )
@@ -61,8 +71,14 @@ const Shoes = () => {
       checked.splice(checked.indexOf(event.target.value), 1);
       if (checked.length === 0) {
         setFilteredProducts(data);
+        setSubcategoriesData(data);
       } else {
         setFilteredProducts(
+          filteredProducts.filter(
+            (product) => product.subcategory !== event.target.value
+          )
+        );
+        setSubcategoriesData(
           filteredProducts.filter(
             (product) => product.subcategory !== event.target.value
           )
@@ -77,7 +93,7 @@ const Shoes = () => {
     setMinPrice(e[0]);
     setMaxPrice(e[1]);
     setFilteredProducts(
-      data.filter(
+      subcategoriesData.filter(
         (product) =>
           product.current_price >= e[0] && product.current_price <= e[1]
       )
