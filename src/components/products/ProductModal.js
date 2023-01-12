@@ -90,6 +90,7 @@ const ProductModal = ({ modalView }) => {
                   {/* <Quantity /> */}
                   <Button
                     children={"ADD TO CART"}
+                    type={"button"}
                     onClick={() => handleAddToCart(modalView)}
                   />
                   <ToastContainer />

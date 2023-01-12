@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ children, secondBtn, thirdBtn, onClick }) => {
+const Button = ({ children, secondBtn, thirdBtn, onClick, type, style }) => {
   return (
     <>
       <button
@@ -11,8 +11,9 @@ const Button = ({ children, secondBtn, thirdBtn, onClick }) => {
             ? "main-btn main-btn--third-theme"
             : "main-btn"
         }
-        type={"button"}
+        type={type}
         onClick={onClick}
+        style={style}
       >
         {children}
       </button>

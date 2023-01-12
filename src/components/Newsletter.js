@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./";
+import { Button, Input } from "./";
 import { newsletterBg } from "../assets/images";
 
 const Newsletter = () => {
@@ -22,15 +22,11 @@ const Newsletter = () => {
             </p>
           </div>
           <div className="col-lg-3">
-            <input
-              className="newsletter__input"
-              type="text"
-              placeholder="Enter your email"
-            />
+            <Input type={"text"} placeholder={"Enter your email"} />
           </div>
           <div className="col-lg-3">
             <div className="newsletter__btn">
-              <Button children={"get your discount"} />
+              <Button children={"get your discount"} type={"button"} />
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
+import Button from "./Button";
+import Input from "./Input";
 import MainSlider from "./MainSlider";
 import Breadcrumb from "./Breadcrumb";
-import Button from "./Button";
 import FiltersNav from "./FiltersNav";
 import ChooseUs from "./ChooseUs";
 import Icon from "./Icons";
@@ -14,9 +15,10 @@ import Register from "./register/Register";
 import Login from "./login/Login";
 
 export {
+  Button,
+  Input,
   MainSlider,
   Breadcrumb,
-  Button,
   FiltersNav,
   ChooseUs,
   Icon,

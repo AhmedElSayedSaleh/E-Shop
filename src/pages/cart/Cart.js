@@ -16,8 +16,6 @@ const Cart = () => {
     [dispatch]
   );
 
-  const navigate = useNavigate();
-
   return (
     <div className="pb-5 cart">
       <div className="container">
@@ -102,16 +100,17 @@ const Cart = () => {
         </div>
 
         <div className="row justify-content-center align-items-center mt-5 cart__check">
-          <div className="col-4 cart__check__continue">
+          <div className="col-4">
             <Link
-              onClick={() => navigate(-1)}
-              className="mb-0 text-black d-flex align-items-center w-50"
+              to={"/products"}
+              // onClick={() => navigate(-1)}
+              className="text-black cart__check__continue"
               role="button"
             >
-              <div className="pe-3 cart__check__continue__icon">
+              <div className="d-inline-block cart__check__continue__icon">
                 <Icon icon="arrow-left" size={"1.3rem"} disableFill />
               </div>
-              Continue Shopping
+              <p className="mb-0 ps-5 d-inline-block">Continue Shopping</p>
             </Link>
           </div>
           <div className="col-4">
@@ -124,7 +123,7 @@ const Cart = () => {
             </p>
           </div>
           <div className="col-2">
-            <Button children={"CHECKOUT"} />
+            <Button children={"CHECKOUT"} type={"button"} />
           </div>
         </div>
       </div>

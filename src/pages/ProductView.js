@@ -244,6 +244,7 @@ const ProductView = () => {
                     <hr />
                     <Button
                       children={"Add to cart"}
+                      type={"button"}
                       onClick={() => handleAddToCart(currentProduct)}
                     />
                     <ToastContainer />
@@ -532,7 +533,7 @@ const ProductView = () => {
                           </div>
                         </div>
                         <div className="d-flex justify-content-center mt-5 pt-5">
-                          <Button children={"ADD OPINION"} />
+                          <Button children={"ADD OPINION"} type={"button"} />
                         </div>
                       </div>
                       <div className="col-lg-6">
