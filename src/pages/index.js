@@ -6,6 +6,9 @@ import ProductsList from "./ProductsList";
 import ProductView from "./ProductView";
 import Cart from "./cart/Cart";
 import NotFound from "./NotFound";
+import Login from "./login/Login";
+import Register from "./register/Register";
+import Password from "./password/Password";
 
 export {
   Home,
@@ -16,4 +19,7 @@ export {
   ProductsList,
   Cart,
   NotFound,
+  Login,
+  Register,
+  Password,
 };

@@ -9,10 +9,7 @@ import LoadingBox from "./LoadingBox";
 import MessageBox from "./MessageBox";
 import ReviewCard from "./ReviewCard";
 import Newsletter from "./Newsletter";
-// import ScrollToTop from "./ScrollToTop";
-
-import Register from "./register/Register";
-import Login from "./login/Login";
+import ScrollToTop from "./ScrollToTop";
 
 export {
   Button,
@@ -26,7 +23,5 @@ export {
   MessageBox,
   ReviewCard,
   Newsletter,
-  // ScrollToTop,
-  Register,
-  Login,
+  ScrollToTop,
 };

@@ -9,9 +9,11 @@ import {
   ProductsList,
   NotFound,
   Cart,
+  Password,
+  Register,
+  Login,
 } from "../pages";
-import { Register, Login } from "../components";
-import ScrollToTop from "../components/ScrollToTop";
+import { ScrollToTop } from "../components";
 
 const Hero = () => {
   return (
@@ -32,6 +34,7 @@ const Hero = () => {
 
             <Route path={"/register"} element={<Register />} />
             <Route path={"/login"} element={<Login />} />
+            <Route path={"/password"} element={<Password />} />
             <Route path={"/logout"} element={<Navigate to="/" replace />} />
           </Routes>
         </ScrollToTop>

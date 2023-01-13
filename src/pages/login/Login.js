@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Icon, Input } from "../";
+import { Button, Icon, Input } from "../../components";
 
-const Register = () => {
+const Login = () => {
   return (
     <div className="container my-3 py-5">
       <div className="row">
@@ -19,7 +19,7 @@ const Register = () => {
         {/* <div className="d-flex "> */}
         <div className="w-50">
           <h2 className="m-auto" style={{ fontSize: "2.2rem", width: "70%" }}>
-            Create an account and discover the benefits
+            Log in
           </h2>
         </div>
         <div className="w-75 d-flex justify-content-center">
@@ -43,29 +43,38 @@ const Register = () => {
         <div className="w-50">
           <form>
             <div className="mb-3">
-              <Input type={"text"} placeholder={"First Name"} />
-            </div>
-            <div className="mb-3">
-              <Input type={"text"} placeholder={"Last Name"} />
-            </div>
-            <div className="mb-3">
               <Input type={"email"} placeholder={"Email"} />
             </div>
             <div className="mb-3">
               <Input type={"password"} placeholder={"Password"} />
             </div>
-            <div className="my-4 form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label" htmlFor="exampleCheck1">
-                I agree to the Google Terms of Service and Privacy Policy
-              </label>
+            <div className="my-4 d-flex justify-content-between">
+              <div className="form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="exampleCheck1"
+                  style={{ fontSize: "1.3rem" }}
+                >
+                  Keep me signed in
+                </label>
+              </div>
+              <div>
+                <Link
+                  to={"/password"}
+                  role="button"
+                  style={{ fontSize: "1.3rem", color: "#808080" }}
+                >
+                  Forgot password?
+                </Link>
+              </div>
             </div>
             <Button
-              children={"Sign up"}
+              children={"Sign in"}
               type={"submit"}
               onClick={(e) => console.log(e)}
               style={{
@@ -75,14 +84,10 @@ const Register = () => {
               }}
             />
           </form>
-          <div className="text-center my-4">
-            <Link
-              to={"/login"}
-              className="text-black"
-              role="button"
-              style={{ fontSize: "1.3rem" }}
-            >
-              Are you already a member?
+          <div className="text-center my-4" style={{ fontSize: "1.3rem" }}>
+            <span>Not a member yet?</span>
+            <Link to={"/register"} className="text-black ps-5" role="button">
+              Sign up
             </Link>
           </div>
         </div>
@@ -91,4 +96,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
