@@ -73,6 +73,33 @@ const Login = () => {
                 </Link>
               </div>
             </div>
+            <div className="d-flex justify-content-between">
+              <Button
+                children={"Facebook"}
+                type={"button"}
+                onClick={(e) => console.log(e)}
+                style={{
+                  width: "100%",
+                  textTransform: "none",
+                  margin: "2rem 1rem 0 0",
+                  backgroundColor: "#3b5998",
+                  color: "#ffffff",
+                  border: "solid 1px #3b5998",
+                }}
+              />
+              <Button
+                children={"Gmail"}
+                type={"button"}
+                onClick={(e) => console.log(e)}
+                style={{
+                  width: "100%",
+                  textTransform: "none",
+                  margin: "2rem 0 0 1rem",
+                  backgroundColor: "#ffffff",
+                  border: "solid 1px #f1584d",
+                }}
+              />
+            </div>
             <Button
               children={"Sign in"}
               type={"submit"}

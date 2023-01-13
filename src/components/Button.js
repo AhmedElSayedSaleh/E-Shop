@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "./";
 
 const Button = ({ children, secondBtn, thirdBtn, onClick, type, style }) => {
   return (
@@ -15,7 +16,19 @@ const Button = ({ children, secondBtn, thirdBtn, onClick, type, style }) => {
         onClick={onClick}
         style={style}
       >
-        {children}
+        {children === "Facebook" ? (
+          <div className="d-flex justify-content-evenly">
+            <Icon icon="Facebook" size={"1.7rem"} />
+            {children}
+          </div>
+        ) : children === "Gmail" ? (
+          <div className="d-flex justify-content-evenly">
+            <Icon icon="gmail" size={"1.7rem"} />
+            {children}
+          </div>
+        ) : (
+          children
+        )}
       </button>
     </>
   );
