@@ -99,10 +99,11 @@ const Header = () => {
                 <span className="menu__badge">{totalQuantity}</span>
               </Link>
               <div className="dropdown menu__dropdown">
-                <div
-                  id="dropdownMenuLink"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                <Link
+                  to={"/login"}
+                  // id="dropdownMenuLink"
+                  // data-bs-toggle="dropdown"
+                  // aria-expanded="false"
                 >
                   <Icon
                     icon="avatar"
@@ -110,8 +111,8 @@ const Header = () => {
                     className={"mx-3 mx-lg-4 menu__icon menu__icon--avatar"}
                     disableFill
                   />
-                </div>
-                <ul
+                </Link>
+                {/* <ul
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuLink"
                 >
@@ -132,7 +133,7 @@ const Header = () => {
                       </Link>
                     </li>
                   </div>
-                </ul>
+                </ul> */}
               </div>
               <Icon
                 icon="menu"

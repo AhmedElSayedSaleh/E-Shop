@@ -5,6 +5,7 @@ import Jewelry from "./Jewelry";
 import ProductsList from "./ProductsList";
 import ProductView from "./ProductView";
 import Cart from "./cart/Cart";
+import Checkout from "./cart/Checkout";
 import NotFound from "./NotFound";
 import Login from "./login/Login";
 import Register from "./register/Register";
@@ -18,6 +19,7 @@ export {
   ProductView,
   ProductsList,
   Cart,
+  Checkout,
   NotFound,
   Login,
   Register,

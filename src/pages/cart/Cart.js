@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Icon } from "../../components";
+import { Button, Icon, CartHeader, GoBackLink } from "../../components";
 import { Quantity } from "../../components/products";
 import { removeFromCart } from "../../store/slices/CartSlice";
 
@@ -19,22 +19,7 @@ const Cart = () => {
   return (
     <div className="pb-5 cart">
       <div className="container">
-        <div className="row justify-content-center align-items-center py-5 mb-5 cart__head">
-          <div className="col">
-            <h3 className="cart__head__title">Shopping Cart</h3>
-          </div>
-          <div className="col">
-            <div className=" d-flex justify-content-end align-items-center">
-              <div className="d-flex align-items-center justify-content-center cart__head__icon cart__head__icon--cart">
-                <Icon icon="cart" size={"1.7rem"} disableFill />
-              </div>
-              <span className="cart__head__line"></span>
-              <div className="d-flex align-items-center justify-content-center cart__head__icon cart__head__icon--delivery">
-                <Icon icon="delivery" size={"1.7rem"} disableFill />
-              </div>
-            </div>
-          </div>
-        </div>
+        <CartHeader title={"Shopping Cart"} cartIcon />
 
         <div className="row justify-content-center align-items-center">
           {cartItems.length === 0 ? (
@@ -100,8 +85,9 @@ const Cart = () => {
         </div>
 
         <div className="row justify-content-center align-items-center mt-5 cart__check">
-          <div className="col-4">
-            <Link
+          <div className={cartItems.length !== 0 ? "col-4" : "col-12"}>
+            <GoBackLink location={"/products"} children={"Continue Shopping"} />
+            {/* <Link
               to={"/products"}
               // onClick={() => navigate(-1)}
               className="text-black cart__check__continue"
@@ -111,20 +97,28 @@ const Cart = () => {
                 <Icon icon="arrow-left" size={"1.3rem"} disableFill />
               </div>
               <p className="mb-0 ps-5 d-inline-block">Continue Shopping</p>
-            </Link>
+            </Link> */}
           </div>
-          <div className="col-4">
-            <input className="" type="text" placeholder="Promo Code" />
-          </div>
-          <div className="col-2 d-flex justify-content-between cart__check__total">
-            <p className=" mb-0 cart__check__total__title">Total cost</p>
-            <p className=" mb-0 cart__check__total__value">
-              ${totalCost.toFixed(2)}
-            </p>
-          </div>
-          <div className="col-2">
-            <Button children={"CHECKOUT"} type={"button"} />
-          </div>
+          {cartItems.length !== 0 ? (
+            <>
+              <div className="col-4">
+                <input className="" type="text" placeholder="Promo Code" />
+              </div>
+              <div className="col-2 d-flex justify-content-between cart__check__total">
+                <p className=" mb-0 cart__check__total__title">Total cost</p>
+                <p className=" mb-0 cart__check__total__value">
+                  ${totalCost.toFixed(2)}
+                </p>
+              </div>
+              <div className="col-2">
+                <Link to={"/checkout"}>
+                  <p className="mb-0 ps-5 d-inline-block">
+                    <Button children={"CHECKOUT"} type={"button"} />
+                  </p>
+                </Link>
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </div>

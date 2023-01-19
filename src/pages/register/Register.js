@@ -1,19 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Icon, Input } from "../../components";
+import { Button, GoBackLink, Icon, Input } from "../../components";
 
 const Register = () => {
   return (
     <div className="container my-3 py-5">
       <div className="row">
-        <div>
+        <GoBackLink location="products" children={"Back to store"} />
+
+        {/* <div>
           <Link to={"/products"} className="text-black" role="button">
             <div className="d-inline-block">
               <Icon icon="arrow-left" size={"1.3rem"} disableFill />
             </div>
             <p className="mb-0 ps-5 d-inline-block">Back to store</p>
           </Link>
-        </div>
+        </div> */}
       </div>
       <div className="row align-items-center flex-column text-center pt-5 px-5 mx-5 mt-5">
         {/* <div className="d-flex "> */}

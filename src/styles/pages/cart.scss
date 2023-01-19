@@ -1,36 +1,4 @@
 .cart {
-  &__head {
-    &__title {
-      font-size: 2rem;
-      font-weight: 600;
-      color: $third-color;
-    }
-
-    &__line {
-      width: 7rem;
-      height: 0.1rem;
-      background-color: $fourth-color;
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
-    }
-    &__icon {
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 50%;
-
-      &--cart {
-        background-color: $first-color;
-        color: $fifth-color;
-        border: $first-color 0.1rem solid;
-      }
-
-      &--delivery {
-        color: $fourth-color;
-        border: $fourth-color 0.1rem solid;
-      }
-    }
-  }
-
   &__table {
     border-collapse: separate;
     border-spacing: 0 3rem;
@@ -65,14 +33,6 @@
   }
 
   &__check {
-    &__continue {
-      &:hover .cart__check__continue__icon {
-        transform: translateX(-1rem);
-      }
-      &__icon {
-        transition: $main-transition;
-      }
-    }
     input {
       width: 80%;
       padding: 1rem 0rem 1rem 3rem;

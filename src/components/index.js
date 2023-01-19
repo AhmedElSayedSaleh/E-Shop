@@ -9,6 +9,8 @@ import LoadingBox from "./LoadingBox";
 import MessageBox from "./MessageBox";
 import ReviewCard from "./ReviewCard";
 import Newsletter from "./Newsletter";
+import CartHeader from "./CartHeader";
+import GoBackLink from "./GoBackLink";
 import ScrollToTop from "./ScrollToTop";
 
 export {
@@ -23,5 +25,7 @@ export {
   MessageBox,
   ReviewCard,
   Newsletter,
+  CartHeader,
+  GoBackLink,
   ScrollToTop,
 };

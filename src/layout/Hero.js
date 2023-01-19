@@ -9,6 +9,7 @@ import {
   ProductsList,
   NotFound,
   Cart,
+  Checkout,
   Password,
   Register,
   Login,
@@ -31,6 +32,7 @@ const Hero = () => {
             <Route path={"/products"} element={<ProductsList />} />
             <Route path={"/product/:id"} element={<ProductView />} />
             <Route path={"/cart"} element={<Cart />} />
+            <Route path={"/checkout"} element={<Checkout />} />
 
             <Route path={"/register"} element={<Register />} />
             <Route path={"/login"} element={<Login />} />

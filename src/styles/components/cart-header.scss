@@ -1,0 +1,35 @@
+.cart-header {
+  &__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $third-color;
+  }
+
+  &__line {
+    width: 7rem;
+    height: 0.1rem;
+    background-color: $fourth-color;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  &__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+  }
+
+  .first-icon {
+    background-color: $first-color;
+    color: $fifth-color;
+    border: $first-color 0.1rem solid;
+  }
+
+  .second-icon {
+    color: $first-color;
+    border: $first-color 0.1rem solid;
+  }
+
+  .third-icon {
+    color: $fourth-color;
+  }
+}
