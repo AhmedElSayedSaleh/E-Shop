@@ -6,7 +6,7 @@ function Password() {
   return (
     <div className="container my-3 py-5">
       <div className="row">
-        <GoBackLink location="products" children={"Back to store"} />
+        <GoBackLink location="/products" children={"Back to store"} />
 
         {/* <div>
           <Link to={"/products"} className="text-black" role="button">
