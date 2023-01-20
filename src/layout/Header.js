@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { BlackLogo, WhiteLogo } from "../assets/images";
@@ -7,14 +7,15 @@ import { Icon } from "../components";
 import { useSelector } from "react-redux";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
   const headerRef = useRef(null);
+  const logoRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const stickyHeaderFunc = () => {
-    let Logo = document.querySelector("#logo");
-
     window.addEventListener("scroll", () => {
       if (
         document.body.scrollTop > 30 ||
@@ -22,18 +23,52 @@ const Header = () => {
       ) {
         headerRef.current.classList.remove("home-nav");
         headerRef.current.classList.add("sticky__header");
-        Logo.src = BlackLogo;
+        logoRef.current.src = BlackLogo;
       } else {
         if (pathname === "/") {
           headerRef.current.classList.add("home-nav");
-          Logo.src = WhiteLogo;
+          logoRef.current.src = WhiteLogo;
         } else {
           headerRef.current.classList.remove("home-nav");
-          Logo.src = BlackLogo;
+          logoRef.current.src = BlackLogo;
         }
         headerRef.current.classList.remove("sticky__header");
       }
     });
+  };
+
+  const handleNavButtonClick = () => {
+    setMenuOpen(!menuOpen);
+
+    if (!menuOpen) {
+      mobileMenuRef.current.classList.add("mobile-menu--active");
+      document.body.style.overflow = "hidden";
+      headerRef.current.classList.add("bg-white");
+      headerRef.current.classList.remove("home-nav");
+      logoRef.current.src = BlackLogo;
+    } else {
+      if (pathname === "/") {
+        headerRef.current.classList.remove("bg-white");
+        headerRef.current.classList.add("home-nav");
+        logoRef.current.src = WhiteLogo;
+      } else {
+        headerRef.current.classList.remove("home-nav");
+        logoRef.current.src = BlackLogo;
+      }
+      mobileMenuRef.current.classList.remove("mobile-menu--active");
+      document.body.style.overflow = "auto";
+    }
+  };
+
+  const closeMenu = () => {
+    if (pathname === "/") {
+      headerRef.current.classList.remove("bg-white");
+      headerRef.current.classList.add("home-nav");
+      logoRef.current.src = WhiteLogo;
+    }
+    mobileMenuRef.current.classList.remove("mobile-menu--active");
+    document.body.style.overflow = "auto";
+    setMenuOpen(false);
   };
 
   useEffect(() => {
@@ -45,66 +80,68 @@ const Header = () => {
 
   return (
     <header
-      className={`py-3 border-bottom ${
+      className={`pt-3 border-bottom ${
         pathname === "/" ? "home-nav fixed-top border-bottom-0" : ""
       }`}
       ref={headerRef}
+      style={{ height: "6rem" }}
     >
-      <nav className="menu">
-        <div className="container">
-          <div className="row align-items-center justify-content-between">
-            <div className="col-6 col-lg-3 text-start menu__logo">
-              <Link to="/">
-                <img
-                  src={pathname === "/" ? WhiteLogo : BlackLogo}
-                  alt=""
-                  id="logo"
-                />
-                <span>E-</span>Shop
-              </Link>
-            </div>
-            <ul className="col-lg-6 mb-0 menu__links">
-              {links.map((link) => {
-                const { id, text, url } = link;
-                return (
-                  <li key={id}>
-                    <NavLink
-                      to={url}
-                      className="px-5 menu__links__link"
-                      style={({ isActive }) =>
-                        isActive ? { color: "#fbb03b" } : null
-                      }
-                      // activeStyle={{ color: "#fbb03b" }}
-                    >
-                      {text}
-                    </NavLink>
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="col-6 col-lg-3 d-flex justify-content-end">
-              <Icon
-                icon="search"
-                size={"3rem"}
-                className={"mx-3 mx-lg-4 menu__icon"}
-                disableFill
-              />
-              <Link to="/cart" className=" position-relative">
+      <div className="h-100 position-relative">
+        <nav className="menu">
+          <div className="container">
+            <div className="row align-items-center justify-content-between">
+              <div className="col-6 col-lg-3 text-start menu__logo">
+                <Link to="/" onClick={closeMenu}>
+                  <img
+                    src={pathname === "/" ? WhiteLogo : BlackLogo}
+                    alt=""
+                    id="logo"
+                    ref={logoRef}
+                  />
+                  <span>E-</span>Shop
+                </Link>
+              </div>
+              <ul className="col-lg-6 mb-0 menu__links">
+                {links.map((link) => {
+                  const { id, text, url } = link;
+                  return (
+                    <li key={id}>
+                      <NavLink
+                        to={url}
+                        className="px-5 menu__link"
+                        style={({ isActive }) =>
+                          isActive ? { color: "#fbb03b" } : null
+                        }
+                        // activeStyle={{ color: "#fbb03b" }}
+                      >
+                        {text}
+                      </NavLink>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="col-6 col-lg-3 d-flex justify-content-end">
                 <Icon
-                  icon="cart"
+                  icon="search"
                   size={"3rem"}
                   className={"mx-3 mx-lg-4 menu__icon"}
                   disableFill
+                  onClick={closeMenu}
                 />
-                <span className="menu__badge">{totalQuantity}</span>
-              </Link>
-              <div className="dropdown menu__dropdown">
                 <Link
-                  to={"/login"}
-                  // id="dropdownMenuLink"
-                  // data-bs-toggle="dropdown"
-                  // aria-expanded="false"
+                  to="/cart"
+                  className=" position-relative"
+                  onClick={closeMenu}
                 >
+                  <Icon
+                    icon="cart"
+                    size={"3rem"}
+                    className={"mx-3 mx-lg-4 menu__icon"}
+                    disableFill
+                  />
+                  <span className="menu__badge">{totalQuantity}</span>
+                </Link>
+                <Link to={"/login"}>
                   <Icon
                     icon="avatar"
                     size={"3rem"}
@@ -112,39 +149,65 @@ const Header = () => {
                     disableFill
                   />
                 </Link>
-                {/* <ul
-                  className="dropdown-menu"
-                  aria-labelledby="dropdownMenuLink"
-                >
-                  <div>
-                    <li>
-                      <Link className="dropdown-item text-black" to="/register">
-                        Register
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item text-black" to="/login">
-                        Login
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item text-black" to="/logout">
-                        Logout
-                      </Link>
-                    </li>
-                  </div>
-                </ul> */}
+                <Icon
+                  icon={menuOpen ? "close" : "menu"}
+                  size={"3rem"}
+                  className={"mx-3 mx-lg-4 menu__icon menu__icon--bars"}
+                  disableFill
+                  onClick={handleNavButtonClick}
+                />
               </div>
-              <Icon
-                icon="menu"
-                size={"3rem"}
-                className={"mx-3 mx-lg-4 menu__icon menu__icon--bars"}
-                disableFill
-              />
             </div>
           </div>
+        </nav>
+
+        <div
+          className="mobile-menu main-scroll"
+          ref={mobileMenuRef}
+          // style={
+          //   menuOpen
+          //     ? {
+          //         height: "calc(100vh - 6rem)",
+          //         zIndex: "9999",
+          //         top: "100%",
+          //         transition: "height .1s ease-in-out",
+          //         // overflowY: "auto",
+          //       }
+          //     : { height: "0px", transition: "height .1s ease-in-out" }
+          // }
+        >
+          <ul className="w-100 h-100">
+            {links.map((link) => {
+              const { id, text, url } = link;
+              return (
+                <li key={id} className="my-5">
+                  <NavLink
+                    to={url}
+                    className="h3 menu__link"
+                    style={({ isActive }) =>
+                      isActive ? { color: "#fbb03b" } : null
+                    }
+                    // activeStyle={{ color: "#fbb03b" }}
+                    onClick={closeMenu}
+                  >
+                    {text}
+                  </NavLink>
+                </li>
+              );
+            })}
+            <li>
+              <Link to={"/login"} onClick={closeMenu}>
+                <Icon
+                  icon="avatar"
+                  size={"3rem"}
+                  className={"mx-3 mx-lg-4 menu__icon "}
+                  disableFill
+                />
+              </Link>
+            </li>
+          </ul>
         </div>
-      </nav>
+      </div>
     </header>
   );
 };
