@@ -1,6 +1,14 @@
 .main-carousel {
   position: relative;
 
+  &__img {
+    height: 100vh;
+
+    @include rwd-df-down(sm) {
+      height: 75vh;
+    }
+  }
+
   // max-height: 100vh;
   &__inner {
     position: absolute;
@@ -15,10 +23,10 @@
       background-color: rgba($third-color, 0.5);
       position: absolute;
       top: 0;
-      // bottom: 0;
+      bottom: 0;
       #{$start}: 0;
       #{$end}: 0;
-      height: 100vh;
+      // height: 100vh;
       // width: 100%;
     }
 
@@ -27,10 +35,38 @@
       top: 25%;
       color: $fifth-color;
 
+      &__dots {
+        .swiper-pagination-bullet {
+          height: 25%;
+          background-color: #aaaaaa;
+          // border: 0.5px solid #aaaaaa;
+          width: 0.2rem;
+          border-radius: 0;
+          opacity: 1;
+          margin: auto !important;
+
+          &-active {
+            background-color: $fifth-color;
+          }
+        }
+
+        @include rwd-df-down(lg) {
+          height: 50vh;
+        }
+
+        @include rwd-df-down(sm) {
+          display: none !important;
+        }
+      }
+
       &__title {
         font-size: 6rem;
         font-weight: bold;
         line-height: 1.17;
+
+        @include rwd-df-down(sm) {
+          font-size: 4rem;
+        }
       }
 
       &__link {
@@ -71,8 +107,16 @@
       bottom: 0;
       width: 100%;
 
+      @include rwd-df-down(sm) {
+        display: none !important;
+      }
+
       &__content {
         border-top-right-radius: 7rem;
+
+        @include rwd-df-down(md) {
+          display: none;
+        }
 
         &__icon {
           color: $first-color;
@@ -101,35 +145,23 @@
         }
       }
 
-      &__arrow {
-        background-color: $fifth-color;
-        color: $third-color;
-        width: 5rem;
-        height: 5rem;
-        border: none;
-
-        &:disabled {
-          background-color: rgba($fifth-color, 0.12);
-          color: $fifth-color;
+      &__arrows {
+        @include rwd-df-down(md) {
+          margin-bottom: 5rem;
+          justify-content: flex-end !important;
         }
-      }
-    }
-  }
-}
+        &__arrow {
+          background-color: $fifth-color;
+          color: $third-color;
+          width: 5rem;
+          height: 5rem;
+          border: none;
 
-.carousel {
-  &__dots {
-    .swiper-pagination-bullet {
-      height: 25%;
-      background-color: #aaaaaa;
-      // border: 0.5px solid #aaaaaa;
-      width: 0.2rem;
-      border-radius: 0;
-      opacity: 1;
-      margin: auto !important;
-
-      &-active {
-        background-color: $fifth-color;
+          &:disabled {
+            background-color: rgba($fifth-color, 0.12);
+            color: $fifth-color;
+          }
+        }
       }
     }
   }

@@ -20,12 +20,7 @@ import {
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-  Autoplay,
-  Navigation,
-  Pagination,
-  EffectFade,
-} from "swiper";
+import SwiperCore, { Autoplay, Navigation, EffectFade } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -34,7 +29,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 // import "pure-react-carousel/dist/react-carousel.es.css";
-SwiperCore.use([Pagination, Navigation]);
+SwiperCore.use([Navigation]);
 
 const MainSlider = () => {
   const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
@@ -63,7 +58,7 @@ const MainSlider = () => {
   // };
 
   return (
-    <div className={"main-carousel"}>
+    <div className="main-carousel">
       <Swiper
         // runCallbacksOnInit={true}
         // init={false}
@@ -82,28 +77,23 @@ const MainSlider = () => {
           nextEl: ".main-carousel__inner__footer__arrow--next",
           prevEl: ".main-carousel__inner__footer__arrow--prev",
         }}
-        pagination={{
-          el: ".carousel__dots",
-          type: "bullets",
-          clickable: true,
-        }}
-        modules={[Autoplay, Navigation, Pagination, EffectFade]}
+        modules={[Autoplay, Navigation, EffectFade]}
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className={"w-100 vh-100"} src={ImgSlider1} alt="" />
+          <img className={"w-100 main-carousel__img"} src={ImgSlider1} alt="" />
           <div className={"main-carousel__inner__overlay"}></div>
         </SwiperSlide>
         <SwiperSlide>
-          <img className={"w-100 vh-100"} src={ImgSlider2} alt="" />
+          <img className={"w-100 main-carousel__img"} src={ImgSlider2} alt="" />
           <div className={"main-carousel__inner__overlay"}></div>
         </SwiperSlide>
         <SwiperSlide>
-          <img className={"w-100 vh-100"} src={ImgSlider3} alt="" />
+          <img className={"w-100 main-carousel__img"} src={ImgSlider3} alt="" />
           <div className={"main-carousel__inner__overlay"}></div>
         </SwiperSlide>
         <SwiperSlide>
-          <img className={"w-100 vh-100"} src={ImgSlider4} alt="" />
+          <img className={"w-100 main-carousel__img"} src={ImgSlider4} alt="" />
           <div className={"main-carousel__inner__overlay"}></div>
         </SwiperSlide>
       </Swiper>
@@ -111,9 +101,9 @@ const MainSlider = () => {
         <div className="container">
           <div className="row">
             <div className={"w-75 d-flex main-carousel__inner__content"}>
-              <div className="d-flex flex-column justify-content-between align-items-center">
+              <div className="d-flex flex-column justify-content-between align-items-center main-carousel__inner__content__dots">
                 <span>0{swiperActiveIndex + 1}</span>
-                <div className="d-flex flex-column h-100 carousel__dots"></div>
+                <div className="d-flex flex-column h-100" role="button"></div>
                 <span>0{swiperTotalIndex}</span>
               </div>
               <div className="w-75 ps-5 ms-5">
@@ -182,12 +172,12 @@ const MainSlider = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-3 d-flex justify-content-center">
+              <div className="col-12 col-lg-3 d-flex justify-content-center main-carousel__inner__footer__arrows">
                 <div>
-                  <button className="mx-3 main-carousel__inner__footer__arrow main-carousel__inner__footer__arrow--prev">
+                  <button className="mx-3 main-carousel__inner__footer__arrows__arrow main-carousel__inner__footer__arrow--prev">
                     <Icon icon="arrow-left" size={"2rem"} disableFill />
                   </button>
-                  <button className="mx-3 main-carousel__inner__footer__arrow main-carousel__inner__footer__arrow--next">
+                  <button className="mx-3 main-carousel__inner__footer__arrows__arrow main-carousel__inner__footer__arrow--next">
                     <Icon icon="arrow-right" size={"2rem"} disableFill />
                   </button>
                 </div>
