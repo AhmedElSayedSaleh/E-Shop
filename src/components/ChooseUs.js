@@ -8,8 +8,8 @@ const ChooseUs = () => {
         <h2>Why should you choose us?</h2>
       </div>
       <div className="row py-5">
-        <div className="col-lg-3 px-5">
-          <div className="my-4 choose-us__icon">
+        <div className="col-lg-3 col-md-6 text-lg-start text-center  px-5">
+          <div className="my-4 mx-lg-0 mx-auto choose-us__icon">
             <Icon icon="free-shipping" size={"3rem"} disableFill />
           </div>
           <h4 className="py-4">Free Shipping</h4>
@@ -18,8 +18,8 @@ const ChooseUs = () => {
             First Class Mail.
           </p>
         </div>
-        <div className="col-lg-3 px-5">
-          <div className="my-4 choose-us__icon">
+        <div className="col-lg-3 col-md-6 text-lg-start text-center  px-5">
+          <div className="my-4 mx-lg-0 mx-auto choose-us__icon">
             <Icon icon="payment" size={"3rem"} disableFill />
           </div>
           <h4 className="py-4">Easy Payments</h4>
@@ -27,8 +27,8 @@ const ChooseUs = () => {
             All payments are processed instantly over a secure payment protocol.
           </p>
         </div>
-        <div className="col-lg-3 px-5">
-          <div className="my-4 choose-us__icon">
+        <div className="col-lg-3 col-md-6 text-lg-start text-center  px-5">
+          <div className="my-4 mx-lg-0 mx-auto choose-us__icon">
             <Icon icon="guarantee" size={"3rem"} disableFill />
           </div>
           <h4 className="py-4">Money-Back Guarantee</h4>
@@ -37,8 +37,8 @@ const ChooseUs = () => {
             it back for a full refund.
           </p>
         </div>
-        <div className="col-lg-3 px-5">
-          <div className="my-4 choose-us__icon">
+        <div className="col-lg-3 col-md-6 text-lg-start text-center  px-5">
+          <div className="my-4 mx-lg-0 mx-auto choose-us__icon">
             <Icon icon="materials" size={"3rem"} disableFill />
           </div>
           <h4 className="py-4">Finest Quality</h4>
