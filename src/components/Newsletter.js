@@ -11,7 +11,7 @@ const Newsletter = () => {
       <div className="d-flex align-items-center newsletter__overlay">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-3 col-lg-2 my-auto">
+            <div className="col-md-3 col-lg-2 my-auto ps-0">
               <div className="d-flex align-items-center justify-content-center newsletter__discount">
                 <span>-10%</span>
               </div>
