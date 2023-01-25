@@ -20,7 +20,12 @@ import {
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Navigation, EffectFade } from "swiper";
+import SwiperCore, {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectFade,
+} from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -29,7 +34,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 // import "pure-react-carousel/dist/react-carousel.es.css";
-SwiperCore.use([Navigation]);
+SwiperCore.use([Pagination, Navigation]);
 
 const MainSlider = () => {
   const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
@@ -77,7 +82,12 @@ const MainSlider = () => {
           nextEl: ".main-carousel__inner__footer__arrow--next",
           prevEl: ".main-carousel__inner__footer__arrow--prev",
         }}
-        modules={[Autoplay, Navigation, EffectFade]}
+        pagination={{
+          el: ".carousel__dots",
+          type: "bullets",
+          clickable: true,
+        }}
+        modules={[Autoplay, Navigation, Pagination, EffectFade]}
         className="mySwiper"
       >
         <SwiperSlide>
@@ -103,7 +113,10 @@ const MainSlider = () => {
             <div className={"w-75 d-flex main-carousel__inner__content"}>
               <div className="d-flex flex-column justify-content-between align-items-center main-carousel__inner__content__dots">
                 <span>0{swiperActiveIndex + 1}</span>
-                <div className="d-flex flex-column h-100" role="button"></div>
+                <div
+                  className="d-flex flex-column h-100 carousel__dots"
+                  role="button"
+                ></div>
                 <span>0{swiperTotalIndex}</span>
               </div>
               <div className="w-75 ps-5 ms-5">

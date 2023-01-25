@@ -6,27 +6,31 @@ const Newsletter = () => {
   return (
     <div
       className="newsletter"
-      style={{ backgroundImage: `url(${newsletterBg})`, height: "240px" }}
+      style={{ backgroundImage: `url(${newsletterBg})` }}
     >
       <div className="d-flex align-items-center newsletter__overlay">
-        <div className="row w-100">
-          <div className="col-lg-2">
-            <div className="newsletter__discount d-flex align-items-center justify-content-center">
-              <span>-10%</span>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-3 col-lg-2 my-auto">
+              <div className="d-flex align-items-center justify-content-center newsletter__discount">
+                <span>-10%</span>
+              </div>
             </div>
-          </div>
-          <div className="col-lg-4">
-            <p className="newsletter__desc">
-              Subscribe to our newsletter and receive exclusive offers every
-              week
-            </p>
-          </div>
-          <div className="col-lg-3">
-            <Input type={"text"} placeholder={"Enter your email"} />
-          </div>
-          <div className="col-lg-3">
-            <div className="newsletter__btn">
-              <Button children={"get your discount"} type={"button"} />
+            <div className="col-md-9 col-lg-4 my-auto">
+              <p className="newsletter__desc">
+                Subscribe to our newsletter and receive exclusive offers every
+                week
+              </p>
+            </div>
+            <div className="col-md-8 col-lg-3 my-auto">
+              <div className="newsletter__input">
+                <Input type={"text"} placeholder={"Enter your email"} />
+              </div>
+            </div>
+            <div className="col-md-4 col-lg-3 my-auto">
+              <div className="newsletter__btn">
+                <Button children={"get your discount"} type={"button"} />
+              </div>
             </div>
           </div>
         </div>

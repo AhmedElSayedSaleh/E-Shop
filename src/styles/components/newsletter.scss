@@ -2,6 +2,11 @@
   background: center no-repeat;
   background-size: cover;
   position: relative;
+  height: 240px;
+
+  @include rwd-df-down(sm) {
+    height: 350px;
+  }
 
   &__overlay {
     position: absolute;
@@ -17,11 +22,19 @@
     border-top-#{$end}-radius: 4rem;
     border-bottom-#{$end}-radius: 4rem;
 
+    @include rwd-df-down(sm) {
+      width: 25%;
+    }
+
     span {
       color: $fifth-color;
       font-size: 4rem;
       font-weight: 600;
       line-height: 1.4;
+
+      @include rwd-df-down(sm) {
+        font-size: 3rem;
+      }
     }
   }
 
@@ -30,12 +43,31 @@
     font-size: 2rem;
     line-height: 1.5;
     margin-bottom: 0;
-    margin-right: 1rem;
+
+    @include rwd-df-down(md) {
+      width: 75%;
+      margin: 2rem auto;
+    }
+  }
+
+  &__input {
+    @include rwd-df-down(md) {
+      width: 75%;
+      margin: auto;
+    }
   }
 
   &__btn {
-    button {
+    @include rwd-df-down(sm) {
+      text-align: center;
+      padding-top: 2rem;
+    }
+    .main-btn {
       padding: 1rem 2rem;
+
+      @include rwd-df-down(sm) {
+        width: 50%;
+      }
     }
   }
 }
