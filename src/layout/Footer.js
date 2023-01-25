@@ -6,8 +6,70 @@ const Footer = () => {
   return (
     <footer className={"mt-5 footer"}>
       <div className="container">
-        <div className="row py-5">
+        <div className="row py-5 flex-lg-row-reverse">
           <div className="col-lg-6">
+            <div className="row">
+              <div className="col-md-4 text-center text-md-start text-center text-md-start">
+                <div className="footer__list">
+                  <h3>Shopping online</h3>
+                  <ul>
+                    <li>
+                      <a href={"/#"}>Order Status</a>
+                    </li>
+                    <li>
+                      <a href={"/#"}>Shipping and Delivery</a>
+                    </li>
+                    <li>
+                      <a href={"/#"}>Returns</a>
+                    </li>
+                    <li>
+                      <a href={"/#"}>Payment Options</a>
+                    </li>
+                    <li>
+                      <a href={"/#"}>Contact Us</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="col-md-4 text-center text-md-start">
+                <div className="footer__list">
+                  <h3>Information</h3>
+                  <ul>
+                    <li>
+                      <a href={"/#"}>Gift Cards</a>
+                    </li>
+                    <li>
+                      <a href={"/#"}>Find a store</a>
+                    </li>
+                    <li>
+                      <a href={"/#"}>Newsletter</a>
+                    </li>
+                    <li>
+                      <a href={"/#"}>Bacome a member</a>
+                    </li>
+                    <li>
+                      <a href={"/#"}>Site feedback</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="col-md-4 text-center text-md-start">
+                <div className="footer__list">
+                  <h3>Contact</h3>
+                  <ul>
+                    <li>
+                      <a href={"mailto:store@uikit.com"}>store@uikit.com</a>
+                    </li>
+                    <li>
+                      <a href={"tel:+1 131 138 138"}>Hotline: +1 131 138 138</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-6 mt-5 mt-lg-0">
             <div className={"footer__logo"}>
               <a href={"/"}>
                 <img src={BlackLogo} alt="" />
@@ -81,68 +143,6 @@ const Footer = () => {
                   disableFill={true}
                 />
               </a>
-            </div>
-          </div>
-
-          <div className="col-lg-6">
-            <div className="row">
-              <div className="col-lg-4">
-                <div className="footer__list">
-                  <h3>Shopping online</h3>
-                  <ul>
-                    <li>
-                      <a href={"/#"}>Order Status</a>
-                    </li>
-                    <li>
-                      <a href={"/#"}>Shipping and Delivery</a>
-                    </li>
-                    <li>
-                      <a href={"/#"}>Returns</a>
-                    </li>
-                    <li>
-                      <a href={"/#"}>Payment Options</a>
-                    </li>
-                    <li>
-                      <a href={"/#"}>Contact Us</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-lg-4">
-                <div className="footer__list">
-                  <h3>Information</h3>
-                  <ul>
-                    <li>
-                      <a href={"/#"}>Gift Cards</a>
-                    </li>
-                    <li>
-                      <a href={"/#"}>Find a store</a>
-                    </li>
-                    <li>
-                      <a href={"/#"}>Newsletter</a>
-                    </li>
-                    <li>
-                      <a href={"/#"}>Bacome a member</a>
-                    </li>
-                    <li>
-                      <a href={"/#"}>Site feedback</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-lg-4">
-                <div className="footer__list">
-                  <h3>Contact</h3>
-                  <ul>
-                    <li>
-                      <a href={"mailto:store@uikit.com"}>store@uikit.com</a>
-                    </li>
-                    <li>
-                      <a href={"tel:+1 131 138 138"}>Hotline: +1 131 138 138</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </div>
