@@ -46,6 +46,11 @@ const ProductsList = () => {
             data && (
               <>
                 <div className="row">
+                  <div className="col-12 text-center">
+                    <p className="h2 border-bottom border-top border-warning border-3 py-3 mx-md-auto w-25">
+                      Bags
+                    </p>
+                  </div>
                   {data.bags.slice(0, 7).map((item) => {
                     let product = {
                       brand: item.brand,
@@ -91,12 +96,19 @@ const ProductsList = () => {
 
                   <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
                     <Link to="/bags">
-                      <p className="h2 border-bottom">See More</p>
+                      <p className="h2 border-bottom text-secondary">
+                        See More
+                      </p>
                     </Link>
                   </div>
                 </div>
 
                 <div className="row">
+                  <div className="col-12 text-center">
+                    <p className="h2 border-bottom border-top border-warning border-3 py-3 mx-md-auto w-25">
+                      Shoes
+                    </p>
+                  </div>
                   {data.shoes.slice(0, 7).map((item) => {
                     let product = {
                       brand: item.brand,
@@ -142,12 +154,19 @@ const ProductsList = () => {
 
                   <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
                     <Link to="/shoes">
-                      <p className="h2 border-bottom">See More</p>
+                      <p className="h2 border-bottom text-secondary">
+                        See More
+                      </p>
                     </Link>
                   </div>
                 </div>
 
                 <div className="row">
+                  <div className="col-12 text-center">
+                    <p className="h2 border-bottom border-top border-warning border-3 py-3 mx-md-auto w-25">
+                      Jewelries
+                    </p>
+                  </div>
                   {data.jewelry.slice(0, 7).map((item) => {
                     let product = {
                       brand: item.brand,
@@ -193,7 +212,9 @@ const ProductsList = () => {
 
                   <div className="col-xl-3 col-lg-4 col-sm-6 my-4 d-flex align-items-center justify-content-center">
                     <Link to="/jewelry">
-                      <p className="h2 border-bottom">See More</p>
+                      <p className="h2 border-bottom text-secondary">
+                        See More
+                      </p>
                     </Link>
                   </div>
                 </div>
