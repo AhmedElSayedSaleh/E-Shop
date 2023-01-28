@@ -22,7 +22,7 @@ import {
   LoadingBox,
   MessageBox,
 } from "../components";
-import { ColorSelect, Quantity, HeadNotice } from "../components/products";
+import { ColorSelect, HeadNotice } from "../components/products";
 
 import "pure-react-carousel/dist/react-carousel.es.css";
 import {
@@ -123,7 +123,7 @@ const ProductView = () => {
               <Breadcrumb product={currentProduct} />
             </div>
             <div className="row pb-5">
-              <div className="col-lg-6 pe-5">
+              <div className="col-lg-6 pe-lg-5">
                 <CarouselProvider
                   naturalSlideWidth={100}
                   naturalSlideHeight={100}
@@ -135,29 +135,31 @@ const ProductView = () => {
                 >
                   <div className="row">
                     <div className="col-lg-3">
-                      <Dot slide={0}>
-                        <Image src={currentProduct.primaryImage} />
-                      </Dot>
-                      <Dot
-                        slide={1}
-                        className={
-                          currentProduct.variationThumbnail1 === ""
-                            ? "d-none"
-                            : ""
-                        }
-                      >
-                        <Image src={currentProduct.variationThumbnail1} />
-                      </Dot>
-                      <Dot
-                        slide={2}
-                        className={
-                          currentProduct.variationThumbnail2 === ""
-                            ? "d-none"
-                            : ""
-                        }
-                      >
-                        <Image src={currentProduct.variationThumbnail2} />
-                      </Dot>
+                      <div className="carousel__dots">
+                        <Dot slide={0}>
+                          <Image src={currentProduct.primaryImage} />
+                        </Dot>
+                        <Dot
+                          slide={1}
+                          className={
+                            currentProduct.variationThumbnail1 === ""
+                              ? "d-none"
+                              : ""
+                          }
+                        >
+                          <Image src={currentProduct.variationThumbnail1} />
+                        </Dot>
+                        <Dot
+                          slide={2}
+                          className={
+                            currentProduct.variationThumbnail2 === ""
+                              ? "d-none"
+                              : ""
+                          }
+                        >
+                          <Image src={currentProduct.variationThumbnail2} />
+                        </Dot>
+                      </div>
                     </div>
                     <div className="col-lg-9">
                       <Slider>
@@ -260,7 +262,7 @@ const ProductView = () => {
               </div>
             </div>
             <div className="row mt-5 pt-5 product-view__details">
-              <nav className={"d-flex justify-content-center"}>
+              <nav className="d-flex justify-content-center">
                 <div className="nav" id="nav-tab" role="tablist">
                   <button
                     className="product-view__details__tab active"

@@ -4,7 +4,7 @@ import MainSlider from "./MainSlider";
 import Breadcrumb from "./Breadcrumb";
 import FiltersNav from "./FiltersNav";
 import ChooseUs from "./ChooseUs";
-import Icon from "./Icons";
+import Icon from "./Icon";
 import LoadingBox from "./LoadingBox";
 import MessageBox from "./MessageBox";
 import ReviewCard from "./ReviewCard";

@@ -41,6 +41,9 @@
     ul {
       font-size: 1.3rem;
       padding: 3rem 0 0;
+      @include rwd-df-down(md) {
+        padding: 0rem 0 2rem 0;
+      }
 
       li {
         line-height: 2;

@@ -6,10 +6,10 @@ const Footer = () => {
   return (
     <footer className={"mt-5 footer"}>
       <div className="container">
-        <div className="row py-5 flex-lg-row-reverse">
+        <div className="row py-lg-5 flex-lg-row-reverse">
           <div className="col-lg-6">
             <div className="row">
-              <div className="col-md-4 text-center text-md-start text-center text-md-start">
+              <div className="col-md-4 text-center text-md-start">
                 <div className="footer__list">
                   <h3>Shopping online</h3>
                   <ul>
@@ -69,7 +69,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="col-lg-6 mt-5 mt-lg-0">
+          <div className="col-lg-6 mt-4 mt-lg-0">
             <div className={"footer__logo"}>
               <a href={"/"}>
                 <img src={BlackLogo} alt="" />
