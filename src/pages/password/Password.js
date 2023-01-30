@@ -1,46 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button, GoBackLink, Icon, Input } from "../../components";
+import { Button, GoBackLink, Input } from "../../components";
 
 function Password() {
   return (
     <div className="container my-3 py-5">
       <div className="row">
         <GoBackLink location="/products" children={"Back to store"} />
-
-        {/* <div>
-          <Link to={"/products"} className="text-black" role="button">
-            <div className="d-inline-block">
-              <Icon icon="arrow-left" size={"1.3rem"} disableFill />
-            </div>
-            <p className="mb-0 ps-5 d-inline-block">Back to store</p>
-          </Link>
-        </div> */}
       </div>
       <div className="row align-items-center flex-column text-center pt-5 px-5 mx-5 mt-5">
-        {/* <div className="d-flex "> */}
-        <div className="w-50">
-          <h2 className="m-auto" style={{ fontSize: "2.2rem", width: "70%" }}>
+        <div className="col">
+          <h2 className="m-auto" style={{ fontSize: "2.2rem" }}>
             Forgot your password?
           </h2>
         </div>
-        <div className="w-75 d-flex justify-content-center">
+        <div className="col-md-8 col-lg-6">
           <p
-            className="p-5"
+            className="py-5 px-lg-5"
             style={{
               fontSize: "1.3rem",
               lineHeight: "2.5rem",
               color: "#7d7d7d",
-              width: "60%",
             }}
           >
             Enter your email or phone number and recover your account
           </p>
         </div>
-        {/* </div> */}
       </div>
       <div className="row justify-content-center align-items-center">
-        <div className="w-50">
+        <div className="col-12 col-sm-9 col-lg-6">
           <form>
             <div className="mb-3">
               <Input type={"email"} placeholder={"Email"} />
@@ -53,16 +40,20 @@ function Password() {
             <div className="mb-3">
               <Input type={"tel"} placeholder={"Phone number"} />
             </div>
-            <Button
-              children={"Reset password"}
-              type={"submit"}
-              onClick={(e) => console.log(e)}
-              style={{
-                width: "100%",
-                textTransform: "none",
-                margin: "3rem 0 0 0",
-              }}
-            />
+            <div className="row">
+              <div className="col-12 mx-auto">
+                <Button
+                  children={"Reset password"}
+                  type={"submit"}
+                  onClick={(e) => console.log(e)}
+                  style={{
+                    width: "100%",
+                    textTransform: "none",
+                    margin: "3rem 0 0 0",
+                  }}
+                />
+              </div>
+            </div>
           </form>
         </div>
       </div>

@@ -9,7 +9,6 @@ const Register = () => {
         <GoBackLink location="/products" children={"Back to store"} />
       </div>
       <div className="row align-items-center flex-column text-center pt-5 px-5 mx-5 mt-5">
-        {/* <div className="d-flex "> */}
         <div className="col-10 col-md-7 col-lg-5 col-xl-4">
           <h2 className="m-auto" style={{ fontSize: "2.2rem" }}>
             Create an account and discover the benefits
@@ -29,7 +28,6 @@ const Register = () => {
             ever since the 1500s
           </p>
         </div>
-        {/* </div> */}
       </div>
       <div className="row justify-content-center align-items-center">
         <div className="col-12 col-sm-9 col-lg-6">
