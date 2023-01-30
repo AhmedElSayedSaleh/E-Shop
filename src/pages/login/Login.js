@@ -7,18 +7,10 @@ const Login = () => {
     <div className="container my-3 py-5">
       <div className="row">
         <GoBackLink location="/products" children={"Back to store"} />
-        {/* <div>
-          <Link to={"/products"} className="text-black" role="button">
-            <div className="d-inline-block">
-              <Icon icon="arrow-left" size={"1.3rem"} disableFill />
-            </div>
-            <p className="mb-0 ps-5 d-inline-block">Back to store</p>
-          </Link>
-        </div> */}
       </div>
       <div className="row align-items-center flex-column text-center pt-5 px-5 mx-5 mt-5">
         <div className="col">
-          <h2 className="m-auto" style={{ fontSize: "2.2rem", width: "70%" }}>
+          <h2 className="m-auto" style={{ fontSize: "2.2rem" }}>
             Log in
           </h2>
         </div>
@@ -32,13 +24,12 @@ const Login = () => {
             }}
           >
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
+            industry. Lorem Ipsum has been the industry's
           </p>
         </div>
       </div>
       <div className="row justify-content-center align-items-center">
-        <div className="col-12 col-sm-9 col-lg-6 col-xl-5">
+        <div className="col-12 col-sm-9 col-lg-6">
           <form>
             <div className="mb-3">
               <Input type={"email"} placeholder={"Email"} />
