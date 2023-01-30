@@ -44,7 +44,7 @@ const Cart = () => {
                       className="align-middle text-center cart__table__body__row"
                       key={item.productId}
                     >
-                      <td>
+                      <td className="grid-product">
                         <div className="d-flex align-items-center">
                           <img src={item.primaryImage} alt={item.name} />
                           <div className="text-start ps-5">
@@ -55,8 +55,8 @@ const Cart = () => {
                           </div>
                         </div>
                       </td>
-                      <td>white</td>
-                      <td>
+                      <td className="my-auto grid-color">white</td>
+                      <td className="my-auto grid-quantity">
                         <div className=" d-flex justify-content-center">
                           <Quantity
                             cartItemQuantity={item.quantity}
@@ -64,8 +64,10 @@ const Cart = () => {
                           />
                         </div>
                       </td>
-                      <td>${item.totalPrice.toFixed(2)}</td>
-                      <td>
+                      <td className="my-auto grid-price">
+                        ${item.totalPrice.toFixed(2)}
+                      </td>
+                      <td className="my-auto grid-delete">
                         <div className="">
                           <Icon
                             icon="CANCEL"
@@ -85,7 +87,11 @@ const Cart = () => {
         </div>
 
         <div className="row justify-content-center align-items-center mt-5 cart__check">
-          <div className={cartItems.length !== 0 ? "col-4" : "col-12"}>
+          <div
+            className={
+              cartItems.length !== 0 ? "col-12 col-md-6 col-lg-4" : "col-lg-12"
+            }
+          >
             <GoBackLink location={"/products"} children={"Continue Shopping"} />
             {/* <Link
               to={"/products"}
@@ -101,18 +107,18 @@ const Cart = () => {
           </div>
           {cartItems.length !== 0 ? (
             <>
-              <div className="col-4">
+              <div className="col-12 col-md-6 col-lg-4 mt-3 mt-lg-0 d-flex justify-content-center">
                 <input className="" type="text" placeholder="Promo Code" />
               </div>
-              <div className="col-2 d-flex justify-content-between cart__check__total">
+              <div className="col-6 col-md-3 col-lg-2 mt-3 mt-lg-0 d-flex justify-content-between cart__check__total">
                 <p className=" mb-0 cart__check__total__title">Total cost</p>
                 <p className=" mb-0 cart__check__total__value">
                   ${totalCost.toFixed(2)}
                 </p>
               </div>
-              <div className="col-2">
+              <div className="col-12 col-md-6 col-lg-2 mt-3 mt-lg-0 text-center">
                 <Link to={"/checkout"}>
-                  <p className="mb-0 ps-5 d-inline-block">
+                  <p className="mb-0 ps-0 ps-lg-5 d-inline-block">
                     <Button children={"CHECKOUT"} type={"button"} />
                   </p>
                 </Link>

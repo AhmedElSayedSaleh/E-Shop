@@ -4,6 +4,9 @@
     border-spacing: 0 3rem;
 
     &__head {
+      @include rwd-df-down(md) {
+        display: none;
+      }
       th {
         font-size: 1.4rem;
         color: $fourth-color;
@@ -12,6 +15,35 @@
 
     &__body {
       &__row {
+        @include rwd-df-down(md) {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+          grid-column-gap: 0px;
+          grid-row-gap: 1rem;
+          border-bottom: 0.1rem solid $fourth-color;
+          padding-top: 1rem;
+          &:last-child {
+            border: none;
+          }
+
+          .grid-product {
+            grid-area: 1 / 1 / 2 / 4;
+          }
+          .grid-color {
+            grid-area: 1 / 4 / 2 / 5;
+          }
+
+          .grid-quantity {
+            grid-area: 2 / 1 / 3 / 3;
+          }
+          .grid-price {
+            grid-area: 2 / 3 / 3 / 4;
+          }
+          .grid-delete {
+            grid-area: 2 / 4 / 3 / 5;
+          }
+        }
         img {
           width: 7rem;
           // height: 7rem;
