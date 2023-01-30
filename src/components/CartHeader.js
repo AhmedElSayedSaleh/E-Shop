@@ -3,11 +3,11 @@ import { Icon } from ".";
 
 function CartHeader(props) {
   return (
-    <div className="row justify-content-center align-items-center py-5 mb-5 cart-header">
-      <div className="col">
+    <div className="row py-5 mb-5 cart-header">
+      <div className="col-12 col-sm-6">
         <h3 className="cart-header__title">{props.title}</h3>
       </div>
-      <div className="col">
+      <div className="col-12 col-sm-6">
         <div className=" d-flex justify-content-end align-items-center">
           <div
             className={

@@ -12,7 +12,7 @@ function Checkout() {
       <CartHeader title={"Shipping and Payment"} checkoutIcon />
 
       <div className="row">
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div>
             <Link to={"/login"}>
               <Button
@@ -44,7 +44,7 @@ function Checkout() {
 
             <form>
               <div className="row">
-                <div className="col-6">
+                <div className="col-10 col-sm-9 col-md-6 col-lg-6 mx-auto">
                   <div className="mb-4">
                     <Input type={"email"} placeholder={"Email"} />
                   </div>
@@ -58,7 +58,7 @@ function Checkout() {
                     <Input type={"tel"} placeholder={"Phone number"} />
                   </div>
                 </div>
-                <div className="col-6">
+                <div className="col-10 col-sm-9 col-md-6 col-lg-6 mx-auto">
                   <div className="mb-4">
                     <Input type={"text"} placeholder={"Address"} />
                   </div>
@@ -77,8 +77,8 @@ function Checkout() {
           </div>
         </div>
 
-        <div className="col-6 ps-5">
-          <div className="ms-3 ps-5">
+        <div className="col-12 col-lg-6 ps-0 ps-lg-5">
+          <div className="ms-3 ps-0 ps-lg-5">
             <p style={{ fontSize: "1.4rem", marginBottom: "2.8rem" }}>
               Your cart
             </p>
@@ -113,7 +113,7 @@ function Checkout() {
               ))}
             </div>
             <div
-              className="d-flex justify-content-between w-50 m-auto mt-5 "
+              className="d-flex justify-content-between col-9 col-sm-7 col-md-5 col-lg-7 m-auto mt-5 "
               style={{
                 backgroundColor: "#f1f1f1",
                 padding: "1.5rem 4rem",
@@ -131,26 +131,29 @@ function Checkout() {
         </div>
       </div>
       <div className="row">
-        <div className="d-flex justify-content-between mt-5 pt-5">
-          <GoBackLink location={"/cart"} children={"Back"} />
-          <div>
-            <Link to={"/products"}>
-              <p className="mb-0 d-inline-block">
-                <Button
-                  children={"Continue shopping"}
-                  type={"button"}
-                  style={{
-                    backgroundColor: "transparent",
-                    border: "solid 1px #d8d8d8",
-                  }}
-                />
-              </p>
-            </Link>
-            <Link to={""}>
-              <p className="mb-0 d-inline-block">
-                <Button children={"Proceed to payment"} type={"button"} />
-              </p>
-            </Link>
+        {/* <div className="d-flex justify-content-between flex-column-reverse flex-md-row mt-4 pt-4 mt-md-5 pt-md-5"> */}
+        <div>
+          <div className="row flex-column-reverse flex-md-row mt-4 pt-4 mt-md-5 pt-md-5">
+            <div className="col-md-2 col-lg-4 col-xl-5 pt-4">
+              <GoBackLink location={"/cart"} children={"Back"} />
+            </div>
+            <div className="col-md-10 col-lg-8 col-xl-7">
+              <div className="row text-center mx-auto">
+                <Link to={"/products"} className="col-12 col-md-6">
+                  <Button
+                    children={"Continue shopping"}
+                    type={"button"}
+                    style={{
+                      backgroundColor: "transparent",
+                      border: "solid 1px #d8d8d8",
+                    }}
+                  />
+                </Link>
+                <Link to={""} className="col-12 col-md-6 pt-2 pt-md-0">
+                  <Button children={"Proceed to payment"} type={"button"} />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

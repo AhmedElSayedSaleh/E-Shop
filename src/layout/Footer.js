@@ -69,7 +69,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="col-lg-6 mt-4 mt-lg-0">
+          <div className="col-lg-6 my-4 my-lg-0">
             <div className={"footer__logo"}>
               <a href={"/"}>
                 <img src={BlackLogo} alt="" />
