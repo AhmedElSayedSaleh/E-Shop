@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, GoBackLink, Icon, Input } from "../../components";
+import { Button, GoBackLink, Input } from "../../components";
 
 const Login = () => {
   return (
@@ -74,7 +74,7 @@ const Login = () => {
               </div>
             </div>
             <div className="row">
-              <div className="col-7 col-sm-6 col-md-5 mx-auto">
+              <div className="col-7 col-sm-6 mx-auto">
                 <Button
                   children={"Facebook"}
                   type={"button"}
@@ -89,7 +89,7 @@ const Login = () => {
                   }}
                 />
               </div>
-              <div className="col-7 col-sm-6 col-md-5 mx-auto pt-3 pt-sm-0">
+              <div className="col-7 col-sm-6 mx-auto pt-3 pt-sm-0">
                 <Button
                   children={"Gmail"}
                   type={"button"}
@@ -105,7 +105,7 @@ const Login = () => {
               </div>
             </div>
             <div className="row">
-              <div className="col-8 col-sm-6 mx-auto">
+              <div className="col-12 mx-auto">
                 <Button
                   children={"Sign in"}
                   type={"submit"}
