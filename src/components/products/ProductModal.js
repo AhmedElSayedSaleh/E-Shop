@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "../";
 import { addToCart } from "../../store/slices/CartSlice";
-import { ColorSelect, Quantity } from "./";
+import { ColorSelect } from "./";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
