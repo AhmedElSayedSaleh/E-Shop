@@ -41,23 +41,23 @@ const ProductModal = ({ modalView }) => {
         <div className="modal-content">
           <div className="container-fluid py-4">
             <div className="row">
-              <div className="col-6 d-flex align-items-center">
+              <div className="col-12 col-lg-6">
+                <div className={"d-flex justify-content-start pb-3"}>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  />
+                </div>
                 <img
                   className={"w-100 product__head__img"}
                   src={modalView.primaryImage}
                   alt={modalView.name}
                 />
               </div>
-              <div className="col-6">
+              <div className="col-12 col-lg-6">
                 <div>
-                  <div className={"d-flex justify-content-end"}>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    />
-                  </div>
                   <h2 className="modal-title" id="exampleModalLabel">
                     {modalView.name}
                   </h2>
