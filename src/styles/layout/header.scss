@@ -72,16 +72,18 @@ header {
       // color: $fifth-color;
 
       &--avatar {
-        // on login =================>>>>>>>>>>>>>>
+        //onlogin=================>>>>>>>>>>>>>>
+        border: 0.2rem solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem $first-color,
+          0 0 0.8rem $first-color, 0 0 2.8rem $first-color,
+          inset 0 0 1.3rem $first-color;
+        //color: $first-color;
 
-        // border: 0.2rem solid #fff;
-        // box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem $first-color,
-        //   0 0 0.8rem $first-color, 0 0 2.8rem $first-color,
-        //   inset 0 0 1.3rem $first-color;
-        // color: $fifth-color;
-
-        @include rwd-df-down(md) {
-          display: none !important;
+        &--mobile {
+          @include rwd-df-down(md) {
+            display: none !important;
+          }
         }
       }
 

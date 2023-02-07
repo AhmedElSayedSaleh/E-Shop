@@ -1,10 +1,68 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button, GoBackLink, Input } from "../../components";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Button, ErrorAlert, GoBackLink, Input } from "../../components";
+import { auth } from "../../firebase/firebase";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null);
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.userAuth);
+
+  const login = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        // const user = userCredential.user;
+        console.log("User logged");
+        setErrorMsg(null);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setErrorMsg(errorMessage);
+      });
+  };
+
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(() => {
+        console.log("User logged");
+        setErrorMsg(null);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setErrorMsg(errorMessage);
+      });
+  };
+
+  const facebookLogin = () => {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(() => {
+        console.log("User logged");
+        setErrorMsg(null);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setErrorMsg(errorMessage);
+      });
+  };
+
   return (
     <div className="container my-3 py-5">
+      {user.isAuth && <Navigate to="/" />}
       <div className="row">
         <GoBackLink location="/products" children={"Back to store"} />
       </div>
@@ -30,12 +88,21 @@ const Login = () => {
       </div>
       <div className="row justify-content-center align-items-center">
         <div className="col-12 col-sm-9 col-lg-6">
+          <ErrorAlert errorMsg={errorMsg} />
           <form>
             <div className="mb-3">
-              <Input type={"email"} placeholder={"Email"} />
+              <Input
+                type={"email"}
+                placeholder={"Email"}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="mb-3">
-              <Input type={"password"} placeholder={"Password"} />
+              <Input
+                type={"password"}
+                placeholder={"Password"}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="row my-4">
               <div className="col-6">
@@ -69,7 +136,7 @@ const Login = () => {
                 <Button
                   children={"Facebook"}
                   type={"button"}
-                  onClick={(e) => console.log(e)}
+                  onClick={facebookLogin}
                   style={{
                     width: "100%",
                     textTransform: "none",
@@ -84,7 +151,7 @@ const Login = () => {
                 <Button
                   children={"Gmail"}
                   type={"button"}
-                  onClick={(e) => console.log(e)}
+                  onClick={googleLogin}
                   style={{
                     width: "100%",
                     textTransform: "none",
@@ -99,8 +166,8 @@ const Login = () => {
               <div className="col-12 mx-auto">
                 <Button
                   children={"Sign in"}
-                  type={"submit"}
-                  onClick={(e) => console.log(e)}
+                  type={"button"}
+                  onClick={login}
                   style={{
                     width: "100%",
                     textTransform: "none",

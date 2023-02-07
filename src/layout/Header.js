@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { BlackLogo, WhiteLogo } from "../assets/images";
 import { links } from "../utils/constants";
 import { Icon } from "../components";
 import { useSelector } from "react-redux";
+import { auth } from "../firebase/firebase";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,6 +16,8 @@ const Header = () => {
   const logoRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const user = useSelector((state) => state.userAuth);
+  const navigate = useNavigate();
 
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
@@ -60,7 +64,18 @@ const Header = () => {
     }
   };
 
-  const closeMenu = () => {
+  // const closeMenu = () => {
+  //   if (pathname === "/") {
+  //     headerRef.current.classList.remove("bg-white");
+  //     headerRef.current.classList.add("home-nav");
+  //     logoRef.current.src = WhiteLogo;
+  //   }
+  //   mobileMenuRef.current.classList.remove("mobile-menu--active");
+  //   document.body.style.overflow = "auto";
+  //   setMenuOpen(false);
+  // };
+
+  useEffect(() => {
     if (pathname === "/") {
       headerRef.current.classList.remove("bg-white");
       headerRef.current.classList.add("home-nav");
@@ -69,7 +84,7 @@ const Header = () => {
     mobileMenuRef.current.classList.remove("mobile-menu--active");
     document.body.style.overflow = "auto";
     setMenuOpen(false);
-  };
+  }, [pathname]);
 
   useEffect(() => {
     stickyHeaderFunc();
@@ -77,6 +92,10 @@ const Header = () => {
       window.removeEventListener("scroll", stickyHeaderFunc);
     };
   });
+
+  const logout = () => {
+    signOut(auth).then(() => navigate("/login"));
+  };
 
   return (
     <header
@@ -91,7 +110,10 @@ const Header = () => {
           <div className="container">
             <div className="row align-items-center justify-content-between">
               <div className="col-6 col-lg-3 text-start menu__logo">
-                <Link to="/" onClick={closeMenu}>
+                <Link
+                  to="/"
+                  //  onClick={closeMenu}
+                >
                   <img
                     src={pathname === "/" ? WhiteLogo : BlackLogo}
                     alt=""
@@ -126,12 +148,12 @@ const Header = () => {
                   size={"3rem"}
                   className={"mx-3 mx-lg-4 menu__icon"}
                   disableFill
-                  onClick={closeMenu}
+                  // onClick={closeMenu}
                 />
                 <Link
                   to="/cart"
                   className=" position-relative"
-                  onClick={closeMenu}
+                  // onClick={closeMenu}
                 >
                   <Icon
                     icon="cart"
@@ -141,14 +163,73 @@ const Header = () => {
                   />
                   <span className="menu__badge">{totalQuantity}</span>
                 </Link>
-                <Link to={"/login"}>
-                  <Icon
-                    icon="avatar"
-                    size={"3rem"}
-                    className={"mx-3 mx-lg-4 menu__icon menu__icon--avatar"}
-                    disableFill
-                  />
-                </Link>
+                <div className="dropdown-center">
+                  <div data-bs-toggle="dropdown" aria-expanded="false">
+                    {user.isAuth && user.photoURL !== null ? (
+                      <div
+                        className="text-center mx-3 mx-lg-4 menu__icon--avatar--mobile"
+                        style={{ width: "3rem" }}
+                      >
+                        <img
+                          src={user.photoURL}
+                          alt="user"
+                          className={`rounded-circle  ${
+                            user.isAuth ? "menu__icon--avatar" : null
+                          }`}
+                          role="button"
+                          style={{ width: "100%" }}
+                        />
+                      </div>
+                    ) : (
+                      <Icon
+                        icon="avatar"
+                        size={"3rem"}
+                        className={`mx-3 mx-lg-4 menu__icon menu__icon--avatar--mobile ${
+                          user.isAuth ? "menu__icon--avatar" : null
+                        }`}
+                        disableFill
+                      />
+                    )}
+                  </div>
+                  <ul className="dropdown-menu text-center pt-3">
+                    {user.isAuth ? (
+                      <>
+                        <li>
+                          <Link className="dropdown-item text-success h4">
+                            {user.displayName
+                              ? user.displayName
+                              : user.email.slice(0, 7) + "..."}
+                          </Link>
+                        </li>
+                        <li onClick={logout}>
+                          <Link className="dropdown-item text-black-50 h5">
+                            Logout
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <Link
+                            className="dropdown-item text-black h4"
+                            to={"/register"}
+                          >
+                            Register
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item text-black h4"
+                            to={"/login"}
+                          >
+                            Login
+                          </Link>
+                        </li>
+                      </>
+                    )}
+                  </ul>
+                </div>
+
                 <Icon
                   icon={menuOpen ? "close" : "menu"}
                   size={"3rem"}
@@ -166,7 +247,7 @@ const Header = () => {
           ref={mobileMenuRef}
           // style={
           //   menuOpen
-          //     ? {
+          // ? {
           //         height: "calc(100vh - 6rem)",
           //         zIndex: "9999",
           //         top: "100%",
@@ -188,7 +269,7 @@ const Header = () => {
                       isActive ? { color: "#fbb03b" } : null
                     }
                     // activeStyle={{ color: "#fbb03b" }}
-                    onClick={closeMenu}
+                    // onClick={closeMenu}
                   >
                     {text}
                   </NavLink>
@@ -196,14 +277,84 @@ const Header = () => {
               );
             })}
             <li>
-              <Link to={"/login"} onClick={closeMenu}>
-                <Icon
-                  icon="avatar"
-                  size={"3rem"}
-                  className={"mx-3 mx-lg-4 menu__icon "}
-                  disableFill
-                />
-              </Link>
+              <div
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="true"
+                aria-controls="collapseExample"
+              >
+                {user.isAuth && user.photoURL !== null ? (
+                  <div className="text-center" style={{ width: "3rem" }}>
+                    <img
+                      src={user.photoURL}
+                      alt="user"
+                      className={`rounded-circle mx-3 mx-lg-4 ${
+                        user.isAuth ? "menu__icon--avatar" : null
+                      }`}
+                      role="button"
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                ) : (
+                  <Icon
+                    icon="avatar"
+                    size={"3rem"}
+                    className={`mx-3 mx-lg-4 menu__icon ${
+                      user.isAuth ? "menu__icon--avatar" : null
+                    }`}
+                    disableFill
+                  />
+                )}
+              </div>
+              <ul className="collapse show mt-4" id="collapseExample">
+                {user.isAuth ? (
+                  <>
+                    <li>
+                      <Link className="text-success h4">
+                        {user.displayName
+                          ? user.displayName
+                          : user.email.slice(0, 7) + "..."}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="text-black-50 h5" onClick={logout}>
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link className="text-black h4" to={"/register"}>
+                        Register
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="text-black h4" to={"/login"}>
+                        Login
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
+
+              {/* {user.isAuth ? (
+                <div className="d-flex align-items-center">
+                  <span>{user.email}</span>
+                  <Link to={"/login"} className="ms-auto pe-5">
+                    <span>Logout</span>
+                  </Link>
+                </div>
+              ) : (
+                <Link to={"/login"} onClick={closeMenu}>
+                  <Icon
+                    icon="avatar"
+                    size={"3rem"}
+                    className={"mx-3 mx-lg-4 menu__icon "}
+                    disableFill
+                  />
+                </Link>
+              )} */}
             </li>
           </ul>
         </div>

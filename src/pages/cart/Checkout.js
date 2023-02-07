@@ -6,6 +6,7 @@ import { Button, CartHeader, GoBackLink, Input } from "../../components";
 function Checkout() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalCost = useSelector((state) => state.cart.totalCost);
+  const user = useSelector((state) => state.userAuth);
 
   return (
     <div className="container">
@@ -13,31 +14,33 @@ function Checkout() {
 
       <div className="row">
         <div className="col-12 col-lg-6">
+          {!user.isAuth && (
+            <div className="pb-5 mb-2">
+              <Link to={"/login"}>
+                <Button
+                  children={"LOG IN"}
+                  type={"button"}
+                  style={{
+                    padding: "1.5rem 3.5rem",
+                    marginLeft: "0",
+                  }}
+                />
+              </Link>
+              <Link to={"/register"}>
+                <Button
+                  children={"SIGN UP"}
+                  type={"button"}
+                  style={{
+                    backgroundColor: "transparent",
+                    border: "solid 1px #d8d8d8",
+                    padding: "1.5rem 3.5rem",
+                    marginRight: "0",
+                  }}
+                />
+              </Link>
+            </div>
+          )}
           <div>
-            <Link to={"/login"}>
-              <Button
-                children={"LOG IN"}
-                type={"button"}
-                style={{
-                  padding: "1.5rem 3.5rem",
-                  marginLeft: "0",
-                }}
-              />
-            </Link>
-            <Link to={"/register"}>
-              <Button
-                children={"SIGN UP"}
-                type={"button"}
-                style={{
-                  backgroundColor: "transparent",
-                  border: "solid 1px #d8d8d8",
-                  padding: "1.5rem 3.5rem",
-                  marginRight: "0",
-                }}
-              />
-            </Link>
-          </div>
-          <div className="pt-5 mt-2">
             <p className="mb-5" style={{ fontSize: "1.4rem" }}>
               Shipping information
             </p>

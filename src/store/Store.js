@@ -35,6 +35,7 @@ import BagsSlice from "./slices/BagsSlice";
 import ShoesSlice from "./slices/ShoesSlice";
 import JewelrySlice from "./slices/JewelrySlice";
 import CartSlice from "./slices/CartSlice";
+import AuthSlice from "./slices/AuthSlice";
 
 const store = configureStore({
   reducer: {
@@ -43,6 +44,7 @@ const store = configureStore({
     shoesProducts: ShoesSlice,
     jewelryProducts: JewelrySlice,
     cart: CartSlice,
+    userAuth: AuthSlice,
   },
 });
 

@@ -6,6 +6,7 @@ function Input(props) {
       className="main-input"
       type={props.type}
       placeholder={props.placeholder}
+      onChange={props.onChange}
     />
   );
 }
