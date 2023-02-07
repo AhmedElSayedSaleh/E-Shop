@@ -242,21 +242,7 @@ const Header = () => {
           </div>
         </nav>
 
-        <div
-          className="mobile-menu main-scroll"
-          ref={mobileMenuRef}
-          // style={
-          //   menuOpen
-          // ? {
-          //         height: "calc(100vh - 6rem)",
-          //         zIndex: "9999",
-          //         top: "100%",
-          //         transition: "height .1s ease-in-out",
-          //         // overflowY: "auto",
-          //       }
-          //     : { height: "0px", transition: "height .1s ease-in-out" }
-          // }
-        >
+        <div className="mobile-menu main-scroll" ref={mobileMenuRef}>
           <ul className="w-100 h-100">
             {links.map((link) => {
               const { id, text, url } = link;
