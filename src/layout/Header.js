@@ -120,7 +120,7 @@ const Header = () => {
                     id="logo"
                     ref={logoRef}
                   />
-                  <span>E-</span>Shop
+                  <span>One</span>Stop
                 </Link>
               </div>
               <ul className="col-lg-6 mb-0 menu__links">

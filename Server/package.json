@@ -1,5 +1,5 @@
 {
-  "name": "e-shop",
+  "name": "OneStopShop",
   "type": "module",
   "version": "1.0.0",
   "description": "",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AhmedElSayedSaleh/E-Shop.git"
+    "url": "git+https://github.com/AhmedElSayedSaleh/OneStopShop.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AhmedElSayedSaleh/E-Shop/issues"
+    "url": "https://github.com/AhmedElSayedSaleh/OneStopShop/issues"
   },
-  "homepage": "https://github.com/AhmedElSayedSaleh/E-Shop#readme",
+  "homepage": "https://github.com/AhmedElSayedSaleh/OneStopShop#readme",
   "dependencies": {
     "express": "^4.17.1"
   },
