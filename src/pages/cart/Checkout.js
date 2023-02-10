@@ -152,7 +152,10 @@ function Checkout() {
                     }}
                   />
                 </Link>
-                <Link to={""} className="col-12 col-md-6 pt-2 pt-md-0">
+                <Link
+                  to={user.isAuth ? "/payment" : "/login"}
+                  className="col-12 col-md-6 pt-2 pt-md-0"
+                >
                   <Button children={"Proceed to payment"} type={"button"} />
                 </Link>
               </div>

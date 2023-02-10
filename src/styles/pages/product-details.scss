@@ -3,7 +3,7 @@
 .product-view {
   .carousel {
     &__dots {
-      @include rwd-df-down(md) {
+      @include rwd-df-down(sm) {
         width: 80%;
         display: flex;
         position: absolute;
@@ -17,22 +17,22 @@
     &__dot {
       border: 0.1rem solid transparent;
       outline: none;
-      @include rwd-df-down(md) {
-        width: 100%;
+      width: 100%;
+      @include rwd-df-down(sm) {
         height: 0.3rem;
         background-color: $fifth-color;
         border: none;
       }
 
       img {
-        @include rwd-df-down(md) {
+        @include rwd-df-down(sm) {
           display: none;
         }
       }
 
       &--selected {
         border: 0.1rem solid $first-color;
-        @include rwd-df-down(md) {
+        @include rwd-df-down(sm) {
           background-color: $third-color;
           border: none;
         }

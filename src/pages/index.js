@@ -3,25 +3,29 @@ import Bags from "./Bags";
 import Shoes from "./Shoes";
 import Jewelry from "./Jewelry";
 import ProductsList from "./ProductsList";
-import ProductView from "./ProductView";
+import ProductDetails from "./ProductDetails";
 import Cart from "./cart/Cart";
 import Checkout from "./cart/Checkout";
-import NotFound from "./NotFound";
+import Payment from "./cart/Payment";
 import Login from "./login/Login";
 import Register from "./register/Register";
 import Password from "./password/Password";
+import NotFound from "./NotFound";
+import ProtectedRoute from "./ProtectedRoute";
 
 export {
   Home,
   Bags,
   Shoes,
   Jewelry,
-  ProductView,
+  ProductDetails,
   ProductsList,
   Cart,
   Checkout,
-  NotFound,
+  Payment,
   Login,
   Register,
   Password,
+  NotFound,
+  ProtectedRoute,
 };

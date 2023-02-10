@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -34,13 +34,16 @@ import {
 
 import { fetchProducts } from "../store/slices/ProductsSlice";
 import { addToCart } from "../store/slices/CartSlice";
+import { auth } from "../firebase/firebase";
 
-const ProductView = () => {
+const ProductDetails = () => {
   const { id } = useParams();
   const [currentProduct, setCurrentProduct] = useState({});
 
   const dispatch = useDispatch();
   const allProductsList = useSelector((state) => state.allProducts);
+  const isAuthorized = useSelector((state) => state.userAuth.isAuth);
+  const navigate = useNavigate();
 
   const { loading, error, data } = allProductsList;
   useEffect(() => {
@@ -85,7 +88,12 @@ const ProductView = () => {
 
   const handleAddToCart = useCallback(
     (product) => {
-      dispatch(addToCart(product));
+      if (!isAuthorized) {
+        navigate("/login");
+        return;
+      }
+
+      dispatch(addToCart({ product: product, uid: auth.currentUser.uid }));
       toast.success("Product Added To Cart", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1000,
@@ -98,7 +106,7 @@ const ProductView = () => {
         theme: "dark",
       });
     },
-    [dispatch]
+    [dispatch, navigate, isAuthorized]
   );
 
   return (
@@ -134,7 +142,7 @@ const ProductView = () => {
                   }
                 >
                   <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-md-3">
                       <div className="carousel__dots">
                         <Dot slide={0}>
                           <Image src={currentProduct.primaryImage} />
@@ -161,7 +169,7 @@ const ProductView = () => {
                         </Dot>
                       </div>
                     </div>
-                    <div className="col-lg-9">
+                    <div className="col-md-9">
                       <Slider>
                         <Slide index={0}>
                           <ImageWithZoom src={currentProduct.primaryImage} />
@@ -572,4 +580,4 @@ const ProductView = () => {
   );
 };
 
-export default ProductView;
+export default ProductDetails;

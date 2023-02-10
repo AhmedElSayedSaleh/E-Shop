@@ -1,19 +1,29 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../";
 import { addToCart } from "../../store/slices/CartSlice";
 import { ColorSelect } from "./";
 import { ToastContainer, toast } from "react-toastify";
+import { auth } from "../../firebase/firebase";
 
 import "react-toastify/dist/ReactToastify.css";
 
 const ProductModal = ({ modalView }) => {
   const dispatch = useDispatch();
+  const isAuthorized = useSelector((state) => state.userAuth.isAuth);
+  const navigate = useNavigate();
 
   const handleAddToCart = useCallback(
     (product) => {
-      dispatch(addToCart(product));
+      if (!isAuthorized) {
+        document.querySelector("#exampleModal").classList.remove("show");
+        document.querySelector(".modal-backdrop").remove();
+        navigate("/login");
+        return;
+      }
+
+      dispatch(addToCart({ product: product, uid: auth.currentUser.uid }));
       toast.success("Product added to cart", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1000,
@@ -26,7 +36,7 @@ const ProductModal = ({ modalView }) => {
         theme: "dark",
       });
     },
-    [dispatch]
+    [dispatch, isAuthorized, navigate]
   );
 
   return (

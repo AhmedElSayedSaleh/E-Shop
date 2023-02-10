@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { auth } from "../../firebase/firebase";
 import {
   decreaseCartQuantity,
   increaseCartQuantity,
@@ -13,7 +14,9 @@ const Quantity = ({ cartItemQuantity, item }) => {
 
   const handleIncrease = (item) => {
     setQuantity(quantity + 1);
-    dispatch(increaseCartQuantity(item));
+    dispatch(
+      increaseCartQuantity({ product: item, uid: auth.currentUser.uid })
+    );
   };
   const handleDecrease = () => {
     if (quantity <= 1) {
@@ -21,7 +24,9 @@ const Quantity = ({ cartItemQuantity, item }) => {
     } else {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
-    dispatch(decreaseCartQuantity(item));
+    dispatch(
+      decreaseCartQuantity({ product: item, uid: auth.currentUser.uid })
+    );
   };
 
   return (

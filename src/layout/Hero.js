@@ -5,7 +5,7 @@ import {
   Bags,
   Shoes,
   Jewelry,
-  ProductView,
+  ProductDetails,
   ProductsList,
   NotFound,
   Cart,
@@ -13,6 +13,8 @@ import {
   Password,
   Register,
   Login,
+  Payment,
+  ProtectedRoute,
 } from "../pages";
 import { ScrollToTop } from "../components";
 
@@ -28,14 +30,35 @@ const Hero = () => {
             <Route path={"/bags"} element={<Bags />} />
             <Route path={"/shoes"} element={<Shoes />} />
             <Route path={"/jewelry"} element={<Jewelry />} />
-
             <Route path={"/products"} element={<ProductsList />} />
-            <Route path={"/product/:id"} element={<ProductView />} />
+            <Route path={"/product/:id"} element={<ProductDetails />} />
             <Route path={"/cart"} element={<Cart />} />
             <Route path={"/checkout"} element={<Checkout />} />
+            <Route
+              path={"/payment"}
+              element={
+                <ProtectedRoute>
+                  <Payment />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route path={"/register"} element={<Register />} />
-            <Route path={"/login"} element={<Login />} />
+            <Route
+              path={"/register"}
+              element={
+                <ProtectedRoute isSignPage>
+                  <Register />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path={"/login"}
+              element={
+                <ProtectedRoute isSignPage>
+                  <Login />
+                </ProtectedRoute>
+              }
+            />
             <Route path={"/password"} element={<Password />} />
             <Route path={"/logout"} element={<Navigate to="/" replace />} />
           </Routes>

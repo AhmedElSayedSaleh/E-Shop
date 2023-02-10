@@ -11,7 +11,6 @@ import ReviewCard from "./ReviewCard";
 import Newsletter from "./Newsletter";
 import CartHeader from "./CartHeader";
 import GoBackLink from "./GoBackLink";
-import ErrorAlert from "./ErrorAlert";
 import ScrollToTop from "./ScrollToTop";
 
 export {
@@ -28,6 +27,5 @@ export {
   Newsletter,
   CartHeader,
   GoBackLink,
-  ErrorAlert,
   ScrollToTop,
 };

@@ -1,18 +1,19 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Icon, CartHeader, GoBackLink } from "../../components";
 import { Quantity } from "../../components/products";
+import { auth } from "../../firebase/firebase";
 import { removeFromCart } from "../../store/slices/CartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalCost = useSelector((state) => state.cart.totalCost);
-
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = useCallback(
-    (item) => dispatch(removeFromCart(item)),
+    (item) =>
+      dispatch(removeFromCart({ product: item, uid: auth.currentUser.uid })),
     [dispatch]
   );
 
@@ -65,7 +66,7 @@ const Cart = () => {
                         </div>
                       </td>
                       <td className="my-auto grid-price">
-                        ${item.totalPrice.toFixed(2)}
+                        ${item.totalPrice?.toFixed(2)}
                       </td>
                       <td className="my-auto grid-delete">
                         <div className="">

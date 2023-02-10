@@ -5,30 +5,39 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { Button, ErrorAlert, GoBackLink, Input } from "../../components";
+// import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { Button, GoBackLink, Input } from "../../components";
 import { auth } from "../../firebase/firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState(null);
   const navigate = useNavigate();
-  const user = useSelector((state) => state.userAuth);
+  // const user = useSelector((state) => state.userAuth);
 
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         // const user = userCredential.user;
         console.log("User logged");
-        setErrorMsg(null);
         navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setErrorMsg(errorMessage);
+        toast.error(errorMessage, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       });
   };
 
@@ -37,12 +46,20 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then(() => {
         console.log("User logged");
-        setErrorMsg(null);
         navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setErrorMsg(errorMessage);
+        toast.error(errorMessage, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       });
   };
 
@@ -51,18 +68,26 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then(() => {
         console.log("User logged");
-        setErrorMsg(null);
         navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setErrorMsg(errorMessage);
+        toast.error(errorMessage, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       });
   };
 
   return (
     <div className="container my-3 py-5">
-      {user.isAuth && <Navigate to="/" />}
+      {/* {user.isAuth && <Navigate to="/" />} */}
       <div className="row">
         <GoBackLink location="/products" children={"Back to store"} />
       </div>
@@ -88,8 +113,8 @@ const Login = () => {
       </div>
       <div className="row justify-content-center align-items-center">
         <div className="col-12 col-sm-9 col-lg-6">
-          <ErrorAlert errorMsg={errorMsg} />
-          <form>
+          <ToastContainer />
+          <form onSubmit={login}>
             <div className="mb-3">
               <Input
                 type={"email"}
@@ -166,8 +191,8 @@ const Login = () => {
               <div className="col-12 mx-auto">
                 <Button
                   children={"Sign in"}
-                  type={"button"}
-                  onClick={login}
+                  type={"submit"}
+                  // onClick={login}
                   style={{
                     width: "100%",
                     textTransform: "none",

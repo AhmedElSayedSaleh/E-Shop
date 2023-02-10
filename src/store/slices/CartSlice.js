@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ref, set } from "firebase/database";
+import { db } from "../../firebase/firebase";
 
 const initialState = {
-  cartItems: localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [],
-  totalQuantity: localStorage.getItem("totalQuantity")
-    ? JSON.parse(localStorage.getItem("totalQuantity"))
-    : 0,
-  totalCost: localStorage.getItem("totalCost")
-    ? +JSON.parse(localStorage.getItem("totalCost"))
-    : 0,
+  // cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
+  // totalQuantity: localStorage.getItem("totalQuantity")? JSON.parse(localStorage.getItem("totalQuantity")): 0,
+  // totalCost: localStorage.getItem("totalCost")? +JSON.parse(localStorage.getItem("totalCost")): 0,
+  cartItems: [],
+  totalCost: 0,
+  totalQuantity: 0,
 };
 
 // const cartSlice = createSlice({
@@ -57,8 +56,10 @@ const CartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    setUserCart: (state, action) => action.payload,
     addToCart: (state, action) => {
-      const product = action.payload; // {product: {id: 1, name: "name", price: 10}}
+      const userId = action.payload.uid;
+      const product = action.payload.product; // {product: {id: 1, name: "name", price: 10}}
       const existingItem = state.cartItems.find(
         (item) => item.productId === product.productId
       );
@@ -83,32 +84,52 @@ const CartSlice = createSlice({
         // console.log("totalQuantity:", state.totalQuantity);
       }
 
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-      localStorage.setItem("totalCost", JSON.stringify(state.totalCost));
-      localStorage.setItem(
-        "totalQuantity",
-        JSON.stringify(state.totalQuantity)
-      );
+      set(ref(db, `users/${userId}/cart/cartItems`), state.cartItems);
+      set(ref(db, `users/${userId}/cart/totalCost`), state.totalCost);
+      set(ref(db, `users/${userId}/cart/totalQuantity`), state.totalQuantity);
+
+      //// get cart items from firestore database to local storage
+      // onValue(ref(db, `users/${userId}/cart`), (snapshot) => {
+      //   const data = snapshot.val();
+      //   console.log(data.cartItems);
+      //   localStorage.setItem("cartItems", JSON.stringify(data.cartItems));
+      //   localStorage.setItem("totalCost", JSON.stringify(data.totalCost));
+      //   localStorage.setItem(
+      //     "totalQuantity",
+      //     JSON.stringify(data.totalQuantity)
+      //   );
+      // });
     },
 
     removeFromCart: (state, action) => {
-      const product = action.payload;
+      const userId = action.payload.uid;
+      const product = action.payload.product;
       state.cartItems = state.cartItems.filter(
         (item) => item.productId !== product.productId
       );
       state.totalCost -= product.totalPrice;
       state.totalQuantity -= product.quantity;
 
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-      localStorage.setItem("totalCost", JSON.stringify(state.totalCost));
-      localStorage.setItem(
-        "totalQuantity",
-        JSON.stringify(state.totalQuantity)
-      );
+      set(ref(db, `users/${userId}/cart/cartItems`), state.cartItems);
+      set(ref(db, `users/${userId}/cart/totalCost`), state.totalCost);
+      set(ref(db, `users/${userId}/cart/totalQuantity`), state.totalQuantity);
+
+      //// get cart items from firestore database to local storage
+      // onValue(ref(db, `users/${userId}/cart`), (snapshot) => {
+      //   const data = snapshot.val();
+      //   console.log(data.cartItems);
+      //   localStorage.setItem("cartItems", JSON.stringify(data.cartItems));
+      //   localStorage.setItem("totalCost", JSON.stringify(data.totalCost));
+      //   localStorage.setItem(
+      //     "totalQuantity",
+      //     JSON.stringify(data.totalQuantity)
+      //   );
+      // });
     },
 
     increaseCartQuantity: (state, action) => {
-      const product = action.payload;
+      const userId = action.payload.uid;
+      const product = action.payload.product;
       const existingItem = state.cartItems.find(
         (item) => item.productId === product.productId
       );
@@ -119,16 +140,27 @@ const CartSlice = createSlice({
         state.totalCost += existingItem.currentPrice;
         state.totalQuantity++;
       }
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-      localStorage.setItem("totalCost", JSON.stringify(state.totalCost));
-      localStorage.setItem(
-        "totalQuantity",
-        JSON.stringify(state.totalQuantity)
-      );
+
+      set(ref(db, `users/${userId}/cart/cartItems`), state.cartItems);
+      set(ref(db, `users/${userId}/cart/totalCost`), state.totalCost);
+      set(ref(db, `users/${userId}/cart/totalQuantity`), state.totalQuantity);
+
+      //// get cart items from firestore database to local storage
+      // onValue(ref(db, `users/${userId}/cart`), (snapshot) => {
+      //   const data = snapshot.val();
+      //   console.log(data.cartItems);
+      //   localStorage.setItem("cartItems", JSON.stringify(data.cartItems));
+      //   localStorage.setItem("totalCost", JSON.stringify(data.totalCost));
+      //   localStorage.setItem(
+      //     "totalQuantity",
+      //     JSON.stringify(data.totalQuantity)
+      //   );
+      // });
     },
 
     decreaseCartQuantity: (state, action) => {
-      const product = action.payload;
+      const userId = action.payload.uid;
+      const product = action.payload.product;
       const existingItem = state.cartItems.find(
         (item) => item.productId === product.productId
       );
@@ -146,12 +178,22 @@ const CartSlice = createSlice({
       //   state.totalCost -= product.totalPrice;
       //   state.totalQuantity -= product.quantity;
       // }
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-      localStorage.setItem("totalCost", JSON.stringify(state.totalCost));
-      localStorage.setItem(
-        "totalQuantity",
-        JSON.stringify(state.totalQuantity)
-      );
+
+      set(ref(db, `users/${userId}/cart/cartItems`), state.cartItems);
+      set(ref(db, `users/${userId}/cart/totalCost`), state.totalCost);
+      set(ref(db, `users/${userId}/cart/totalQuantity`), state.totalQuantity);
+
+      //// get cart items from firestore database to local storage
+      // onValue(ref(db, `users/${userId}/cart`), (snapshot) => {
+      //   const data = snapshot.val();
+      //   console.log(data.cartItems);
+      //   localStorage.setItem("cartItems", JSON.stringify(data.cartItems));
+      //   localStorage.setItem("totalCost", JSON.stringify(data.totalCost));
+      //   localStorage.setItem(
+      //     "totalQuantity",
+      //     JSON.stringify(data.totalQuantity)
+      //   );
+      // });
     },
   },
 });
@@ -161,6 +203,7 @@ export const {
   removeFromCart,
   increaseCartQuantity,
   decreaseCartQuantity,
+  setUserCart,
 } = CartSlice.actions;
 
 export default CartSlice.reducer;
