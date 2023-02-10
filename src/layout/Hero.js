@@ -33,7 +33,14 @@ const Hero = () => {
             <Route path={"/products"} element={<ProductsList />} />
             <Route path={"/product/:id"} element={<ProductDetails />} />
             <Route path={"/cart"} element={<Cart />} />
-            <Route path={"/checkout"} element={<Checkout />} />
+            <Route
+              path={"/checkout"}
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path={"/payment"}
               element={
@@ -59,7 +66,14 @@ const Hero = () => {
                 </ProtectedRoute>
               }
             />
-            <Route path={"/password"} element={<Password />} />
+            <Route
+              path={"/password"}
+              element={
+                <ProtectedRoute isSignPage>
+                  <Password />
+                </ProtectedRoute>
+              }
+            />
             <Route path={"/logout"} element={<Navigate to="/" replace />} />
           </Routes>
         </ScrollToTop>
