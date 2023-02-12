@@ -7,6 +7,7 @@ function Input(props) {
       type={props.type}
       placeholder={props.placeholder}
       onChange={props.onChange}
+      required={props.required}
     />
   );
 }

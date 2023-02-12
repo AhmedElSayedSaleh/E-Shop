@@ -1,37 +1,31 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import { Button, GoBackLink, Input } from "../../components";
 import { auth } from "../../firebase/firebase";
+import { setError } from "../../store/slices/ErrorAlertSlice";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const checkBoxRef = useRef(null);
+  const dispatch = useDispatch();
 
   const signUp = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        // const user = userCredential.user;
-        console.log("Signed up successfully");
-        navigate("/");
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(errorMessage, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
+    checkBoxRef.current.checked &&
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          // Signed in
+          console.log("Signed up successfully");
+          navigate("/");
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          dispatch(setError(errorMessage));
         });
-      });
   };
 
   return (
@@ -63,7 +57,6 @@ const Register = () => {
         </div>
         <div className="row justify-content-center align-items-center">
           <div className="col-12 col-sm-9 col-lg-6">
-            <ToastContainer />
             <form onSubmit={signUp}>
               <div className="mb-3">
                 <Input type={"text"} placeholder={"First Name"} />
@@ -76,6 +69,7 @@ const Register = () => {
                   type={"email"}
                   placeholder={"Email"}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -83,6 +77,7 @@ const Register = () => {
                   type={"password"}
                   placeholder={"Password"}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
               <div className="row my-4">
@@ -91,11 +86,13 @@ const Register = () => {
                     <input
                       type="checkbox"
                       className="form-check-input"
-                      id="exampleCheck1"
+                      id="exampleCheck"
+                      ref={checkBoxRef}
+                      required
                     />
                     <label
                       className="form-check-label"
-                      htmlFor="exampleCheck1"
+                      htmlFor="exampleCheck"
                       style={{ fontSize: "1.3rem" }}
                     >
                       I agree to the Google Terms of Service and Privacy Policy

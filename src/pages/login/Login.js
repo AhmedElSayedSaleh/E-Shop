@@ -1,43 +1,35 @@
+import React, { useState } from "react";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import React, { useState } from "react";
+import { auth } from "../../firebase/firebase";
 // import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import { Button, GoBackLink, Input } from "../../components";
-import { auth } from "../../firebase/firebase";
+import { useDispatch } from "react-redux";
+import { setError } from "../../store/slices/ErrorAlertSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // const user = useSelector((state) => state.userAuth);
 
   const login = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(() => {
         // Signed in
-        // const user = userCredential.user;
         console.log("User logged");
         navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        toast.error(errorMessage, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        dispatch(setError(errorMessage));
       });
   };
 
@@ -50,16 +42,7 @@ const Login = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        toast.error(errorMessage, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        dispatch(setError(errorMessage));
       });
   };
 
@@ -72,16 +55,7 @@ const Login = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        toast.error(errorMessage, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        dispatch(setError(errorMessage));
       });
   };
 
@@ -113,13 +87,13 @@ const Login = () => {
       </div>
       <div className="row justify-content-center align-items-center">
         <div className="col-12 col-sm-9 col-lg-6">
-          <ToastContainer />
           <form onSubmit={login}>
             <div className="mb-3">
               <Input
                 type={"email"}
                 placeholder={"Email"}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="mb-3">
@@ -127,6 +101,7 @@ const Login = () => {
                 type={"password"}
                 placeholder={"Password"}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
             <div className="row my-4">

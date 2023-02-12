@@ -36,6 +36,7 @@ import ShoesSlice from "./slices/ShoesSlice";
 import JewelrySlice from "./slices/JewelrySlice";
 import CartSlice from "./slices/CartSlice";
 import AuthSlice from "./slices/AuthSlice";
+import ErrorAlertSlice from "./slices/ErrorAlertSlice";
 
 const store = configureStore({
   reducer: {
@@ -45,6 +46,7 @@ const store = configureStore({
     jewelryProducts: JewelrySlice,
     cart: CartSlice,
     userAuth: AuthSlice,
+    errorAlert: ErrorAlertSlice,
   },
 });
 

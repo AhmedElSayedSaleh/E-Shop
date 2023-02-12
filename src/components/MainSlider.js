@@ -40,8 +40,6 @@ const MainSlider = () => {
   const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
   const [swiperTotalIndex, setSwiperTotalIndex] = useState();
 
-  console.log(swiperTotalIndex);
-
   // const CurrentSlideCount = () => {
   //   const carouselContext = useContext(CarouselContext);
   //   const [currentSlide, setCurrentSlide] = useState(
@@ -68,11 +66,9 @@ const MainSlider = () => {
         // runCallbacksOnInit={true}
         // init={false}
         effect="fade"
+        onSwiper={(sw) => setSwiperTotalIndex(sw.slides.length)}
         onActiveIndexChange={(swiperCore) => {
           setSwiperActiveIndex(swiperCore.activeIndex);
-        }}
-        onAfterInit={(sw) => {
-          setSwiperTotalIndex(sw.slides.length);
         }}
         autoplay={{
           delay: 2500,
