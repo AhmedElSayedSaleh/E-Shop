@@ -107,8 +107,12 @@ const CartSlice = createSlice({
     removeFromCart: (state, action) => {
       const userId = action.payload.uid;
       const product = action.payload.product;
+      const productColor = action.payload.color; // color
+
       state.cartItems = state.cartItems.filter(
-        (item) => item.productId !== product.productId
+        (item) =>
+          item.productId !== product.productId ||
+          item.colorSelected !== productColor
       );
       state.totalCost -= product.totalPrice;
       state.totalQuantity -= product.quantity;
@@ -133,8 +137,12 @@ const CartSlice = createSlice({
     increaseCartQuantity: (state, action) => {
       const userId = action.payload.uid;
       const product = action.payload.product;
+      const productColor = action.payload.color; // color
+
       const existingItem = state.cartItems.find(
-        (item) => item.productId === product.productId
+        (item) =>
+          item.productId === product.productId &&
+          item.colorSelected === productColor
       );
       if (existingItem) {
         existingItem.quantity++;
@@ -164,8 +172,12 @@ const CartSlice = createSlice({
     decreaseCartQuantity: (state, action) => {
       const userId = action.payload.uid;
       const product = action.payload.product;
+      const productColor = action.payload.color; // color
+
       const existingItem = state.cartItems.find(
-        (item) => item.productId === product.productId
+        (item) =>
+          item.productId === product.productId &&
+          item.colorSelected === productColor
       );
       if (existingItem && existingItem.quantity > 1) {
         existingItem.quantity--;

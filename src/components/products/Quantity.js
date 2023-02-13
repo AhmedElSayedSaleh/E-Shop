@@ -15,7 +15,11 @@ const Quantity = ({ cartItemQuantity, item }) => {
   const handleIncrease = (item) => {
     setQuantity(quantity + 1);
     dispatch(
-      increaseCartQuantity({ product: item, uid: auth.currentUser.uid })
+      increaseCartQuantity({
+        product: item,
+        color: item.colorSelected,
+        uid: auth.currentUser.uid,
+      })
     );
   };
   const handleDecrease = () => {
@@ -25,7 +29,11 @@ const Quantity = ({ cartItemQuantity, item }) => {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
     dispatch(
-      decreaseCartQuantity({ product: item, uid: auth.currentUser.uid })
+      decreaseCartQuantity({
+        product: item,
+        color: item.colorSelected,
+        uid: auth.currentUser.uid,
+      })
     );
   };
 

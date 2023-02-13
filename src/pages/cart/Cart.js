@@ -13,7 +13,13 @@ const Cart = () => {
 
   const handleRemoveFromCart = useCallback(
     (item) =>
-      dispatch(removeFromCart({ product: item, uid: auth.currentUser.uid })),
+      dispatch(
+        removeFromCart({
+          product: item,
+          color: item.colorSelected,
+          uid: auth.currentUser.uid,
+        })
+      ),
     [dispatch]
   );
 
@@ -43,7 +49,7 @@ const Cart = () => {
                   {cartItems.map((item) => (
                     <tr
                       className="align-middle text-center cart__table__body__row"
-                      key={item.productId}
+                      key={item.productId + "-" + item.colorSelected}
                     >
                       <td className="grid-product">
                         <div className="d-flex align-items-center">
