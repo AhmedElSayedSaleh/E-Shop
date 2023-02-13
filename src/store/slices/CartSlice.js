@@ -60,8 +60,11 @@ const CartSlice = createSlice({
     addToCart: (state, action) => {
       const userId = action.payload.uid;
       const product = action.payload.product; // {product: {id: 1, name: "name", price: 10}}
+      const productColor = action.payload.color; // color
       const existingItem = state.cartItems.find(
-        (item) => item.productId === product.productId
+        (item) =>
+          item.productId === product.productId &&
+          item.colorSelected === productColor
       );
 
       if (existingItem) {

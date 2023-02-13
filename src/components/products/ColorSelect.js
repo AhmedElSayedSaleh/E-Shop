@@ -1,9 +1,9 @@
 import React from "react";
 
-const ColorSelect = ({ colorData }) => {
+const ColorSelect = ({ colorData, onChangeValue }) => {
   return (
     <div className={"color-select"}>
-      <ul className={"d-flex text-center"}>
+      <ul className={"d-flex text-center"} onChange={onChangeValue}>
         <li>
           <label htmlFor="radio1">
             <input

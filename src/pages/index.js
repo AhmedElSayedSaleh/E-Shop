@@ -10,6 +10,7 @@ import Payment from "./cart/Payment";
 import Login from "./login/Login";
 import Register from "./register/Register";
 import Password from "./password/Password";
+import Profile from "./profile/Profile";
 import NotFound from "./NotFound";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -26,6 +27,7 @@ export {
   Login,
   Register,
   Password,
+  Profile,
   NotFound,
   ProtectedRoute,
 };

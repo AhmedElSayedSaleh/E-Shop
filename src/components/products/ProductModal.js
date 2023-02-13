@@ -39,6 +39,15 @@ const ProductModal = ({ modalView }) => {
     [dispatch, isAuthorized, navigate]
   );
 
+  // handle color change
+  const handleColorChecked = useCallback(
+    (e) => {
+      modalView.colorSelected = e.target.value;
+      modalView.colorImageSelected = e.target.nextElementSibling.src;
+    },
+    [modalView]
+  );
+
   return (
     <div
       className="modal fade"
@@ -94,7 +103,10 @@ const ProductModal = ({ modalView }) => {
                     </p>
                     <span className={"ps-2 product-modal__currency"}>$</span>
                   </div>
-                  <ColorSelect colorData={modalView} />
+                  <ColorSelect
+                    colorData={modalView}
+                    onChangeValue={handleColorChecked}
+                  />
                 </div>
                 <div className={"d-flex justify-content-center"}>
                   {/* <Quantity /> */}

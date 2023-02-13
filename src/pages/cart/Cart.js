@@ -47,7 +47,14 @@ const Cart = () => {
                     >
                       <td className="grid-product">
                         <div className="d-flex align-items-center">
-                          <img src={item.primaryImage} alt={item.name} />
+                          <img
+                            src={
+                              item.colorImageSelected
+                                ? item.colorImageSelected
+                                : item.primaryImage
+                            }
+                            alt={item.name}
+                          />
                           <div className="text-start ps-5">
                             <h4>{item.name}</h4>
                             <p className="cart__table__body__row__id">
@@ -56,7 +63,9 @@ const Cart = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="my-auto grid-color">white</td>
+                      <td className="my-auto grid-color">
+                        {item.colorSelected}
+                      </td>
                       <td className="my-auto grid-quantity">
                         <div className=" d-flex justify-content-center">
                           <Quantity

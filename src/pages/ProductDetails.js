@@ -74,6 +74,8 @@ const ProductDetails = () => {
                   : item.raw_price,
               subcategory: item.subcategory,
               url: item.url,
+              colorSelected: item.variation_0_color,
+              colorImageSelected: item.variation_0_thumbnail,
               variationColor1: item.variation_0_color,
               variationImage1: item.variation_0_image,
               variationThumbnail1: item.variation_0_thumbnail,
@@ -92,8 +94,15 @@ const ProductDetails = () => {
         navigate("/login");
         return;
       }
+      console.log(product.colorImageSelected);
 
-      dispatch(addToCart({ product: product, uid: auth.currentUser.uid }));
+      dispatch(
+        addToCart({
+          product: product,
+          color: product.colorSelected,
+          uid: auth.currentUser.uid,
+        })
+      );
       toast.success("Product Added To Cart", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1000,
@@ -107,6 +116,15 @@ const ProductDetails = () => {
       });
     },
     [dispatch, navigate, isAuthorized]
+  );
+
+  // handle color change
+  const handleColorChecked = useCallback(
+    (e) => {
+      currentProduct.colorSelected = e.target.value;
+      currentProduct.colorImageSelected = e.target.nextElementSibling.src;
+    },
+    [currentProduct]
   );
 
   return (
@@ -241,7 +259,10 @@ const ProductDetails = () => {
                 </div>
                 <div>
                   <p className={"product-view__subtitle"}>Color: </p>
-                  <ColorSelect colorData={currentProduct} />
+                  <ColorSelect
+                    colorData={currentProduct}
+                    onChangeValue={handleColorChecked}
+                  />
                 </div>
                 <div className={"product-view__quantity"}>
                   {/* <p className={"product-view__subtitle"}>Quantity:</p> */}

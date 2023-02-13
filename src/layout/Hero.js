@@ -15,6 +15,7 @@ import {
   Login,
   Payment,
   ProtectedRoute,
+  Profile,
 } from "../pages";
 import { ScrollToTop } from "../components";
 
@@ -25,7 +26,6 @@ const Hero = () => {
         <ScrollToTop>
           <Routes>
             <Route path={"*"} element={<NotFound />} />
-
             <Route path={"/"} element={<Home />} exact />
             <Route path={"/bags"} element={<Bags />} />
             <Route path={"/shoes"} element={<Shoes />} />
@@ -49,7 +49,6 @@ const Hero = () => {
                 </ProtectedRoute>
               }
             />
-
             <Route
               path={"/register"}
               element={
@@ -71,6 +70,14 @@ const Hero = () => {
               element={
                 <ProtectedRoute isSignPage>
                   <Password />
+                </ProtectedRoute>
+              }
+            />{" "}
+            <Route
+              path={"/profile"}
+              element={
+                <ProtectedRoute>
+                  <Profile />
                 </ProtectedRoute>
               }
             />

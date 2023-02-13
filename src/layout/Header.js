@@ -195,7 +195,10 @@ const Header = () => {
                     {user.isAuth ? (
                       <>
                         <li>
-                          <Link className="dropdown-item text-success h4">
+                          <Link
+                            className="dropdown-item text-info h4"
+                            to={"/profile"}
+                          >
                             {user.displayName
                               ? user.displayName
                               : user.email.slice(0, 7) + "..."}
@@ -296,7 +299,7 @@ const Header = () => {
                 {user.isAuth ? (
                   <>
                     <li>
-                      <Link className="text-success h4">
+                      <Link className="text-info h4" to={"/profile"}>
                         {user.displayName
                           ? user.displayName
                           : user.email.slice(0, 7) + "..."}
