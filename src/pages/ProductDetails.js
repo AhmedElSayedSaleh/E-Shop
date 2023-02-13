@@ -94,7 +94,6 @@ const ProductDetails = () => {
         navigate("/login");
         return;
       }
-      console.log(product.colorImageSelected);
 
       dispatch(
         addToCart({

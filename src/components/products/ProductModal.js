@@ -23,7 +23,18 @@ const ProductModal = ({ modalView }) => {
         return;
       }
 
-      dispatch(addToCart({ product: product, uid: auth.currentUser.uid }));
+      if (!product.colorSelected) {
+        product.colorSelected = product.variationColor1;
+        product.colorImageSelected = product.variationThumbnail1;
+      }
+
+      dispatch(
+        addToCart({
+          product: product,
+          color: product.colorSelected,
+          uid: auth.currentUser.uid,
+        })
+      );
       toast.success("Product added to cart", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1000,
