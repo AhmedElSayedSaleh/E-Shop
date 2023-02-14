@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 // components
 import { SingleProduct } from "../components/products";
-import { LoadingBox, MessageBox, FiltersNav, Newsletter } from "../components";
+import {
+  LoadingBox,
+  MessageBox,
+  FiltersNav,
+  Newsletter,
+  Pagination,
+} from "../components";
 
 import { fetchShoes } from "../store/slices/ShoesSlice";
 
@@ -15,6 +21,9 @@ const Shoes = () => {
   let [checked, setChecked] = useState([]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(100);
+  // pagination stats
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(6);
 
   const shoesList = useSelector((state) => state.shoesProducts);
   const { loading, error, data } = shoesList;
@@ -101,6 +110,27 @@ const Shoes = () => {
     console.log(checked);
   };
 
+  // Pagination
+  // Get current products page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  // Change page
+  const paginate = (e, pageNumber, paginationLinks) => {
+    setCurrentPage(pageNumber);
+
+    paginationLinks.forEach((element) => {
+      element.classList.remove("fw-bolder");
+      element.classList.remove("text-black");
+    });
+
+    e.target.classList.add("fw-bolder");
+    e.target.classList.add("text-black");
+  };
+
   return (
     <div className={"container pt-5"}>
       <div className={"row"}>
@@ -120,8 +150,8 @@ const Shoes = () => {
             ) : error ? (
               <MessageBox>{error}</MessageBox>
             ) : (
-              filteredProducts &&
-              filteredProducts.map((item) => {
+              currentProducts &&
+              currentProducts.map((item) => {
                 let product = {
                   brand: item.brand,
                   brandUrl: item.brand_url,
@@ -164,6 +194,11 @@ const Shoes = () => {
               })
             )}
           </div>
+          <Pagination
+            totalProducts={filteredProducts.length}
+            productsPerPage={productsPerPage}
+            paginate={paginate}
+          />
         </div>
       </div>
       <div className="row">
