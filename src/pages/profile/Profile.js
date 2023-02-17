@@ -1,7 +1,14 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+import {Sidebar} from "./";
 
 const Profile = () => {
-  return <div className="text-center pt-5 h1 text-info">Profile</div>;
+  return (
+    <div className="border-bottom d-flex">
+      <Sidebar />
+      <Outlet />
+    </div>
+  );
 };
 
 export default Profile;

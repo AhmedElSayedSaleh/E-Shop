@@ -18,6 +18,13 @@ import {
   Profile,
 } from "../pages";
 import { ScrollToTop } from "../components";
+import {
+  ProfileInfo,
+  ProfileOrders,
+  ProfileFavorites,
+  ProfilePayments,
+  ProfileAccounts,
+} from "../pages/profile";
 
 const Hero = () => {
   return (
@@ -72,7 +79,8 @@ const Hero = () => {
                   <Password />
                 </ProtectedRoute>
               }
-            />{" "}
+            />
+
             <Route
               path={"/profile"}
               element={
@@ -80,7 +88,20 @@ const Hero = () => {
                   <Profile />
                 </ProtectedRoute>
               }
-            />
+            >
+              {/* Start Nested */}
+              <Route path={"/profile"} element={<ProfileInfo />} />
+              <Route path={"/profile/info"} element={<ProfileInfo />} />
+              <Route path={"/profile/orders"} element={<ProfileOrders />} />
+              <Route
+                path={"/profile/favorites"}
+                element={<ProfileFavorites />}
+              />
+              <Route path={"/profile/payments"} element={<ProfilePayments />} />
+              <Route path={"/profile/accounts"} element={<ProfileAccounts />} />
+              {/* End Nested */}
+            </Route>
+
             <Route path={"/logout"} element={<Navigate to="/" replace />} />
           </Routes>
         </ScrollToTop>
